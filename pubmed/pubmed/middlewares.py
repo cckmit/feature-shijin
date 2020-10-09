@@ -80,7 +80,6 @@ class PubmedDownloaderMiddleware:
     def process_request(self, request, spider):
         # Called for each request that goes through the downloader
         # middleware.
-
         # Must either:
         # - return None: continue processing this request
         # - or return a Response object
@@ -121,12 +120,9 @@ class RandomUserAgent(object):
 class RetryMiddleware(RetryMiddleware):
     def _retry(self, request, reason, spider):
         retries = request.meta.get('retry_times', 0) + 1
-
         retry_times = self.max_retry_times
-
         if 'max_retry_times' in request.meta:
             retry_times = request.meta['max_retry_times']
-
         stats = spider.crawler.stats
         if retries <= retry_times:
             logger.debug("Retrying %(request)s (failed %(retries)d times): %(reason)s",

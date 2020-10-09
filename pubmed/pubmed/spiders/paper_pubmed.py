@@ -6,7 +6,11 @@ from pyquery import PyQuery as pq
 from pubmed.utils.common_utils import CommonUtils
 from pubmed.utils.date_utils import DateUtils
 from pubmed.items import PubmedItem
+from scrapy_redis_cluster.spiders import RedisCrawlSpider
 
+
+from scrapy.utils.project import get_project_settings
+from scrapy_redis_cluster.connection import from_settings
 
 def get_link(doc, label_str, name, name_url):
     data_arr = []
@@ -35,13 +39,16 @@ def get_link(doc, label_str, name, name_url):
 class PaperPubmedSpider(scrapy.Spider):
     name = 'paper-pubmed'
     allowed_domains = []
-    start_urls = ['http://www.baidu.com/']
+    start_urls = ['https://www.baidu.com/']
+
+    def start_requests(self):
+        for url in self.start_urls:
+            yield self.make_requests_from_url(url)
 
     def parse(self, response):
         total_url = len(self.crawler.engine.slot.inprogress)  # 当前正在运行请求
         prepare_url = len(self.crawler.engine.slot.scheduler)  # 待采集URL条数
         logging.info(f"待采集URL条数：{prepare_url}，当前运行请求数：{total_url}")
-
         proxy = CommonUtils().randomProxyIP()
         spider_url = response.url
         if( 'baidu.com' in spider_url):
@@ -49,7 +56,7 @@ class PaperPubmedSpider(scrapy.Spider):
             with open(file='/home/zengxiangxu/pubmed.txt', encoding='utf-8') as file:
                 pm_id_list = file.readlines()
                 for pm_id in pm_id_list:
-                    detail_url = f'https://pubmed.ncbi.nlm.nih.gov/{pm_id}'
+                    detail_url = f'https://pubmed.ncbi.nlm.nih.gov/{pm_id}'.replace('\n','')
                     logging.info(detail_url)
                     yield scrapy.Request(detail_url, callback=self.parse, meta={'pm_id': pm_id,"proxy": proxy})
 

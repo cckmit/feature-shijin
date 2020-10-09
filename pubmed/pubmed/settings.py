@@ -19,7 +19,7 @@ NEWSPIDER_MODULE = 'pubmed.spiders'
 #设置并发数，默认 32
 CONCURRENT_REQUESTS = 10
 #设置超时时间
-DOWNLOAD_TIMEOUT = 30
+DOWNLOAD_TIMEOUT = 10
 # 每次请求间隔时间 0.5秒
 DOWNLOAD_DELAY = 0.5
 #禁止重定向
@@ -124,7 +124,7 @@ if not os.path.exists(filePath):
     os.makedirs(filePath)
 logFilePath = r'..\logs\pubmed_{}_{}_{}.log'.format(to_day.year, to_day.month, to_day.day,)
 LOG_FILE = logFilePath
-LOG_LEVEL = 'INFO'
+LOG_LEVEL = 'DEBUG'
 
 '''
 
