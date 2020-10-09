@@ -133,6 +133,8 @@ class RetryMiddleware(RetryMiddleware):
                          {'request': request, 'retries': retries, 'reason': reason},
                          extra={'spider': spider})
             retryreq = request.copy()
+            proxy = CommonUtils().randomProxyIP()
+            retryreq.meta['proxy'] = proxy
             retryreq.meta['retry_times'] = retries
             retryreq.dont_filter = True
             retryreq.priority = request.priority + self.priority_adjust
