@@ -16,7 +16,7 @@ _KEY_ENUM_DGRAPH = "DGRAPH"
 #__PRIVATE_DICT = {"es_host": ("192.168.1.150",)}
 
 #测试环境
-__PRIVATE_DICT = {"es_host": ("10.66.205.210",)}
+__PRIVATE_DICT = {"es_host": ("123.56.187.45",)}
 
 #线上 es 地址
 #__PRIVATE_DICT = {"es_host": ("10.27.223.106","10.27.223.106","10.29.130.193","10.144.112.79","172.17.108.73","172.17.108.74")}
@@ -2043,6 +2043,12 @@ def get_one(index, arg, *, show_fields=None, orders: [str, dict, OrderedDict] = 
 			return
 
 
+if __name__ == '__main__':
+	es_dict = {'content':'1111','esid':'1111'}
+	a = insert_or_replace('news',d=es_dict)
+	print(a)
+	count = get_page("invest_news", page_index=-1, show_fields=['url'], queries=Query(True,Query(QueryType.GT,'spider_wormtime', 1604160000000),Query(QueryType.EQ,'title', None)) )
+	print(count)
 
 
 # es 的基本操作样例
@@ -2052,3 +2058,7 @@ def get_one(index, arg, *, show_fields=None, orders: [str, dict, OrderedDict] = 
 # results = es_utils.get_count("news",queries=Query(QueryType.EQ,'esid','2222'))
 # results = es_utils.get_page("news",queries=Query(QueryType.EQ,'esid','2222'),page_index=-1,show_fields=['title'])
 # results = es_utils.get_page("drug_ct",page_size=-1, show_fields=['registration_no'])
+
+
+
+

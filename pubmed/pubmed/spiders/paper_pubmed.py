@@ -49,7 +49,7 @@ class PaperPubmedSpider(scrapy.Spider):
         total_url = len(self.crawler.engine.slot.inprogress)  # 当前正在运行请求
         prepare_url = len(self.crawler.engine.slot.scheduler)  # 待采集URL条数
         logging.info(f"待采集URL条数：{prepare_url}，当前运行请求数：{total_url}")
-        proxy = CommonUtils().randomProxyIP()
+        #proxy = CommonUtils().randomProxyIP()
         spider_url = response.url
         if( 'baidu.com' in spider_url):
             logging.info('======= 当前追加待采集的论文id ======= ')
@@ -58,7 +58,8 @@ class PaperPubmedSpider(scrapy.Spider):
                 for pm_id in pm_id_list:
                     detail_url = f'https://pubmed.ncbi.nlm.nih.gov/{pm_id}'.replace('\n','')
                     logging.info(detail_url)
-                    yield scrapy.Request(detail_url, callback=self.parse, meta={'pm_id': pm_id,"proxy": proxy})
+                    yield scrapy.Request(detail_url, callback=self.parse, meta={'pm_id': pm_id})
+                   # yield scrapy.Request(detail_url, callback=self.parse, meta={'pm_id': pm_id,"proxy": proxy})
 
         # 全球论文库
         if ( 'pubmed.ncbi.nlm.nih.gov' in spider_url):

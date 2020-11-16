@@ -1,4 +1,4 @@
-# Scrapy settings for pubmed project
+# Scrapy settings for qcc project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -6,46 +6,59 @@
 #     https://docs.scrapy.org/en/latest/topics/settings.html
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-import json
 import datetime
 import os
 
-BOT_NAME = 'pubmed'
-SPIDER_MODULES = ['pubmed.spiders']
-NEWSPIDER_MODULE = 'pubmed.spiders'
+BOT_NAME = 'qcc'
+
+SPIDER_MODULES = ['qcc.spiders']
+NEWSPIDER_MODULE = 'qcc.spiders'
+
+# log日志设置
+'''
+to_day = datetime.datetime.now()
+filePath = r'/root/logs/'
+logFilePath = r'/root/logs/qcc_{}_{}_{}.log'.format(to_day.year, to_day.month, to_day.day,)
+LOG_FILE = logFilePath
+LOG_LEVEL = 'INFO'
+'''
 
 
-#设置并发数，默认 32
-CONCURRENT_REQUESTS = 10
+
+
 #设置超时时间
-DOWNLOAD_TIMEOUT = 10
-# 每次请求间隔时间 0.5秒
-DOWNLOAD_DELAY = 0.5
+DOWNLOAD_TIMEOUT = 8
+# 每次请求间隔时间 秒
+DOWNLOAD_DELAY = 0
 #禁止重定向
 #REDIRECT_ENABLED = False
+CLOSESPIDER_ITEMCOUNT = 50
 
 #设置重试次数
-RETRY_TIMES = 3
-#设置重试返回状态码
-RETRY_HTTP_CODES = [500, 502, 503, 504, 522, 524, 408, 429, 202, 403, 404]
+RETRY_TIMES = 10
+RETRY_ENABLED = True
 
-# Enables scheduling storing requests queue in redis.
-SCHEDULER = "scrapy_redis.scheduler.Scheduler"
-
-# Ensure all spiders share same duplicates filter through redis.
-DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
-
-#接收异常状态码
-#HTTPERROR_ALLOWED_CODES = [301]
+#设置重试返回状态码(115 企查查：身份验证错误或者已过期)
+RETRY_HTTP_CODES = [202, 500, 502, 503, 504, 522, 524, 408, 429, 403, 404, 115,]
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'pubmed (+http://www.yourdomain.com)'
+#USER_AGENT = 'qcc (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-#CONCURRENT_REQUESTS = 32
+# 开启线程数量，默认16
+CONCURRENT_REQUESTS = 16
+
+
+DOWNLOADER_MIDDLEWARES = {
+    'qcc.middlewares.QccDownloaderMiddleware': 543,
+    'scrapy.downloadermiddlewares.retry.RetryMiddleware' : None,
+    'qcc.middlewares.RetryMiddleware': 220, # 自定义超过重试处理重试次数处理
+}
+
+
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
@@ -70,14 +83,17 @@ ROBOTSTXT_OBEY = False
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'pubmed.middlewares.PubmedSpiderMiddleware': 543,
+#    'qcc.middlewares.QccSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'pubmed.middlewares.PubmedDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+    #'qcc.middlewares.QccDownloaderMiddleware': 543,
+    'qcc.middlewares.RandomUserAgent': 543, # 随机user-agent
+    #todo test 关闭
+    #'qcc.middlewares.ProxyMiddleware': 543, # 随机代理ip
+}
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -87,69 +103,22 @@ ROBOTSTXT_OBEY = False
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'pubmed.pipelines.PubmedPipeline': 300,
-#}
-
-
-
-# Enable and configure the AutoThrottle extension (disabled by default)
-# See https://docs.scrapy.org/en/latest/topics/autothrottle.html
-#AUTOTHROTTLE_ENABLED = True
-# The initial download delay
-#AUTOTHROTTLE_START_DELAY = 5
-# The maximum download delay to be set in case of high latencies
-#AUTOTHROTTLE_MAX_DELAY = 60
-# The average number of requests Scrapy should be sending in parallel to
-# each remote server
-#AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
-# Enable showing throttling stats for every response received:
-#AUTOTHROTTLE_DEBUG = False
-
-# Enable and configure HTTP caching (disabled by default)
-# See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
-#HTTPCACHE_ENABLED = True
-#HTTPCACHE_EXPIRATION_SECS = 0
-#HTTPCACHE_DIR = 'httpcache'
-#HTTPCACHE_IGNORE_HTTP_CODES = []
-#HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 '''
 
-'''
-
-# log日志设置
-to_day = datetime.datetime.now()
-filePath = r'..\logs'
-if not os.path.exists(filePath):
-    os.makedirs(filePath)
-logFilePath = r'..\logs\pubmed_{}_{}_{}.log'.format(to_day.year, to_day.month, to_day.day,)
-LOG_FILE = logFilePath
-LOG_LEVEL = 'DEBUG'
-
-
-DOWNLOADER_MIDDLEWARES = {
-   # 'pubmed.middlewares.ProxyMiddleware': 543, # 隧道代理IP
-    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': True, #关闭默认的user—agent
-    'pubmed.middlewares.RandomUserAgent': 543, # 随机user-agent
-    'pubmed.middlewares.RetryMiddleware': 220, # 自定义超过重试处理重试次数处理
-}
-
-
-'''
-# Redis集群地址(本地)
+# Redis集群地址(测试)
 REDIS_MASTER_NODES = [
-    {"host": "192.168.1.136", "port": "7000"},
-    {"host": "192.168.1.136", "port": "7001"},
-    {"host": "192.168.1.136", "port": "7002"},
-    {"host": "192.168.1.136", "port": "7003"},
-    {"host": "192.168.1.136", "port": "7004"},
-    {"host": "192.168.1.136", "port": "7005"},
+    {"host": "172.24.56.160", "port": "7000"},
+    {"host": "172.24.56.160", "port": "7001"},
+    {"host": "172.24.56.160", "port": "7002"},
+    {"host": "172.24.56.160", "port": "7003"},
+    {"host": "172.24.56.160", "port": "7004"},
+    {"host": "172.24.56.160", "port": "7005"},
 ]
-'''
+
+
 
 # Redis集群地址(线上)
-'''
 REDIS_MASTER_NODES = [
     {"host": "10.46.176.105", "port": "7000"},
     {"host": "10.46.176.105", "port": "7001"},
@@ -171,17 +140,17 @@ REDIS_MASTER_NODES = [
 ]
 
 
-# Redis集群地址(测试)
-
 '''
+# Redis集群地址(本地)
 REDIS_MASTER_NODES = [
-    {"host": "10.66.205.210", "port": "7000"},
-    {"host": "10.66.205.210", "port": "7001"},
-    {"host": "10.66.205.210", "port": "7002"},
-    {"host": "10.66.205.210", "port": "7003"},
-    {"host": "10.66.205.210", "port": "7004"},
-    {"host": "10.66.205.210", "port": "7005"},
+    {"host": "192.168.1.136", "port": "7000"},
+    {"host": "192.168.1.136", "port": "7001"},
+    {"host": "192.168.1.136", "port": "7002"},
+    {"host": "192.168.1.136", "port": "7003"},
+    {"host": "192.168.1.136", "port": "7004"},
+    {"host": "192.168.1.136", "port": "7005"},
 ]
+
 
 # 设置redis集群使用的编码
 REDIS_CLUSTER_ENCODING = 'utf-8'
@@ -201,3 +170,26 @@ SCHEDULER_QUEUE_CLASS = 'scrapy_redis_cluster.queue.PriorityQueue'
 SCHEDULER_FLUSH_ON_START = True
 #最大空闲时间
 SCHEDULER_IDLE_BEFORE_CLOSE = 20
+
+
+
+# Enable and configure the AutoThrottle extension (disabled by default)
+# See https://docs.scrapy.org/en/latest/topics/autothrottle.html
+#AUTOTHROTTLE_ENABLED = True
+# The initial download delay  开始下载时限速并延迟时间
+#AUTOTHROTTLE_START_DELAY = 5
+# The maximum download delay to be set in case of high latencies 高并发请求时最大延迟时间
+#AUTOTHROTTLE_MAX_DELAY = 60
+# The average number of requests Scrapy should be sending in parallel to
+# each remote server
+#AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
+# Enable showing throttling stats for every response received:
+#AUTOTHROTTLE_DEBUG = False
+
+# Enable and configure HTTP caching (disabled by default)
+# See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
+#HTTPCACHE_ENABLED = True
+#HTTPCACHE_EXPIRATION_SECS = 0
+#HTTPCACHE_DIR = 'httpcache'
+#HTTPCACHE_IGNORE_HTTP_CODES = []
+#HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
