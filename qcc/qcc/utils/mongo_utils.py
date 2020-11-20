@@ -10,24 +10,28 @@ class MongoUtils:
         self.db = self.client[MONGO_DB]
 
     # data : dict
-    def insert_one(self,mongo_data,coll_name):
+    def insert_one(self, mongo_data, coll_name):
         coll = self.db[coll_name]
-        coll.insert_one(document = mongo_data)
+        coll.insert_one(document=mongo_data)
 
-    def insert_many(self,mongo_list,coll_name):
+    def insert_many(self, mongo_list, coll_name):
         coll = self.db[coll_name]
-        coll.insert_many(documents = mongo_list)
+        coll.insert_many(documents=mongo_list)
 
     # 修改指定字段的数据，如果不存在则直接创建
     def update_one(self, query, value, coll_name):
         coll = self.db[coll_name]
         coll.update_one(query, value, True)
 
-    def find_all(self,coll_name):
+    def update_many(self, query, value, coll_name):
+        coll = self.db[coll_name]
+        coll.update_many(query, value, True)
+
+    def find_all(self, coll_name):
         coll = self.db[coll_name]
         return coll.find()
 
-    def get_count(self,coll_name):
+    def get_count(self, coll_name):
         coll = self.db[coll_name]
         return coll.count()
 
@@ -35,6 +39,9 @@ class MongoUtils:
         coll = self.db[coll_name]
         coll.delete_one(query)
 
+    def find_query(self, query, coll_name):
+        coll = self.db[coll_name]
+        return coll.find(query)
 
 if __name__ == '__main__':
     '''
@@ -42,5 +49,8 @@ if __name__ == '__main__':
     value = {"$set": {"alexa": "12345"}}
     MongoUtils().update_one(query=query,value=value,coll_name='a_detail')
     '''
-    query = {"id" : "4613"}
-    MongoUtils().delete_one(query=query,coll_name='drug_en_title')
+
+    query = {"is_count_delete": False}
+    results = MongoUtils().find_query(query=query, coll_name='spider_cde_title')
+    for result in results:
+        print(result)

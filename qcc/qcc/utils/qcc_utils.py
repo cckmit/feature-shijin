@@ -15,7 +15,7 @@ class QCCUtils:
     APPKEY = "023b2da1063340ed9399df802a8755e7"
     SECKEY = "CF0313518DF26AC480A699FB4A1C9DDA"
 
-    def get_qcc_token(self,timespan):
+    def get_qcc_token(self, timespan):
         # Http请求头设置
         token = QCCUtils.APPKEY + timespan + QCCUtils.SECKEY
         hl = hashlib.md5()

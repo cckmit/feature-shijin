@@ -20,14 +20,7 @@ from qcc.utils.str_utils import StrUtils
 从微信公众号平台获取链接后采集详情页的文章
 '''
 
-headers = {
-    'accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-    'upgrade-insecure-requests':'1',
-    'accept-encoding':'gzip, deflate, br',
-    'accept-language':'zh-CN,zh;q=0.9',
-    'cache-control':'max-age=0',
-    'user-agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.26 Safari/537.36 Core/1.63.6756.400 QQBrowser/10.3.2473.400',
-}
+
 redis_server = from_settings(get_project_settings())
 
 
@@ -122,7 +115,7 @@ class WechatMpSpider(scrapy.Spider):
                         continue
                     link = mongo_data['link']
                     logging.info(f'追加待采集的URL {title} {link}')
-                    yield scrapy.Request(link, callback=self.parse, meta={'esid': esid, 'title': title, 'position': position, 'publish_time': publish_time, 'wechat_official_accounts_desc': wechat_official_accounts_desc}, headers=headers)
+                    yield scrapy.Request(link, callback=self.parse, meta={'esid': esid, 'title': title, 'position': position, 'publish_time': publish_time, 'wechat_official_accounts_desc': wechat_official_accounts_desc}, headers=const.headers)
 
             while redis_server.llen(RedisKey.WECHAT_MP_TITLE) > 0:
                 wechat_mp_info = {}
@@ -147,7 +140,7 @@ class WechatMpSpider(scrapy.Spider):
                         continue
                     insert_mongo_data(self, esid, title, link, publish_time, position, wechat_official_accounts_desc)
                     logging.info(f'追加待采集的URL {title} {link}')
-                    yield scrapy.Request(link, callback=self.parse, meta={'esid': esid, 'title': title, 'position': position, 'publish_time': publish_time, 'wechat_official_accounts_desc': wechat_official_accounts_desc}, headers=headers)
+                    yield scrapy.Request(link, callback=self.parse, meta={'esid': esid, 'title': title, 'position': position, 'publish_time': publish_time, 'wechat_official_accounts_desc': wechat_official_accounts_desc}, headers=const.headers)
 
         if 'weixin.qq.com' in spider_url:
             esid = response.meta['esid']
@@ -160,7 +153,7 @@ class WechatMpSpider(scrapy.Spider):
                 logging.info(f'------- 当前公众号分享了一篇文章，需要二次跳转 -------{esid}\t{title}\t{spider_url}')
                 href = doc('#js_share_source')('a').attr('href')
                 logging.info(f'追加二次跳转的URL {title} {href}')
-                yield scrapy.Request(href, callback=self.parse, meta={'esid': esid, 'title': title, 'position': position,'publish_time': publish_time,'wechat_official_accounts_desc': wechat_official_accounts_desc},headers=headers)
+                yield scrapy.Request(href, callback=self.parse, meta={'esid': esid, 'title': title, 'position': position,'publish_time': publish_time,'wechat_official_accounts_desc': wechat_official_accounts_desc},headers=const.headers)
                 return
 
             content = doc('#js_content').html()
@@ -172,7 +165,7 @@ class WechatMpSpider(scrapy.Spider):
             if (None==content) or ('内容因涉嫌违反相关法律' in doc('.weui-msg__desc').text()):
                 err_meta = response.meta
                 err_meta['url'] = spider_url
-                delete_mongo_data(self,esid)
+                delete_mongo_data(self, esid)
                 logging.error(f'------- 当前公众号文章异常，被过滤 -------{str(err_meta)}')
                 return
 

@@ -138,7 +138,7 @@ if __name__ == '__main__':
     is_spider_date_set = set()
     while True:
         custom_time = date_utils.custom_time(timestamp=date_utils.get_zero_millis())
-        if (custom_time not in is_spider_date_set) and date_utils.is_contains_date('19:30', '20:30'):
+        if (custom_time not in is_spider_date_set) and date_utils.is_contains_date('18:00', '18:30'):
             is_spider_date_set.add(custom_time)
             logging.info('------- 当前时间在指定时间范围之内，开始更新数据 -------')
             redis_cli = redis_utils.redis_cluster('false')

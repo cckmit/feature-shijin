@@ -23,6 +23,7 @@ def is_already_qiniu(file_url):
         return True
     return False
 
+#local_file_path: /home/zengxiangxu/temp/bb0f106ca101b94b046261ed374ff2f91.pdf
 def up_qiniu(local_file_path, file_name,is_keep_file):
     attempts = 0
     success = False
@@ -30,7 +31,7 @@ def up_qiniu(local_file_path, file_name,is_keep_file):
     qiniu_url_temp = f'http://spider.pharmcube.com/{file_name}'
     if is_already_qiniu(file_url=qiniu_url_temp):
         return qiniu_url_temp
-    while attempts < 2 and not success:
+    while attempts < 3 and not success:
         try:
             token = q.upload_token(bucket_name, file_name, 3600)  # 生成上传 Token，可以指定过期时间等
             info = put_file(token, file_name, local_file_path)  # 要上传文件的本地路径
@@ -51,4 +52,3 @@ def up_qiniu(local_file_path, file_name,is_keep_file):
                 break
         attempts += 1
     return qiniu_url
-

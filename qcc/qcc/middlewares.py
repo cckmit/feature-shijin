@@ -5,8 +5,11 @@
 import logging
 from scrapy import signals
 from scrapy.downloadermiddlewares.retry import RetryMiddleware
+from scrapy.utils.project import get_project_settings
 from scrapy.utils.python import global_object_name
+from scrapy_redis_cluster.connection import from_settings
 
+from qcc.spiders import const
 from qcc.spiders.const import MongoTables
 from qcc.utils import common_utils
 from qcc.utils.mongo_utils import MongoUtils
@@ -14,6 +17,7 @@ from qcc.utils.qcc_utils import QCCUtils
 
 logger = logging.getLogger(__name__)
 mongo_cli = MongoUtils()
+redis_server = from_settings(get_project_settings())
 results = mongo_cli.find_all(MongoTables.USER_AGENTS)
 
 
@@ -136,6 +140,11 @@ class RetryMiddleware(RetryMiddleware):
             logger.info("Retrying %(request)s (failed %(retries)d times): %(reason)s",{'request': request, 'retries': retries, 'reason': reason}, extra={'spider': spider})
             retryreq = request.copy()
             retryreq.meta['retry_times'] = retries
+
+            #todo 临时添加后期删除操作
+            if 'txnFsjdFileView' in spider_url:
+                retryreq.headers['cookie'] = redis_server.hget(name='spider_cde_cookie', key='spider_cde_cookie').decode()
+
             if 'qichacha' in spider_url:   # 更换token
                 timestamp = QCCUtils().get_qcc_time()
                 retryreq.headers['Timespan'] = timestamp

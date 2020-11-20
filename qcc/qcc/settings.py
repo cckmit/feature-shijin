@@ -20,14 +20,13 @@ to_day = datetime.datetime.now()
 filePath = r'/root/logs/'
 logFilePath = r'/root/logs/qcc_{}_{}_{}.log'.format(to_day.year, to_day.month, to_day.day,)
 LOG_FILE = logFilePath
-LOG_LEVEL = 'INFO'
+LOG_LEVEL = 'DEBUG'
 '''
 
 
 
-
 #设置超时时间
-DOWNLOAD_TIMEOUT = 8
+DOWNLOAD_TIMEOUT = 6
 # 每次请求间隔时间 秒
 DOWNLOAD_DELAY = 0
 #禁止重定向
@@ -39,7 +38,7 @@ RETRY_TIMES = 10
 RETRY_ENABLED = True
 
 #设置重试返回状态码(115 企查查：身份验证错误或者已过期)
-RETRY_HTTP_CODES = [202, 500, 502, 503, 504, 522, 524, 408, 429, 403, 404, 115,]
+RETRY_HTTP_CODES = [202, 500, 502, 503, 504, 522, 524, 408, 429, 403, 404, 115, 412, ]
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'qcc (+http://www.yourdomain.com)'
@@ -49,13 +48,13 @@ ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 # 开启线程数量，默认16
-CONCURRENT_REQUESTS = 16
+CONCURRENT_REQUESTS = 20
 
 
 DOWNLOADER_MIDDLEWARES = {
     'qcc.middlewares.QccDownloaderMiddleware': 543,
     'scrapy.downloadermiddlewares.retry.RetryMiddleware' : None,
-    'qcc.middlewares.RetryMiddleware': 220, # 自定义超过重试处理重试次数处理
+    'qcc.middlewares.RetryMiddleware': 543, # 自定义超过重试处理重试次数处理
 }
 
 
@@ -106,17 +105,6 @@ DOWNLOADER_MIDDLEWARES = {
 
 '''
 
-# Redis集群地址(测试)
-REDIS_MASTER_NODES = [
-    {"host": "172.24.56.160", "port": "7000"},
-    {"host": "172.24.56.160", "port": "7001"},
-    {"host": "172.24.56.160", "port": "7002"},
-    {"host": "172.24.56.160", "port": "7003"},
-    {"host": "172.24.56.160", "port": "7004"},
-    {"host": "172.24.56.160", "port": "7005"},
-]
-
-
 
 # Redis集群地址(线上)
 REDIS_MASTER_NODES = [
@@ -139,8 +127,19 @@ REDIS_MASTER_NODES = [
     {"host": "10.27.217.22", "port": "7004"},
 ]
 
-
+# Redis集群地址(测试)
+REDIS_MASTER_NODES = [
+    {"host": "172.24.56.160", "port": "7000"},
+    {"host": "172.24.56.160", "port": "7001"},
+    {"host": "172.24.56.160", "port": "7002"},
+    {"host": "172.24.56.160", "port": "7003"},
+    {"host": "172.24.56.160", "port": "7004"},
+    {"host": "172.24.56.160", "port": "7005"},
+]
 '''
+
+
+
 # Redis集群地址(本地)
 REDIS_MASTER_NODES = [
     {"host": "192.168.1.136", "port": "7000"},
@@ -150,7 +149,6 @@ REDIS_MASTER_NODES = [
     {"host": "192.168.1.136", "port": "7004"},
     {"host": "192.168.1.136", "port": "7005"},
 ]
-
 
 # 设置redis集群使用的编码
 REDIS_CLUSTER_ENCODING = 'utf-8'
