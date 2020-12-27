@@ -48,12 +48,11 @@ def insert_es_data(self, esid, title, url, publish_time, content, position, is_o
     es_data['channel_name'] = '医药自媒体'
     es_data['spider_wormtime'] = DateUtils().get_timestamp()
     es_data['source'] = wechat_official_accounts_desc
-
-    if es_utils.insert_or_replace(index=ESIndex.INVEST_NEWS, d=es_data):
-        logging.info(f'------- insert es data success ------- {esid} {title} {str(DateUtils().custom_time(timestamp=publish_time))}')
+    if es_utils.insert_or_replace(index=ESIndex.NEWS, d=es_data):
+        logging.info(f'------- insert es data success ------- {esid} {title} {DateUtils().defined_format_time(timestamp=publish_time, format="%Y-%m-%d")}')
         delete_mongo_data(self=self, esid=esid)
     else:
-        logging.info(f'------- insert es data error ------- {esid} {title} {str(DateUtils().custom_time(timestamp=publish_time))}')
+        logging.info(f'------- insert es data error ------- {esid} {title} {DateUtils().defined_format_time(timestamp=publish_time, format="%Y-%m-%d")}')
 
 def insert_mongo_data(self,esid, title, link, publish_time, position, wechat_official_accounts_desc):
     mongo_data = {}
@@ -67,11 +66,11 @@ def insert_mongo_data(self,esid, title, link, publish_time, position, wechat_off
     logging.info(f'------- 备份待采集的URL ------- {esid} \t {title}')
     self.mongo_utils.insert_one(mongo_data=mongo_data, coll_name=MongoTables().SPIDER_WECHAT_MP_TITLE)
 
-def check_es_data(self,esid,title,publish_time):
-    es_count = es_utils.get_count(ESIndex.INVEST_NEWS, queries=Query(QueryType.EQ, 'esid', esid))
+def check_es_data(self, esid, title, publish_time):
+    es_count = es_utils.get_count(ESIndex.NEWS, queries=Query(QueryType.EQ, 'esid', esid))
     if es_count > 0:
-        delete_mongo_data(self,esid)
-        logging.info('------- 当前微信公众号文章已采集，被过滤 ------- ' + title + '\t' + DateUtils().custom_time(timestamp=publish_time))
+        delete_mongo_data(self, esid)
+        logging.info('------- 当前微信公众号文章已采集，被过滤 ------- ' + title + '\t' + DateUtils().defined_format_time(timestamp=publish_time, format="%Y-%m-%d"))
         return True
     return False
 
@@ -95,10 +94,9 @@ class WechatMpSpider(scrapy.Spider):
             yield self.make_requests_from_url(url)
 
     def parse(self, response):
-        total_url = len(self.crawler.engine.slot.inprogress)  # 当前正在运行请求
-        prepare_url = len(self.crawler.engine.slot.scheduler)  # 待采集URL条数
         spider_url = response.url
-        logging.info(f'待采集URL条数：{prepare_url}，当前运行请求数：{total_url}')
+        logging.info(f'待采集URL条数：{len(self.crawler.engine.slot.inprogress)}，当前运行请求数：{len(self.crawler.engine.slot.scheduler)}')
+
         if 'baidu.com' in spider_url:
             if redis_server.llen(RedisKey.WECHAT_MP_TITLE) == 0 and self.mongo_utils.get_count(coll_name=MongoTables().SPIDER_WECHAT_MP_TITLE)==0:
                 logging.info('------- 当前没有要采集的微信公众号文章链接，程序终止更新 -------')
@@ -117,6 +115,7 @@ class WechatMpSpider(scrapy.Spider):
                     logging.info(f'追加待采集的URL {title} {link}')
                     yield scrapy.Request(link, callback=self.parse, meta={'esid': esid, 'title': title, 'position': position, 'publish_time': publish_time, 'wechat_official_accounts_desc': wechat_official_accounts_desc}, headers=const.headers)
 
+
             while redis_server.llen(RedisKey.WECHAT_MP_TITLE) > 0:
                 wechat_mp_info = {}
                 mongo_all_data = self.mongo_utils.find_all(coll_name=MongoTables.SPIDER_WECHAT_MP)
@@ -124,8 +123,7 @@ class WechatMpSpider(scrapy.Spider):
                     __biz = mongo_data['__biz']
                     wechat_official_accounts_desc = mongo_data['wechat_official_accounts_desc']
                     wechat_mp_info[__biz] = wechat_official_accounts_desc
-                results = ast.literal_eval(
-                    redis_server.rpop(RedisKey.WECHAT_MP_TITLE).decode().replace('true', 'True').replace('false','False').replace('null', 'None'))
+                results = ast.literal_eval(redis_server.rpop(RedisKey.WECHAT_MP_TITLE).decode().replace('true', 'True').replace('false', 'False').replace('null', 'None'))
                 position_dict = {}
                 for result in results:
                     link = result['link'].replace('http:', 'https:')
@@ -133,7 +131,7 @@ class WechatMpSpider(scrapy.Spider):
                     wechat_official_accounts_desc = wechat_mp_info[__biz]
                     title = result['title']
                     publish_time = result['create_time'] * 1000
-                    spider_publish_time = DateUtils().custom_time(timestamp=publish_time)
+                    spider_publish_time = DateUtils().defined_format_time(timestamp=publish_time, format='%Y-%m-%d')
                     position = get_position(spider_publish_time, position_dict)
                     esid = MD5Utils().get_md5(title + str(publish_time))
                     if check_es_data(self=self, esid=esid, title=title, publish_time=publish_time):
@@ -157,7 +155,7 @@ class WechatMpSpider(scrapy.Spider):
                 return
 
             content = doc('#js_content').html()
-            if StrUtils().isBlank(content) and doc('#js_mpvedio').size() > 0:
+            if StrUtils().is_blank(content) and doc('#js_mpvedio').size() > 0:
                 logging.error(f'------- 当前公众号文章为纯视频内容，被过滤 -------{spider_url}')
                 delete_mongo_data(self, esid)
                 return
@@ -185,7 +183,7 @@ class WechatMpSpider(scrapy.Spider):
                 wait_img_url['file_url'] = img_url
                 wait_img_urls.append(wait_img_url)
             # 异步下载文件
-            if len(wait_img_urls)>0:
+            if len(wait_img_urls) > 0:
                 DownloadFile().download_file(wait_img_urls)
             #校验文件是否下载到本地
             for local_file_name in wait_img_urls:

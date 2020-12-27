@@ -1,13 +1,13 @@
 
 import pymongo
-
-MONGO_HOST, MONGO_PORT, MONGO_DB = '127.0.0.1', 27017, 'spider_py'
+from qcc.run_env import get_run_env_dict
 
 class MongoUtils:
 
     def __init__(self):
-        self.client = pymongo.MongoClient(host=MONGO_HOST, port=MONGO_PORT)
-        self.db = self.client[MONGO_DB]
+        run_env_dict = get_run_env_dict()['mongo']
+        self.client = pymongo.MongoClient(host=run_env_dict['host'], port=run_env_dict['port'])
+        self.db = self.client[run_env_dict['db']]
 
     # data : dict
     def insert_one(self, mongo_data, coll_name):
@@ -43,14 +43,34 @@ class MongoUtils:
         coll = self.db[coll_name]
         return coll.find(query)
 
+
+
 if __name__ == '__main__':
+
+    '''
+    json数组查询
+        query = {'send_project_list.send_project_name':'ipo_us'} #send_email_list
+    
+    mongo list
+        #查询list里面的数据
+        query = {'$or': [{'send_project_name':'drug_us_orange'}, {'send_project_name': 'drug_us_orange1'}]}  # $or; $and
+        #往list追加数据
+        query = {"name": "zxx"}
+        value = {"$addToSet": {"send_project_name": "12345"}}
+        #往list删除数据
+        query = {"name": "zxx"}
+        value = {"$pop": {"send_project_name": "12345"}}
+        
+    results = MongoUtils().find_query(query=query, coll_name='a_detail')
+    for result in results:
+    
+    '''
+
+
+
     '''
     query = {"fund_name_id": "1"}
-    value = {"$set": {"alexa": "12345"}}
+    value = {"$set": {"alexa": "12345"}}  # addToSet
     MongoUtils().update_one(query=query,value=value,coll_name='a_detail')
     '''
 
-    query = {"is_count_delete": False}
-    results = MongoUtils().find_query(query=query, coll_name='spider_cde_title')
-    for result in results:
-        print(result)

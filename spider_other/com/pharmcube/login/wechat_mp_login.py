@@ -136,9 +136,9 @@ if __name__ == '__main__':
     token = WeChatLogin().get_token()
     sleep_time(min=2, max=10)
     is_spider_date_set = set()
-    while True:
+    while 1:
         custom_time = date_utils.custom_time(timestamp=date_utils.get_zero_millis())
-        if (custom_time not in is_spider_date_set) and date_utils.is_contains_date('18:00', '18:30'):
+        if (custom_time not in is_spider_date_set) and date_utils.is_contains_date('18:00', '19:30'):
             is_spider_date_set.add(custom_time)
             logging.info('------- 当前时间在指定时间范围之内，开始更新数据 -------')
             redis_cli = redis_utils.redis_cluster('false')
@@ -163,8 +163,6 @@ if __name__ == '__main__':
                             continue
                         logging.info(f'------- redis data -------{str(results)}')
                         redis_cli.lpush(RedisKey.WECHAT_MP_TITLE, str(results))
-                        # todo test备份一份数据
-                        redis_cli.lpush(RedisKey.WECHAT_MP_TITLE+"_1", str(results))
                     except Exception as err:
                         print(err)
                         logging.info(f'------- 当前公众号信息采集失败重试中: {str(wechat)} -------')
@@ -175,10 +173,11 @@ if __name__ == '__main__':
                             logging.info(f'------- 当前访问微信公众号文章次数 {send_times}，休息 30 ~ 60 分钟！ -------')
                             sleep_time(min=60*30, max=60*60)
         else:
-            logging.info('------- 休息10分钟 --------')
-            time.sleep(10 * 60)
             sleep_times = sleep_times + 1
-            if sleep_times > random.randint(6, 20):
+            random_times = random.randint(6, 20)
+            logging.info(f'------- 休息10分钟 --------{sleep_times} {random_times}')
+            time.sleep(10 * 60)
+            if sleep_times > random_times:
                 logging.info('------- 当前时间不在指定时间范围之内，维护 token 有效期 -------')
                 keep_token_url = f'https://mp.weixin.qq.com/cgi-bin/filepage?type=2&begin=0&count=12&token={token}&lang=zh_CN'
                 keep_token_headers = headers
@@ -189,5 +188,6 @@ if __name__ == '__main__':
                     sleep_times = 0
                     logging.info(f'------- 当前token依然有效 -------{token}')
                 else:
+                    logging.info(f'------- 当前token已失效 -------{token}')
                     WeChatUtils().send_text_data(message='======= 请注意，当前维护的token已失效，程序退出中！ =======')
-                    sys.exit(0)
+                    sys.exit(1)

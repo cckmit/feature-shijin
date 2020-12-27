@@ -40,7 +40,7 @@ def up_qiniu(local_file_path, file_name,is_keep_file):
                     logging.info('------- 删除指定文件 -------' + file_name)
                     if os.path.exists(os.path.join(local_file_path)):
                         os.remove(os.path.join(local_file_path))
-                logging.info('------- 当前图片成功上传到七牛云 -------' + file_name)
+                logging.info('------- 当前图片或文件成功上传到七牛云 -------' + file_name)
                 qiniu_url = f'http://spider.pharmcube.com/{file_name}'
                 success = True
             else:

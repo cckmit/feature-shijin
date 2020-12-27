@@ -8,12 +8,11 @@ from scrapy.downloadermiddlewares.retry import RetryMiddleware
 from scrapy.utils.project import get_project_settings
 from scrapy.utils.python import global_object_name
 from scrapy_redis_cluster.connection import from_settings
-
-from qcc.spiders import const
 from qcc.spiders.const import MongoTables
 from qcc.utils import common_utils
 from qcc.utils.mongo_utils import MongoUtils
 from qcc.utils.qcc_utils import QCCUtils
+from qcc.utils.str_utils import StrUtils
 
 logger = logging.getLogger(__name__)
 mongo_cli = MongoUtils()
@@ -81,9 +80,9 @@ class QccDownloaderMiddleware:
         return s
 
     def process_request(self, request, spider):
+        logging.info(f'downloading page {request.url}')
         # Called for each request that goes through the downloader
         # middleware.
-
         # Must either:
         # - return None: continue processing this request
         # - or return a Response object
@@ -118,7 +117,10 @@ class QccDownloaderMiddleware:
 #设置随机user_agent
 class RandomUserAgent(object):
     def process_request(self, request, spider):
-        user_agent = results[common_utils.randomInt(0, results.count() - 1)]['user_agent']
+        spider_url = request.url
+        if 'weixin.qq.com' in spider_url:
+            return
+        user_agent = results[common_utils.random_int(0, results.count() - 1)]['user_agent']
         request.headers['User-Agent'] = user_agent
 
 #设置代理ip
@@ -137,18 +139,11 @@ class RetryMiddleware(RetryMiddleware):
             retry_times = request.meta['max_retry_times']
         stats = spider.crawler.stats
         if retries <= retry_times:
-            logger.info("Retrying %(request)s (failed %(retries)d times): %(reason)s",{'request': request, 'retries': retries, 'reason': reason}, extra={'spider': spider})
+            logger.info("Retrying %(request)s (failed %(retries)d times): %(reason)s", {'request': request, 'retries': retries, 'reason': reason}, extra={'spider': spider})
             retryreq = request.copy()
             retryreq.meta['retry_times'] = retries
-
-            #todo 临时添加后期删除操作
-            if 'txnFsjdFileView' in spider_url:
-                retryreq.headers['cookie'] = redis_server.hget(name='spider_cde_cookie', key='spider_cde_cookie').decode()
-
-            if 'qichacha' in spider_url:   # 更换token
-                timestamp = QCCUtils().get_qcc_time()
-                retryreq.headers['Timespan'] = timestamp
-                retryreq.headers['Token'] = QCCUtils().get_qcc_token(timespan=timestamp)
+            if 'api.qichacha' in spider_url: # 更换token
+                retryreq.headers = QCCUtils().get_qcc_token_headers()
             retryreq.dont_filter = True
             retryreq.priority = request.priority + self.priority_adjust
             if isinstance(reason, Exception):
@@ -158,6 +153,6 @@ class RetryMiddleware(RetryMiddleware):
             return retryreq
         else: #超时指定重试次数
             stats.inc_value('retry/max_reached')
-            logger.info("******************************************88888888888888888888888888")
+            logger.info("*************************************** 超时指定重试次数 *********************************************")
             logger.error("Gave up retrying %(request)s (failed %(retries)d times): %(reason)s",
                          {'request': request, 'retries': retries, 'reason': reason},extra={'spider': spider})

@@ -15,9 +15,7 @@ from qcc.utils.qcc_utils import QCCUtils
 from qcc.utils.str_utils import StrUtils
 
 
-timestamp = QCCUtils().get_qcc_time()
-redis_server = from_settings(get_project_settings())
-headers = {'Token': QCCUtils().get_qcc_token(timespan=timestamp), 'Timespan': timestamp}
+
 spider_fund_name_set = set()
 mongo_utils = MongoUtils()
 
@@ -30,13 +28,13 @@ def getFundNameBaseInfo(self, base_fund_name, fund_name, company_name, fund_name
     logging.info(f'追加待采集的对外被投资公司的基本信息：{base_fund_name} \t {company_name}')
     meta['proportion'] = proportion
     base_info_url = QCCAPI.BASE_INFO + '?key=' + QCCUtils.APPKEY + '&keyword=' + company_name
-    yield scrapy.Request(base_info_url, callback=self.parse, meta=meta, headers=headers)
+    yield scrapy.Request(base_info_url, callback=self.parse, meta=meta, headers=self.qcc_utils.get_qcc_token_headers())
 
     if '合伙' in company_name or '投资' in company_name or '基金' in company_name or '创业' in company_name or '创投' in company_name or '孵化' in company_name or '管理中心' in company_name:
         logging.info(f'公司名称：{company_name}, 追加待采集 ‘企业对外穿透’ 链接！')
         meta['fund_name'] = company_name
         invest_info_url = QCCAPI.INVEST_INFO + '?key=' + QCCUtils.APPKEY + '&searchKey=' + base_fund_name + "&percent=0"
-        yield scrapy.Request(invest_info_url, callback=self.parse, meta=meta, headers=headers)
+        yield scrapy.Request(invest_info_url, callback=self.parse, meta=meta, headers=self.qcc_utils.get_qcc_token_headers())
 
 def parseBasicPage(response, base_fund_id, base_fund_name, results):
     fund_name = response.meta['fund_name']
@@ -87,7 +85,7 @@ def parseInvestPage(self, fund_name, base_fund_id, base_fund_name, results):
             path = detail_info['Path']
             splits = path.split('->')
             for split_index in range(1, len(splits)):
-                company_name = StrUtils().cnMark2ENMark(splits[split_index])
+                company_name = StrUtils().cn_mark2en_mark(splits[split_index])
                 if '%' in company_name:
                     rsplits = company_name.rsplit('(')
                     company_name = company_name[0:company_name.rindex('(')]
@@ -115,20 +113,19 @@ class InvestSpider(scrapy.Spider):
             yield self.make_requests_from_url(url)
 
     def parse(self, response):
-        total_url = len(self.crawler.engine.slot.inprogress)  # 当前正在运行请求
-        prepare_url = len(self.crawler.engine.slot.scheduler)  # 待采集URL条数
         spider_url = response.url
-        logging.info(f'待采集URL条数：{prepare_url}，当前运行请求数：{total_url}')
+        logging.info(f'待采集URL条数：{len(self.crawler.engine.slot.inprogress)}，当前运行请求数：{len(self.crawler.engine.slot.scheduler)}')
 
         if 'baidu.com' in spider_url:
             with open('/home/zengxiangxu/a.txt', 'r', encoding='utf-8') as f:
                 for line in f.readlines():
                     name = line.replace("\n", '')
                     base_fund_id = str('111')
-                    base_fund_name = StrUtils().cnMark2ENMark(name)
+                    base_fund_name = StrUtils().cn_mark2en_mark(name)
                     logging.info(f'公司名称：{base_fund_name}, 追加待采集 ‘企业对外穿透’ 链接！')
                     invest_info_url = QCCAPI.INVEST_INFO + '?key=' + QCCUtils.APPKEY + '&searchKey=' + base_fund_name + "&percent=0"
-                    yield scrapy.Request(invest_info_url, callback=self.parse, meta={'base_fund_name': base_fund_name, 'fund_name': base_fund_name, 'base_fund_id': base_fund_id}, headers=headers)
+                    yield scrapy.Request(invest_info_url, callback=self.parse, meta={'base_fund_name': base_fund_name,
+                                        'fund_name': base_fund_name, 'base_fund_id': base_fund_id}, headers=self.qcc_utils.get_qcc_token_headers())
 
         if 'qichacha' in spider_url:
             fund_name = response.meta['fund_name']
