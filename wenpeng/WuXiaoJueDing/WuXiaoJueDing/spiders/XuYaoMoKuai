@@ -1,0 +1,67 @@
+###1，安装相关的库
+pip install pyppeteer==0.2.2
+pip install PyPDF2
+
+pip install reportlab
+pip install fitz
+pip install PyMuPDF
+pip install async
+
+#psutil 这个是查看内存占用情况的， 在ceee_cook.py文件
+pip install psutil
+
+#redis-py-cluster  连接redis
+pip install redis-py-cluster
+
+###2，依赖库
+yum install pango.x86_64 libXcomposite.x86_64 libXcursor.x86_64 libXdamage.x86_64 libXext.x86_64 libXi.x86_64 libXtst.x86_64 cups-libs.x86_64 libXScrnSaver.x86_64 libXrandr.x86_64 GConf2.x86_64 alsa-lib.x86_64 atk.x86_64 gtk3.x86_64 ipa-gothic-fonts xorg-x11-fonts-100dpi xorg-x11-fonts-75dpi xorg-x11-utils xorg-x11-fonts-cyrillic xorg-x11-fonts-Type1 xorg-x11-fonts-misc -y
+
+###3，谷歌浏览器
+wget https://dl.lancdn.com/landian/soft/chrome/m/75.0.3770.142_x86_64.rpm
+mv 75.0.3770.142_x86_64.rpm ./chrome75.rpm
+yum install ./chrome75.rpm
+
+
+#安装nohup
+yum install coreutils
+
+#nohup 指定命令在终端关闭后依然运行。
+# /dev/null 表示一个黑洞位置，代表linux的空设备文件，所有往这个文件里面写入的内容都会丢失。
+
+nohup python ceee_cook1.py 1>/dev/null 2>&1 &
+nohup python ceee_cook2.py 1>/dev/null 2>&1 &
+nohup python ceee_cook3.py 1>/dev/null 2>&1 &
+nohup python ceee_cook4.py 1>/dev/null 2>&1 &
+
+
+nohub scrapyd
+
+#如何在SQL Query查询相关数据
+select * from china_review_decision_publication
+
+
+
+
+###4，注释page,防止生成多余的没有的头部截取信息。
+sed -i 's/clip = dict/#clip = dict/g' /root/anaconda3b/lib/python3.7/site-packages/pyppeteer/page.py
+sed -i 's/clip = dict/#clip = dict/g' /usr/localb/lib/python3.6/site-packages/pyppeteer/page.py
+"""
+linux替换文件中的内容
+命令:sed -i 's/原字符串/新字符串/' 文件绝对路径 （替换每行第一个匹配的）
+sed -i 's/原字符串/新字符串/g' 文件绝对路径 （替换所有匹配的）
+案例：sed -i 's/clip = dict/#clip = dict/g' /root/anaconda3b/lib/python3.7/site-packages/pyppeteer/page.py
+案例：sed -i 's/clip = dict/#clip = dict/g' /usr/localb/lib/python3.6/site-packages/pyppeteer/page.py
+eg: 批量替换文件中 $%$ 分隔符 替换为 |
+案例：sed -i 's/$\%\$/|/g' TASK_DEF_*.dat
+ps: $%$ 需要注意转义字符应写为： $\%\$
+"""
+
+在wind上打开pyppeteer_get.py文件，快捷键 ctrl + f ，搜索：page.setViewport ，点击setViewport,快捷键ctrl+b，进入page.py（新的页面）
+打开page.py, 快捷键 ctrl + f ，搜索：clip = dict  ，注释这一条。注释这一句是为了防止生成多余的头部不要的信息。
+
+#screen用法
+screen -S pyppeteer_pdf   #创建会话名
+screen -ls                #查看所有会话
+screen -r pyppeteer_pdf    #进入会话
+screen -d pyppeteer_pdf    #远程这个会话
+screen -X -S pyppeteer_pdf    #关闭会话。
