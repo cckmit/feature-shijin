@@ -1,7 +1,9 @@
 import os
+import shutil
+
 import aiohttp, asyncio
 import logging
-
+from pathlib import Path
 from pharmcube_spider import const
 
 logging.basicConfig(format='%(asctime)s - %(pathname)s[line:%(lineno)d] - %(levelname)s: %(message)s', level=logging.INFO)
@@ -11,6 +13,16 @@ logging.basicConfig(format='%(asctime)s - %(pathname)s[line:%(lineno)d] - %(leve
 def write_file(file_name, data_type, content):
     with open(file_name, data_type, encoding='utf-8') as file:
         file.write(content + "\n")
+
+def delete_file_or_dir(path):
+    file_or_dir = Path(path)
+    if file_or_dir.exists():
+        if file_or_dir.is_file():
+            os.remove(path)
+        if file_or_dir.is_dir():
+            shutil.rmtree(path)
+    else:
+        logging.info(f'当前路径中的文件或目录不存在，请核实：{path}')
 
 class DownloadFile(object):
     def __init__(self):

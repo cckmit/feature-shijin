@@ -7,6 +7,19 @@ from scrapy_redis_cluster.connection import from_settings
 from pharmcube_spider.const import MongoTables, RedisKey
 from pharmcube_spider.utils.mongo_utils import MongoUtils
 
+# 补全 全文图片链接和超链接地址
+def auto_content_link(self, doc, label, label_attr, prefix_url):
+    label_elements = doc(label)
+    for label_element in label_elements.items():
+        before_href = label_element.attr(label_attr)
+        if None == before_href or before_href.startswith('//') or before_href.startswith('#'):
+            continue
+        label_element.attr(label_attr, self.common_utils.auto_url(prefix_url, before_href.replace('amp;', '')))
+
+def auto_url(prefix_url, href):
+    if not href.startswith('http'):
+        href = prefix_url + href
+    return href
 
 def is_success_set(fund_name_set, data_str):
     if data_str in fund_name_set:

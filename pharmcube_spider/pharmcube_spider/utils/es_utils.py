@@ -2054,6 +2054,6 @@ if __name__ == '__main__':
 # Query.queries(Query(QueryType.EQ, 'channel_name', '医药自媒体'), Query(QueryType.GE, 'spider_wormtime', 1604851200000),and_perator=False)
 
 # 指定字段排序
-pages = get_page(index='business_info', show_fields=['name'], orders={'spider_wormtime': True}, page_size=1000)
+#pages = get_page(index='business_info', show_fields=['name'], orders={'spider_wormtime': True}, page_size=1000)
 
 

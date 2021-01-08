@@ -5,6 +5,7 @@ from pyquery import PyQuery as pq
 from pharmcube_spider import const
 from pharmcube_spider.const import  ESIndex, RedisKey
 from pharmcube_spider.utils import  es_utils
+from pharmcube_spider.utils.es_utils import Query, QueryType
 from pharmcube_spider.utils.date_utils import DateUtils
 from pharmcube_spider.utils.md5_utils import MD5Utils
 from pharmcube_spider.utils.mongo_utils import MongoUtils
@@ -19,7 +20,7 @@ from scrapy_redis_cluster.connection import from_settings
 Value in Health：https://www.ispor.org/publications/journals/value-in-health/vih-archives
 Value in Health Regional Issues：https://www.ispor.org/publications/journals/value-in-health-regional-issues/issue-archives 
 '''
-# todo 临时，后期需要删除
+
 esid_set = set()
 
 class IsporSpider(scrapy.Spider):
@@ -97,8 +98,12 @@ class IsporSpider(scrapy.Spider):
             author = []
             es_obj = {}
             esid =meta['esid']
-            doi = doc('.article-header__doi__value').text().replace('https://doi.org/', '').strip()
             title = doc('.article-header__title').text()
+            doi = doc('.article-header__doi__value').text().replace('https://doi.org/', '').strip()
+            if self.str_utils.is_blank(doi) or self.str_utils.is_blank(title):
+                logging.info(f'当前数据 doi 或 title 为空，数据被过滤：{spider_url}')
+                return
+
             es_obj['title'] = title
             article_header_meta = doc('.article-header__meta')
             article_header_meta('span.article-header__journal').remove()

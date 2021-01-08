@@ -41,8 +41,9 @@ class IpoUsSpider(scrapy.Spider):
         self.date_utils = DateUtils()
         self.md5_utils = MD5Utils()
         self.mongo_utils = MongoUtils()
-        self.send_email_drugs_review = []
         self.send_email_utils = SendEmail()
+        self.local_file_path = const.STORE_PATH + ESIndex.DRUG_US_ORANGE + '.txt'
+        self.file_utils.delete_file_or_dir(self.local_file_path) #删除文件
         self.redis_server = from_settings(get_project_settings())
         for url in self.start_urls:
             yield self.make_requests_from_url(url)
@@ -55,13 +56,13 @@ class IpoUsSpider(scrapy.Spider):
             f'待采集URL条数：{len(self.crawler.engine.slot.inprogress)}，当前运行请求数：{len(self.crawler.engine.slot.scheduler)}')
 
         if 'baidu.com' in spider_url:
-            url = f'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=213661'
+            url = 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=103628'
             yield scrapy.Request(url, callback=self.parse, meta={'source': 'us', }, headers=const.headers)
 
             """
             url = f'https://www.accessdata.fda.gov/scripts/cder/ob/index.cfm'
             yield scrapy.Request(url, callback=self.parse, meta={'source': 'orange_title', }, headers=const.headers)
-
+      
             for a in range(ord('A'), ord('Z') + 1):
                 url = f'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=browseByLetter.page&productLetter={chr(a)}'
                 yield scrapy.Request(url, callback=self.parse, meta={'source': 'us_title', }, headers=const.headers)
@@ -199,9 +200,7 @@ class IpoUsSpider(scrapy.Spider):
                 if 'href' in content_dict:
                     href = content_dict['href']
                     if not href.endswith('.cfm'):
-                        yield scrapy.Request(href, callback=self.parse,
-                                             meta={'source': 'orange_patent', 'application_num': application_num,
-                                                   'product_no': product_no, }, headers=const.headers)
+                        yield scrapy.Request(href, callback=self.parse, meta={'source': 'orange_patent', 'application_num': application_num, 'product_no': product_no, }, headers=const.headers)
                 spider_inn_formulation = active_ingredient + '|' + dosage_form
                 base_info_dict = {}
                 base_info_dict['product_no'] = product_no
@@ -219,7 +218,7 @@ class IpoUsSpider(scrapy.Spider):
                     base_info_dict['approval_date'] = approval_date
                 base_info_dict['marketing_status'] = marketing_status
                 base_info_list.append(base_info_dict)
-            md5 = self.md5_utils.get_md5(data=base_info_list)
+            md5 = self.md5_utils.lstrip_zero_get_md5(data=base_info_list)
             base_info_obj = {}
             base_info_obj['md5'] = md5
             base_info_obj['url'] = spider_url
@@ -271,19 +270,19 @@ class IpoUsSpider(scrapy.Spider):
                     if len(td_elements) == 0:
                         continue
                     action_date_str = td_elements[0].text.replace('    ', '').strip()
-                    action_date = self.date_utils.unix_defined_format(date_str=td_elements[0].text,
-                                                                      format='%m/%d/%Y')  # 执行日期(转换时间戳异常则过滤)
+                    action_date = self.date_utils.unix_defined_format(date_str=td_elements[0].text, format='%m/%d/%Y')  # 执行日期(转换时间戳异常则过滤)
                     submission = td_elements[1].text.replace('    ', '').strip()  # 意见
                     action_type = td_elements[2].text.replace('    ', '').strip()  # 批准类型
                     submission_classification = td_elements[3].text.replace('    ', '').strip()  # 意见分类
                     rPOS = td_elements[4].text.replace('    ', '').strip()  # 优先审评 / 孤儿药状态
                     a_elements = pq(td_elements[5])('a')
-                    id = self.md5_utils.get_md5(action_date_str + submission + action_type)
+                    id = self.md5_utils.lstrip_zero_get_md5(action_date_str + submission + action_type)
                     original_approvals_id_set.add(id)
-                    lrlppi_list, file_name_set = yield from parse_download_pdf(self, id, a_elements, application_num,
-                                                                               meta, scrapy, 'original_approvals')
-                    notes = td_elements[6].text.replace('    ', '').strip()  # 优先审评 / 孤儿药状态
+                    lrlppi_list, file_name_set = yield from parse_download_pdf(self, id, a_elements, application_num, meta, scrapy, 'original_approvals')
+                    notes = pq(td_elements[6]).text() # 优先审评 / 孤儿药状态
                     if 'approval' == action_type.lower():  # 申请日期：取action_type等于approval且为最小的值
+                        if approval_date_revised == 0:
+                            approval_date_revised = action_date
                         if None != action_date and approval_date_revised < action_date:
                             approval_date_revised = action_date
                             extract_data_dict['rPOS'] = rPOS
@@ -302,8 +301,7 @@ class IpoUsSpider(scrapy.Spider):
                     original_approvals_dict['notes'] = notes
                     original_approvals_list.append(original_approvals_dict)
 
-            original_approvals_list = join_es_data(pages, original_approvals_list, original_approvals_id_set,
-                                                   'original_approvals')
+            original_approvals_list = join_es_data(pages, original_approvals_list, original_approvals_id_set, 'original_approvals')
             supplement_list = []
             supplement_list_id_set = set()
             supplement_elements = doc('#exampleApplSuppl')  # Supplements
@@ -316,12 +314,11 @@ class IpoUsSpider(scrapy.Spider):
                     action_date = self.date_utils.unix_defined_format(date_str=td_elements[0].text, format='%m/%d/%Y')
                     submission = td_elements[1].text.replace('    ', '').strip()
                     submission_classification = td_elements[2].text.replace('    ', '').strip()
-                    id = self.md5_utils.get_md5(action_date_str + submission + submission_classification)
+                    id = self.md5_utils.lstrip_zero_get_md5(action_date_str + submission + submission_classification)
                     supplement_list_id_set.add(id)
                     a_elements = pq(td_elements[3])('a')
-                    lrlppi_list, file_name_set = yield from parse_download_pdf(self, id, a_elements, application_num,
-                                                                               meta, scrapy, 'supplement')
-                    note = td_elements[4].text.replace('    ', '').strip()
+                    lrlppi_list, file_name_set = yield from parse_download_pdf(self, id, a_elements, application_num, meta, scrapy, 'supplement')
+                    note = pq(td_elements[4]).text()
                     supplements_dict = {}
                     supplements_dict['id'] = id
                     supplements_dict['note'] = note
@@ -346,12 +343,11 @@ class IpoUsSpider(scrapy.Spider):
                     action_date = self.date_utils.unix_defined_format(date_str=td_elements[0].text, format='%m/%d/%Y')
                     submission = td_elements[1].text.replace('    ', '').strip()
                     submission_classification_approvaltype = td_elements[2].text.replace('    ', '').strip()
-                    id = self.md5_utils.get_md5(action_date_str + submission + submission_classification_approvaltype)
+                    id = self.md5_utils.lstrip_zero_get_md5(action_date_str + submission + submission_classification_approvaltype)
                     label_id_set.add(id)
                     a_elements = pq(td_elements[3])('a')
-                    lrlppi_list, file_name_set = yield from parse_download_pdf(self, id, a_elements, application_num,
-                                                                               meta, scrapy, 'label_arr')
-                    note = td_elements[4].text.replace('    ', '').strip()
+                    lrlppi_list, file_name_set = yield from parse_download_pdf(self, id, a_elements, application_num, meta, scrapy, 'label_arr')
+                    note = pq(td_elements[4]).text()
                     label_dict = {}
                     label_dict['id'] = id
                     label_dict['note'] = note
@@ -363,8 +359,7 @@ class IpoUsSpider(scrapy.Spider):
                     label_list.append(label_dict)
 
             # 组装历史数据 + 当前采集数据
-            original_approvals_list = join_es_data(pages, original_approvals_list, original_approvals_id_set,
-                                                   'original_approvals')
+            original_approvals_list = join_es_data(pages, original_approvals_list, original_approvals_id_set, 'original_approvals')
             supplement_list = join_es_data(pages, supplement_list, supplement_list_id_set, 'supplement')
             label_list = join_es_data(pages, label_list, label_id_set, 'label_arr')
 
@@ -373,8 +368,7 @@ class IpoUsSpider(scrapy.Spider):
                     esid = page['esid']
                     update_drugs_join_data(self, esid, label_list, supplement_list, original_approvals_list, 'update')
             else:  # 新增数据
-                update_drugs_join_data(self, self.md5_utils.get_md5(data=application_num), label_list, supplement_list,
-                                       original_approvals_list, 'create')
+                update_drugs_join_data(self, self.md5_utils.lstrip_zero_get_md5(data=application_num), label_list, supplement_list, original_approvals_list, 'create')
 
             base_info_list = []
             dosage_form_set = set()
@@ -416,7 +410,7 @@ class IpoUsSpider(scrapy.Spider):
                 base_info_list.append(clean_data(base_info_dict))
 
             spider_wormtime = self.date_utils.get_timestamp()
-            md5 = self.md5_utils.get_md5(data=str(base_info_list))
+            md5 = self.md5_utils.lstrip_zero_get_md5(data=str(base_info_list))
             redis_dict = {}
             redis_dict['md5'] = md5
             redis_dict['base_info'] = str(base_info_list)
@@ -425,7 +419,8 @@ class IpoUsSpider(scrapy.Spider):
             redis_dict['application_num'] = application_num
             redis_dict['application_type'] = application_type
             redis_dict['spider_wormtime'] = spider_wormtime
-            redis_dict['approval_date'] = approval_date_revised
+            if approval_date_revised != 0:
+                redis_dict['approval_date'] = approval_date_revised
             redis_dict['rPOS'] = extract_data_dict.get('rPOS', None)
             redis_dict['submission'] = extract_data_dict.get('submission', None)
             redis_dict['action_type'] = extract_data_dict.get('action_type', None)
@@ -434,7 +429,7 @@ class IpoUsSpider(scrapy.Spider):
             redis_dict['spider_company'] = spider_company
             redis_dict['base_info'] = base_info_list
             type = '新增'
-            esid = self.md5_utils.get_md5(data=application_num)
+            esid = self.md5_utils.lstrip_zero_get_md5(data=application_num)
             if None != pages:
                 if md5 != pages[0]['md5']:
                     type = '修改'
@@ -449,8 +444,7 @@ class IpoUsSpider(scrapy.Spider):
             redis_obj['table'] = ESIndex.DRUG_US_DRUGS
             redis_obj['content'] = clean_data(redis_dict)
             logging.info(f'------- 美国库 redis data {type} -------{application_num}')
-            self.redis_server.lpush(RedisKey.DATA_CLEAN_US,
-                                    json.dumps(redis_obj).encode('utf-8').decode('unicode_escape'))
+            self.redis_server.lpush(RedisKey.DATA_CLEAN_US, json.dumps(redis_obj).encode('utf-8').decode('unicode_escape'))
 
         if 'source' in meta and 'review' == meta['source']:  # 美国库
             id = meta['id']
@@ -466,12 +460,14 @@ class IpoUsSpider(scrapy.Spider):
                 elif not url.startswith('http'):
                     url = url_prefix + a_element.attr('href')
                 a_element.attr('href', url)
-            a_elements = doc('#user_provided li a')
-            review_list, file_name_set = yield from parse_download_pdf(self, id, a_elements, application_num, meta,
-                                                                       scrapy, '')
+            a_elements = doc('a')
+            review_list, file_name_set = yield from parse_download_pdf(self, id, a_elements, application_num, meta, scrapy, '')
             pages = self.es_utils.get_page(ESIndex.DRUG_US_DRUGS,
                                            queries=Query(QueryType.EQ, 'application_num', application_num),
                                            show_fields=[local_web])
+            if None == pages:
+                logging.info(f'{ESIndex.DRUG_US_DRUGS} 未查询到受理号,被过滤：{application_num}')
+                return
             for page in pages:
                 esid = page['esid']
                 local_es_list = ast.literal_eval(page[local_web])
@@ -495,34 +491,24 @@ class IpoUsSpider(scrapy.Spider):
                 self.es_utils.update(ESIndex.DRUG_US_DRUGS, d=es_dict)
 
     def close(spider, reason):
-        logging.info('------- 美国库和橙皮书数据采集完毕 -------')
-        if len(spider.send_email_drugs_review) > 0:
-            send_content = ''
-            for send_email_drugs_review in spider.send_email_drugs_review:
-                id = send_email_drugs_review['id']
-                local_web = send_email_drugs_review['local_web']
-                application_num = send_email_drugs_review['application_num']
-                send_content = "<tr><td>" + application_num + "</td><td>" + local_web + "</td><td>" + id + "</td></tr>"
-            send_content = "<table border=\"1\"><tr><th>application_num</th><th>field_type</th><th>id</th>" + send_content + "</tr></table>"
-            query = {'send_project_list.send_project_name': 'ipo_us'}
-            receiver = common_utils.get_send_email_receiver(query=query)
-            spider.send_email_utils.send_email_content(content=send_content, receiver=receiver,
-                                                       subject='美国上市药品review文件需翻墙获取')
+        logging.info('------- 美国库和橙皮书数据采集完毕，处理橙皮书的数据 -------')
+        redis_orange_data(spider)
 
+
+def redis_orange_data(spider):
+    if os.path.exists(spider.local_file_path):
         content_obj = {}
-        local_file_path = const.STORE_PATH + ESIndex.DRUG_US_ORANGE + '.txt'
-        if os.path.exists(local_file_path):
-            logging.info('------- 开始传输橙皮书的数据 -------')
-            with open(file=const.STORE_PATH + ESIndex.DRUG_US_ORANGE + '.txt', encoding='utf-8') as file:
-                lines = file.readlines()
-                for line in lines:
-                    line_dict = ast.literal_eval(line.replace('null', 'None'))
-                    application_num = line_dict['application_num']
-                    if 'base_info' in line_dict:
-                        content_obj[application_num] = line_dict
-                    else:
-                        join_orange_data(application_num, line_dict, 'patent_data', content_obj)
-                        join_orange_data(application_num, line_dict, 'exclusivity_data', content_obj)
+        logging.info('------- 开始传输橙皮书的数据 -------')
+        with open(file=const.STORE_PATH + ESIndex.DRUG_US_ORANGE + '.txt', encoding='utf-8') as file:
+            lines = file.readlines()
+            for line in lines:
+                line_dict = ast.literal_eval(line.replace('null', 'None'))
+                application_num = line_dict['application_num']
+                if 'base_info' in line_dict:
+                    content_obj[application_num] = line_dict
+                else:
+                    join_orange_data(application_num, line_dict, 'patent_data', content_obj)
+                    join_orange_data(application_num, line_dict, 'exclusivity_data', content_obj)
         content_es_obj = {}
         pages = spider.es_utils.get_page(ESIndex.DRUG_US_ORANGE, page_size=-1,
                                          show_fields=['patent_data', 'exclusivity_data', 'md5', 'patent_data_md5',
@@ -539,8 +525,9 @@ class IpoUsSpider(scrapy.Spider):
                 value_dict = content_obj[application_num]
                 if application_num in content_es_obj:
                     value_es_dict = content_es_obj[application_num]
-                    patent_data_md5 = spider.md5_utils.get_md5(data=value_dict.get('patent_data', []))
-                    exclusivity_data_md5 = spider.md5_utils.get_md5(data=value_dict.get('exclusivity_data', []))
+                    patent_data_md5 = spider.md5_utils.lstrip_zero_get_md5(data=value_dict.get('patent_data', []))
+                    exclusivity_data_md5 = spider.md5_utils.lstrip_zero_get_md5(
+                        data=value_dict.get('exclusivity_data', []))
                     if value_dict['md5'] != value_es_dict['md5']:
                         type = '修改'
                         is_send_redis = True
@@ -569,7 +556,8 @@ class IpoUsSpider(scrapy.Spider):
             redis_obj['table'] = ESIndex.DRUG_US_ORANGE
             redis_obj['id'] = content_es_obj[application_num]['esid']
             logging.info(f'橙皮书数据: {type} {application_num}')
-            spider.redis_server.lpush(RedisKey.DATA_CLEAN_US, json.dumps(redis_obj).encode('utf-8').decode('unicode_escape'))
+            spider.redis_server.lpush(RedisKey.DATA_CLEAN_US,
+                                      json.dumps(redis_obj).encode('utf-8').decode('unicode_escape'))
 
         if len(send_email_orange_content) > 0:
             send_orange_content = ''
@@ -584,8 +572,6 @@ class IpoUsSpider(scrapy.Spider):
             receiver = common_utils.get_send_email_receiver(query=query)
             spider.send_email_utils.send_email_content(content=send_content, receiver=receiver, subject='桔皮书专利新增')
 
-        # todo 全量测试完成之后要开启删除文件方式
-        # os.remove(local_file_path)
 
 
 def join_orange_and_es_data(spider, send_email_orange_content, application_num, content_obj, value_dict, value_es_dict,
@@ -649,6 +635,8 @@ def join_es_data(pages, original_approvals_list, original_approvals_id_set, file
                     id_es = original_approvals_es['id']
                     if id_es != id:
                         continue
+                    if 'review' in original_approvals_es:
+                        original_approvals['review'] = original_approvals_es['review']
                     if 'lrlppi' not in original_approvals and 'lrlppi' in original_approvals_es:
                         join_data.remove(original_approvals)
                         original_approvals['lrlppi'] = original_approvals_es['lrlppi']
@@ -661,13 +649,13 @@ def join_es_data(pages, original_approvals_list, original_approvals_id_set, file
                                 is_exsited = False
                                 for lrlppi in lrlppi_list:
                                     for key in lrlppi.keys():
-                                        if key_es == key:
+                                        if key_es.replace('(PDF)', '') == key.replace('(PDF)', ''):
                                             is_exsited = True
-                                if not is_exsited:
-                                    lrlppi_list.append(lrlppi_es)
-                                    join_data.remove(original_approvals)
-                                    original_approvals['lrlppi'] = lrlppi_list
-                                    join_data.append(original_approvals)
+                        if not is_exsited:
+                            lrlppi_list.append(lrlppi_es)
+                            join_data.remove(original_approvals)
+                            original_approvals['lrlppi'] = lrlppi_list
+                            join_data.append(original_approvals)
     else:
         join_data.extend(original_approvals_list)
     return join_data
@@ -680,10 +668,16 @@ def parse_download_pdf(self, id, a_elements, application_num, meta, scrapy, fiel
     if len(a_elements) > 0:
         for a_element in a_elements.items():
             file_name = a_element.text()
+            if file_name in file_name_set:
+                continue
             file_name_set.add(file_name)
             file_name_lower = file_name.lower()
             file_name_url = a_element.attr('href')
-            file_name_md5 = self.md5_utils.get_md5(data=file_name_url)
+            if None == file_name_url:
+                continue
+            if 'review' == meta['source'] and not file_name_url.lower().endswith('.pdf'):
+                continue
+            file_name_md5 = self.md5_utils.lstrip_zero_get_md5(data=file_name_url)
             if '.' in file_name_url:
                 suffix = file_name_url[file_name_url.rindex('.'):]
                 file_name_md5 += suffix
@@ -692,7 +686,7 @@ def parse_download_pdf(self, id, a_elements, application_num, meta, scrapy, fiel
             file_dict['orig_link'] = file_name_url
             qiniu_url = f'http://spider.pharmcube.com/{file_name_md5}'
             if not qiniu_utils.is_already_qiniu(qiniu_url):
-                if 'review' != meta['source']:
+                if 'review' != meta['source'] and 'review' != file_name.lower():
                     file_dict[file_name] = file_name_url
                 if file_name_url.endswith('.pdf'):
                     download_pdf_dict = {}
@@ -702,8 +696,7 @@ def parse_download_pdf(self, id, a_elements, application_num, meta, scrapy, fiel
                     local_file_path = f'{const.STORE_PATH}{file_name_md5}'
                     if os.path.exists(local_file_path):  # 校验pdf是否有效
                         if self.pdf_utils.check_pdf(local_file_path):
-                            qiniu_url = qiniu_utils.up_qiniu(local_file_path, file_name=file_name_md5,
-                                                             is_keep_file=False)
+                            qiniu_url = qiniu_utils.up_qiniu(local_file_path, file_name=file_name_md5, is_keep_file=False)
                             if 'pharmcube' in qiniu_url:
                                 if 'review' == meta['source']:
                                     file_dict['file_name'] = file_name
@@ -712,10 +705,7 @@ def parse_download_pdf(self, id, a_elements, application_num, meta, scrapy, fiel
                                     file_dict[file_name] = qiniu_url
                 elif 'review' == file_name_lower and 'review' != meta['source']:
                     meta = {'application_num': application_num, 'source': 'review', 'local_web': field, 'id': id}
-                    if 'dev' == run_env.run_evn and file_name_url.startswith('https://web.archive.org'):  # 需要翻墙，借助VPN
-                        yield scrapy.Request(file_name_url, callback=self.parse, meta=meta, headers=const.headers)
-                    else:  # 发送邮件通知
-                        self.send_email_drugs_review.append(meta)
+                    yield scrapy.Request(file_name_url, callback=self.parse, meta=meta, headers=const.headers)
                     continue
             elif 'review' == meta['source']:
                 file_dict['file_name'] = file_name
@@ -748,7 +738,6 @@ def update_drugs_join_data(self, esid, label_list, supplement_list, original_app
     else:
         logging.info(f'------- 新增美国库PDF label_arr、supplement、original_approvals  -------{esid}')
         self.es_utils.insert_or_replace(ESIndex.DRUG_US_DRUGS, d=es_dict)
-
 
 def append_wait_orange_url(self, sponsor_applicant, scrapy):
     formdata = {}

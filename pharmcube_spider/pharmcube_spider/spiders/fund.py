@@ -27,50 +27,6 @@ headers = const.json_headers
 headers['Referer'] = 'https://gs.amac.org.cn/amac-infodisc/res/pof/fund/index.html'
 local_file_path = const.STORE_PATH + 'fund_data.txt'
 
-
-def read_invalid_fund_name(self, is_spider):
-    queries = None
-    if is_spider:
-        self.fund_name_dict = {}  # 需要更新的基金信息
-        queries = Query(QueryType.EQ, 'is_paid_attention', '是')
-    else:
-        self.invalid_fund_name_set = set()
-        queries = Query(QueryType.NE, 'is_paid_attention', '是')
-        if is_spider:
-            logging.info(f'------- 读取ES待更新基金名称 -------')
-        else:
-            logging.info(f'------- 读取ES已被打入冷宫的基金名称 -------')
-    pages = es_utils.get_page(ESIndex.INVEST_CHINA_FUND, page_size=-1, queries=queries,
-                              show_fields=['fund_name', 'used_name', 'last_updated', 'securities_fund_md5'])
-    for page in pages:
-        last_updated = None
-        fund_name = self.str_utils.remove_mark(str=page['fund_name'])
-        securities_fund_md5 = ''
-        if 'securities_fund_md5' in page:
-            securities_fund_md5 = page['securities_fund_md5']
-        if 'last_updated' in page:
-            last_updated = self.date_utils.defined_format_time(timestamp=page['last_updated'], format='%Y-%m-%d')
-        if is_spider:
-            self.fund_name_dict[fund_name] = last_updated
-            if not self.str_utils.is_blank(securities_fund_md5):
-                self.fund_name_dict[fund_name] = securities_fund_md5
-        else:
-            self.invalid_fund_name_set.add(fund_name)
-        if 'used_name' in page and None != page['used_name']:
-            for used_name in page['used_name']:
-                used_name = self.str_utils.remove_mark(str=used_name)
-                if is_spider:
-                    self.fund_name_dict[used_name] = last_updated
-                    if not self.str_utils.is_blank(securities_fund_md5):
-                        self.fund_name_dict[fund_name] = securities_fund_md5
-                else:
-                    self.invalid_fund_name_set.add(used_name)
-    if is_spider:
-        return self.fund_name_dict
-    else:
-        return self.invalid_fund_name_set
-
-
 class FundSpider(scrapy.Spider):
     name = 'fund'
     allowed_domains = []
@@ -83,6 +39,7 @@ class FundSpider(scrapy.Spider):
         self.md5_utils = MD5Utils()
         self.file_utils = file_utils
         self.mongo_utils = MongoUtils()
+        self.file_utils.delete_file_or_dir(path=local_file_path)
         self.redis_server = from_settings(get_project_settings())
         self.invalid_fund_name_set = read_invalid_fund_name(self, False)
         self.fund_name_dict = read_invalid_fund_name(self, True)
@@ -97,16 +54,11 @@ class FundSpider(scrapy.Spider):
 
         if 'baidu.com' in spider_url:
             wait_url_list = []
-            # wait_url.append({'type': 'list', 'url':'https://gs.amac.org.cn/amac-infodisc/api/pof/fund?size=100&page=0', 'source':'fund_name', 'prefix_url':'https://gs.amac.org.cn/amac-infodisc/res/pof/fund/'})
-            # wait_url_list.append({'type': 'list', 'url':'https://gs.amac.org.cn/amac-infodisc/api/pof/manager?size=100&page=0', 'source':'fund_manager', 'prefix_url':'https://gs.amac.org.cn/amac-infodisc/res/pof/manager/'})
-            # wait_url_list.append({'type': 'list', 'url': 'https://gs.amac.org.cn/amac-infodisc/api/aoin/product?size=100&page=0', 'source': 'fund_product', 'prefix_url': 'https://gs.amac.org.cn/amac-infodisc/res/aoin/product/'})
-
-            wait_url_list.append(
-                {'type': 'list', 'url': 'https://gs.amac.org.cn/amac-infodisc/api/aoin/product?size=100&page=0',
-                 'source': 'fund_product', 'prefix_url': 'https://gs.amac.org.cn/amac-infodisc/res/aoin/product/'})
+            wait_url_list.append({'type': 'list', 'url': 'https://gs.amac.org.cn/amac-infodisc/api/pof/fund?size=100&page=0', 'source':'fund_name', 'prefix_url': 'https://gs.amac.org.cn/amac-infodisc/res/pof/fund/'})
+            wait_url_list.append({'type': 'list', 'url': 'https://gs.amac.org.cn/amac-infodisc/api/pof/manager?size=100&page=0', 'source':'fund_manager', 'prefix_url': 'https://gs.amac.org.cn/amac-infodisc/res/pof/manager/'})
+            wait_url_list.append({'type': 'list', 'url': 'https://gs.amac.org.cn/amac-infodisc/api/aoin/product?size=100&page=0', 'source': 'fund_product', 'prefix_url': 'https://gs.amac.org.cn/amac-infodisc/res/aoin/product/'})
             for wait_url in wait_url_list:
-                yield scrapy.Request(wait_url['url'], method='post', body=json.dumps({}), callback=self.parse,
-                                     meta=wait_url, headers=headers)
+                yield scrapy.Request(wait_url['url'], method='post', body=json.dumps({}), callback=self.parse, meta=wait_url, headers=headers)
 
         if 'source' in meta and 'list' == meta['type']:  # 基金名录列表页
             results = ast.literal_eval(
@@ -116,8 +68,7 @@ class FundSpider(scrapy.Spider):
                     title_url = spider_url.replace('page=0', f'page={page_index}')
                     logging.info(f'追加待采集的列表页：{page_index} {meta["source"]}')
                     meta['type'] = 'list'
-                    yield scrapy.Request(title_url, method='post', body=json.dumps({}), callback=self.parse, meta=meta,
-                                         headers=headers)
+                    yield scrapy.Request(title_url, method='post', body=json.dumps({}), callback=self.parse, meta=meta, headers=headers)
 
             for content in results['content']:
                 url = ''
@@ -178,11 +129,10 @@ class FundSpider(scrapy.Spider):
                 trustee = content_dict['托管人名称']
                 status = content_dict['运作状态']
                 fund_manager = self.str_utils.cn_mark2en_mark(str=content_dict['管理机构名称'])
-                writer_product_file(self, fund_name, fund_no, register_date, record_date, fund_type, trustee, status,
-                                    fund_manager, meta['source'])
+                writer_product_file(self, fund_name, fund_no, register_date, record_date, fund_type, trustee, status, fund_manager, meta['source'])
 
     def close(spider, reason):
-        logging.info(f'------- 当前基金数据已经更新完毕，开始传输redis数据 -------')
+        logging.info(f'------- 当前基金数据已经更新完毕，开始传输 redis 数据 -------')
         if not os.path.exists(local_file_path):
             logging.info(f'------- 未发现存储文件 {local_file_path}，程序停止 -------')
             return
@@ -192,6 +142,47 @@ class FundSpider(scrapy.Spider):
                 line = line.replace('\n', '')
                 spider.redis_server.lpush(const.RedisKey.DATA_CLEAN_INVEST_CHINA_FUND, line)
 
+def read_invalid_fund_name(self, is_spider):
+    queries = None
+    if is_spider:
+        self.fund_name_dict = {}  # 需要更新的基金信息
+        queries = Query(QueryType.EQ, 'is_paid_attention', '是')
+    else:
+        self.invalid_fund_name_set = set()
+        queries = Query(QueryType.NE, 'is_paid_attention', '是')
+        if is_spider:
+            logging.info(f'------- 读取ES待更新基金名称 -------')
+        else:
+            logging.info(f'------- 读取ES已被打入冷宫的基金名称 -------')
+    pages = es_utils.get_page(ESIndex.INVEST_CHINA_FUND, page_size=-1, queries=queries,
+                              show_fields=['fund_name', 'used_name', 'last_updated', 'securities_fund_md5'])
+    for page in pages:
+        last_updated = None
+        fund_name = self.str_utils.remove_mark(str=page['fund_name'])
+        securities_fund_md5 = ''
+        if 'securities_fund_md5' in page:
+            securities_fund_md5 = page['securities_fund_md5']
+        elif 'last_updated' in page:
+            last_updated = self.date_utils.defined_format_time(timestamp=page['last_updated'], format='%Y-%m-%d')
+        if is_spider:
+            self.fund_name_dict[fund_name] = last_updated
+            if not self.str_utils.is_blank(securities_fund_md5):
+                self.fund_name_dict[fund_name] = securities_fund_md5
+        else:
+            self.invalid_fund_name_set.add(fund_name)
+        if 'used_name' in page and None != page['used_name']:
+            for used_name in page['used_name']:
+                used_name = self.str_utils.remove_mark(str=used_name)
+                if is_spider:
+                    self.fund_name_dict[used_name] = last_updated
+                    if not self.str_utils.is_blank(securities_fund_md5):
+                        self.fund_name_dict[fund_name] = securities_fund_md5
+                else:
+                    self.invalid_fund_name_set.add(used_name)
+    if is_spider:
+        return self.fund_name_dict
+    else:
+        return self.invalid_fund_name_set
 
 def writer_product_file(self, fund_name, fund_no, register_date, record_date, fund_type, trustee, status, fund_manager,
                         source):
@@ -218,7 +209,6 @@ def writer_product_file(self, fund_name, fund_no, register_date, record_date, fu
     redis_dict['securities_fund_md5'] = securities_fund_md5
     redis_dict['spider_wormtime'] = spider_wormtime
     writer_file(self, source, redis_dict, fund_name, spider_wormtime, type)
-
 
 def parse_manager(self, content_dict, meta):
     fund_name = self.str_utils.cn_mark2en_mark(str=content_dict['基金管理人全称中文'])
@@ -300,7 +290,7 @@ def writer_manager_file(self, fund_name, fund_manager_en, register_no, record_da
 
 
 def parse_fund(self, content_dict, meta):
-    fund_name = self.str_utils.cn_mark2en_mark(str=content_dict['基金名称'].split('-')[0])
+    fund_name = self.str_utils.cn_mark2en_mark(str=content_dict['基金名称'])
     if len(self.str_utils.get_cn(str=fund_name)) == 0:
         logging.info(f'当前基金名称不包含中文，被过滤：{fund_name}')
         return
@@ -319,7 +309,7 @@ def parse_fund(self, content_dict, meta):
             return
     register_date = content_dict['成立时间']
     record_date = content_dict['备案时间']
-    filing = content_dict['基金备案阶段']
+    filing = content_dict.get('基金备案阶段', None)
     fund_type = content_dict['基金类型']
     currency = content_dict['币种']
     fund_manager = self.str_utils.cn_mark2en_mark(content_dict['基金管理人名称'])

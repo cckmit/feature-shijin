@@ -69,3 +69,6 @@ class StrUtils:
             return str
         return str.strip()
 
+    def get_nums(self, str):
+        return re.findall(r"\d+\.?\d*", str )
+

@@ -32,7 +32,7 @@ RETRY_TIMES = 9
 RETRY_ENABLED = True
 
 #设置重试返回状态码(115 企查查：身份验证错误或者已过期)
-RETRY_HTTP_CODES = [202, 500, 502, 503, 504, 522, 524, 408, 429, 403, 404, 115, 412, ]
+RETRY_HTTP_CODES = [202, 500, 502, 503, 504, 522, 524, 408, 429, 403, 115, 412, ]
 #设置允许指定异常状态通过
 #HTTPERROR_ALLOWED_CODES = [302, ]
 
@@ -52,7 +52,6 @@ DOWNLOADER_MIDDLEWARES = {
     'pharmcube_spider.middlewares.RandomUserAgent': 543, # 随机user-agent
     # todo test 关闭
     #'pharmcube_spider.middlewares.ProxyMiddleware': 543, # 随机代理ip
-
 
 }
 

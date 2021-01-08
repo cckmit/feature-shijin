@@ -49,6 +49,8 @@ class ESIndex:
     DRUG_REGISTER = 'drug_register'#注册库
     DRUG_PATENT_INFO_V2 = 'drug_patent_info_v2'
     DRUG_PATENT_GOOGLE = 'drug_patent_google' #专利号临时索引（需清洗专利号）
+    DRUG_EARTH_NEWS_STAT = 'drug_earth_news_stat'
+    PMC_ARTICLE = 'pmc_article' #PMC全文
 
 class RedisKey:
     SPIDER_CDE_COOKIE = 'spider_cde_cookie'  # 存储cde的cookie

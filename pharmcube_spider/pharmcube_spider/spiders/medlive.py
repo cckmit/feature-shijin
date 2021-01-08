@@ -49,12 +49,14 @@ class MedliveSpider(scrapy.Spider):
            # 'pharmcube_spider.middlewares.ProxyMiddleware': 543,  # 随机代理ip
             'pharmcube_spider.middlewares.RetryMiddleware': 543,  # 自定义超过重试处理重试次数处理
         },
-        'HTTPERROR_ALLOWED_CODES':[302, 301, 404, ]
+        'HTTPERROR_ALLOWED_CODES': [302, 301, 404, ],
+        'RETRY_HTTP_CODES': [202, 500, 502, 503, 504, 522, 524, 408, 429, 403, 115, 412, ]
     }
 
     def start_requests(self):
         login_status, jsessionid = login_medlive()
         if login_status:
+            logging.info(f'------- 医脉通登录成功，获取到登录cookie {jsessionid} -------')
             self.jsessionid = jsessionid
         else:
             logging.error(f'------- 医脉通登录失败，程序退出中 -------')
@@ -91,7 +93,7 @@ class MedliveSpider(scrapy.Spider):
             id_set.add(6224) #批准文号对应的说明书错误（小黑屋）
             #check_mongo_data(self, id_set, approval_num_set)
             #for id in range(1, 50000):
-            for id in range(1, 20000):
+            for id in range(20000, 40000):
                 if id in id_set:
                     logging.info(f'当前数据已采集，被过滤：{id}')
                     continue
@@ -338,11 +340,10 @@ def get_clean_approval_num(self, value):
     return approval_num_list
 
 def login_medlive():
-    #username = '18656557851'
-    #password = 'zxx123456'
+    username = '18656557851'
+    password = 'zxx123456'
 
-    username = '526090727@qq.com'
-    password = '526090727'
+
     headers = const.headers
     headers['Referer'] = 'http://drugs.medlive.cn/'
     session = requests.Session()
