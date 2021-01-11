@@ -93,7 +93,7 @@ class MedliveSpider(scrapy.Spider):
             id_set.add(6224) #批准文号对应的说明书错误（小黑屋）
             #check_mongo_data(self, id_set, approval_num_set)
             #for id in range(1, 50000):
-            for id in range(20000, 40000):
+            for id in range(40000, 50000):
                 if id in id_set:
                     logging.info(f'当前数据已采集，被过滤：{id}')
                     continue

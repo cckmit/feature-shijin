@@ -133,6 +133,7 @@ class FundSpider(scrapy.Spider):
 
     def close(spider, reason):
         logging.info(f'------- 当前基金数据已经更新完毕，开始传输 redis 数据 -------')
+        """
         if not os.path.exists(local_file_path):
             logging.info(f'------- 未发现存储文件 {local_file_path}，程序停止 -------')
             return
@@ -141,6 +142,8 @@ class FundSpider(scrapy.Spider):
             for line in lines:
                 line = line.replace('\n', '')
                 spider.redis_server.lpush(const.RedisKey.DATA_CLEAN_INVEST_CHINA_FUND, line)
+        """
+
 
 def read_invalid_fund_name(self, is_spider):
     queries = None
@@ -158,6 +161,8 @@ def read_invalid_fund_name(self, is_spider):
                               show_fields=['fund_name', 'used_name', 'last_updated', 'securities_fund_md5'])
     for page in pages:
         last_updated = None
+        if 'fund_name' not in page:
+            continue
         fund_name = self.str_utils.remove_mark(str=page['fund_name'])
         securities_fund_md5 = ''
         if 'securities_fund_md5' in page:

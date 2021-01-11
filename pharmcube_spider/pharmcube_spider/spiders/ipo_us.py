@@ -56,16 +56,20 @@ class IpoUsSpider(scrapy.Spider):
             f'待采集URL条数：{len(self.crawler.engine.slot.inprogress)}，当前运行请求数：{len(self.crawler.engine.slot.scheduler)}')
 
         if 'baidu.com' in spider_url:
-            url = 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=103628'
+
+            url = 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125554'
             yield scrapy.Request(url, callback=self.parse, meta={'source': 'us', }, headers=const.headers)
 
+
+
+
             """
-            url = f'https://www.accessdata.fda.gov/scripts/cder/ob/index.cfm'
-            yield scrapy.Request(url, callback=self.parse, meta={'source': 'orange_title', }, headers=const.headers)
-      
-            for a in range(ord('A'), ord('Z') + 1):
+                        for a in range(ord('A'), ord('Z') + 1):
                 url = f'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=browseByLetter.page&productLetter={chr(a)}'
                 yield scrapy.Request(url, callback=self.parse, meta={'source': 'us_title', }, headers=const.headers)
+                
+            url = f'https://www.accessdata.fda.gov/scripts/cder/ob/index.cfm'
+            yield scrapy.Request(url, callback=self.parse, meta={'source': 'orange_title', }, headers=const.headers)
             """
 
         if 'source' in meta and 'orange_title' == meta['source']:
@@ -446,7 +450,7 @@ class IpoUsSpider(scrapy.Spider):
             logging.info(f'------- 美国库 redis data {type} -------{application_num}')
             self.redis_server.lpush(RedisKey.DATA_CLEAN_US, json.dumps(redis_obj).encode('utf-8').decode('unicode_escape'))
 
-        if 'source' in meta and 'review' == meta['source']:  # 美国库
+        if 'source' in meta and 'review' == meta['source']:  # 美国库 review
             id = meta['id']
             local_web = meta['local_web']
             application_num = meta['application_num']
@@ -462,9 +466,7 @@ class IpoUsSpider(scrapy.Spider):
                 a_element.attr('href', url)
             a_elements = doc('a')
             review_list, file_name_set = yield from parse_download_pdf(self, id, a_elements, application_num, meta, scrapy, '')
-            pages = self.es_utils.get_page(ESIndex.DRUG_US_DRUGS,
-                                           queries=Query(QueryType.EQ, 'application_num', application_num),
-                                           show_fields=[local_web])
+            pages = self.es_utils.get_page(ESIndex.DRUG_US_DRUGS, queries=Query(QueryType.EQ, 'application_num', application_num), show_fields=[local_web])
             if None == pages:
                 logging.info(f'{ESIndex.DRUG_US_DRUGS} 未查询到受理号,被过滤：{application_num}')
                 return
@@ -494,7 +496,6 @@ class IpoUsSpider(scrapy.Spider):
         logging.info('------- 美国库和橙皮书数据采集完毕，处理橙皮书的数据 -------')
         redis_orange_data(spider)
 
-
 def redis_orange_data(spider):
     if os.path.exists(spider.local_file_path):
         content_obj = {}
@@ -516,7 +517,6 @@ def redis_orange_data(spider):
         for page in pages:
             application_num = page['application_num']
             content_es_obj[application_num] = page
-
         send_email_orange_content = []
         for application_num in content_obj.keys():
             type = '新增'
@@ -556,8 +556,7 @@ def redis_orange_data(spider):
             redis_obj['table'] = ESIndex.DRUG_US_ORANGE
             redis_obj['id'] = content_es_obj[application_num]['esid']
             logging.info(f'橙皮书数据: {type} {application_num}')
-            spider.redis_server.lpush(RedisKey.DATA_CLEAN_US,
-                                      json.dumps(redis_obj).encode('utf-8').decode('unicode_escape'))
+            spider.redis_server.lpush(RedisKey.DATA_CLEAN_US, json.dumps(redis_obj).encode('utf-8').decode('unicode_escape'))
 
         if len(send_email_orange_content) > 0:
             send_orange_content = ''
@@ -651,11 +650,11 @@ def join_es_data(pages, original_approvals_list, original_approvals_id_set, file
                                     for key in lrlppi.keys():
                                         if key_es.replace('(PDF)', '') == key.replace('(PDF)', ''):
                                             is_exsited = True
-                        if not is_exsited:
-                            lrlppi_list.append(lrlppi_es)
-                            join_data.remove(original_approvals)
-                            original_approvals['lrlppi'] = lrlppi_list
-                            join_data.append(original_approvals)
+                                if not is_exsited:
+                                    lrlppi_list.append(lrlppi_es)
+                                    join_data.remove(original_approvals)
+                                    original_approvals['lrlppi'] = lrlppi_list
+                                    join_data.append(original_approvals)
     else:
         join_data.extend(original_approvals_list)
     return join_data
@@ -704,8 +703,8 @@ def parse_download_pdf(self, id, a_elements, application_num, meta, scrapy, fiel
                                 else:
                                     file_dict[file_name] = qiniu_url
                 elif 'review' == file_name_lower and 'review' != meta['source']:
-                    meta = {'application_num': application_num, 'source': 'review', 'local_web': field, 'id': id}
-                    yield scrapy.Request(file_name_url, callback=self.parse, meta=meta, headers=const.headers)
+                    yield scrapy.Request(file_name_url, callback=self.parse, meta={'application_num': application_num, 'source': 'review',
+                                                                                   'local_web': field, 'id': id}, headers=const.headers)
                     continue
             elif 'review' == meta['source']:
                 file_dict['file_name'] = file_name

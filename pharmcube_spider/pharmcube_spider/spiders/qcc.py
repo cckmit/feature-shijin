@@ -388,9 +388,7 @@ class QccSpider(scrapy.Spider):
             page_index = get_resp_meta(param='page_index', resp=response)
             page_size = get_resp_meta(param='page_size', resp=response)
 
-            results = ast.literal_eval(
-                response.body.decode(QCCUtils.ENCODE).replace('true', 'True').replace('false', 'False').replace('null',
-                                                                                                                'None'))
+            results = ast.literal_eval(response.body.decode(QCCUtils.ENCODE).replace('true', 'True').replace('false', 'False').replace('null', 'None'))
             status = results.get('Status')
             if (status != '200'):
                 logging.info(f'接口调用状态码：{response.status} 企查查接口返回状态码: {status} ,请求URL: {spider_url}')

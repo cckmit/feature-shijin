@@ -1,9 +1,9 @@
 # -*- coding:utf-8 -*-
 import json
 import random
+import platform
 from scrapy.utils.project import get_project_settings
 from scrapy_redis_cluster.connection import from_settings
-
 from pharmcube_spider.const import MongoTables, RedisKey
 from pharmcube_spider.utils.mongo_utils import MongoUtils
 
@@ -51,3 +51,9 @@ def get_send_email_receiver(query):
     for result in results:
         receiver.append(result['email'])
     return receiver
+
+def unicode2str(str):
+    if platform.system() == 'Windows':
+        return str.encode('unicode_escape').decode('unicode_escape')
+    else:
+        return str.encode('utf-8').decode('unicode_escape')

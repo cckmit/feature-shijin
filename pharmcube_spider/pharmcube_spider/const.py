@@ -72,8 +72,15 @@ class QCCAPI:
     MAIN_STAFF = "http://api.qichacha.com/ECIEmployee/GetList"  # 主要人员列表
     SHAREHOLDER_INFO = "http://api.qichacha.com/ECIPartner/GetList"  # 股东列表
     COMPANY_CHANGE = "http://api.qichacha.com/ECIChange/GetList"  # 企业变更记录
-
     VERIFY_INFO = "http://api.qichacha.com/ECIInfoVerify/GetInfo"  #企业工商核验信息
+
+class WindAPI:
+    wind_Id = 'http://eapi.wind.com.cn/wind.ent.risk/openapi/searchcorplist?corpName='
+    BASE_INFO = 'http://eapi.wind.com.cn/wind.ent.risk/openapi/corpinfo/A002?windId='
+    MAIN_STAFF = 'http://eapi.wind.com.cn/wind.ent.risk/openapi/corpinfo/A003?windId='
+    SHAREHOLDER_INFO = 'http://eapi.wind.com.cn/wind.ent.risk/openapi/corpinfo/A004?windId='
+    COMPANY_CHANGE = 'http://eapi.wind.com.cn/wind.ent.risk/openapi/corpinfo/A006?windId='
+
 
 
 class PAGEOPS:

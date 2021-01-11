@@ -37,94 +37,16 @@ class CdeSpider(scrapy.Spider):
             yield self.make_requests_from_url(url)
 
     def parse(self, response):
-        pages = self.es_utils.get_page("base_company", queries=Query(QueryType.NE, 'is_delete', '是'), page_index=-1,
-                                       show_fields=['name', 'name_en', 'name_jp', 'name_used', 'short_name',
-                                                    'short_name_en', 'company_variant', 'id'])
-        type = 'AG'
-        for page in pages:
-            id = page['id']
-            name = page['name']
-            name_en = page['name_en']
-            name_jp = page['name_jp']
-            name_used = page['name_used']
-            short_name = page['short_name']
-            short_name_en = page['short_name_en']
-            company_variant = page['company_variant']
-            print()
 
 
-
-        spider_url = response.url
-        logging.info(f'待采集URL条数：{len(self.crawler.engine.slot.inprogress)}，当前运行请求数：{len(self.crawler.engine.slot.scheduler)}')
-        doc = pq(response.text)
-
-        logging.info(f'接收到传输的参数：{self.spider_test}')
-        if 'baidu.com' in spider_url:
-            pages = es_utils.get_page('drug_us_drugs', page_size=-1, show_fields=['original_approvals', 'supplement', 'label_arr'])
-            for page in pages:
-                esid = page['esid']
-                if "60f416d99a72a8c26adf9e1c871faec0" == esid:
-                    if 'label_arr' in page:
-                        label_arr_list = []
-                        label_arr_es_list = ast.literal_eval(page['label_arr'])
-                        for label_arr_es in label_arr_es_list:
-                            submission = label_arr_es['submission']
-                            submission_classification_approvaltype = label_arr_es[
-                                'submission_classification_approvaltype']
-                            action_date = label_arr_es['action_date']
-                            action_date_str = DateUtils().defined_format_time(action_date, '%m/%d/%Y')
-                            id = MD5Utils().get_md5(
-                                action_date_str + submission + submission_classification_approvaltype)
-                            label_arr_es['id'] = id
-                            label_arr_list.append(label_arr_es)
-                        es_dict = {}
-                        es_dict['esid'] = esid
-                        es_dict['label_arr'] = str(json.dumps(label_arr_list).encode('utf-8').decode('unicode_escape'))
-                        logging.info(f'------- update es data label_arr -------{esid} ')
-                        es_utils.update('drug_us_drugs', d=es_dict)
-
-                    if 'supplement' in page:
-                        supplement_list = []
-                        supplement_es_list = ast.literal_eval(page['supplement'])
-                        for supplement_es in supplement_es_list:
-                            submission = supplement_es['submission']
-                            submission_classification = supplement_es['submission_classification']
-                            action_date = supplement_es['action_date']
-                            action_date_str = DateUtils().defined_format_time(action_date, '%m/%d/%Y')
-                            id = MD5Utils().get_md5(action_date_str + submission + submission_classification)
-                            supplement_es['id'] = id
-                            supplement_list.append(supplement_es)
-                        es_dict = {}
-                        es_dict['esid'] = esid
-                        es_dict['supplement'] = str(
-                            json.dumps(supplement_list).encode('utf-8').decode('unicode_escape'))
-                        logging.info(f'------- update es data supplement -------{esid}')
-                        es_utils.update('drug_us_drugs', d=es_dict)
-
-                    if 'original_approvals' in page:
-                        original_approvals_list = []
-                        original_approvals_es_list = ast.literal_eval(page['original_approvals'])
-                        for original_approvals_es in original_approvals_es_list:
-                            submission = original_approvals_es['submission']
-                            action_type = original_approvals_es['action_type']
-                            action_date = original_approvals_es['action_date']
-                            action_date_str = DateUtils().defined_format_time(action_date, '%m/%d/%Y')
-                            id = MD5Utils().get_md5(action_date_str + submission + action_type)
-                            original_approvals_es['id'] = id
-                            original_approvals_list.append(original_approvals_es)
-                        es_dict = {}
-                        es_dict['esid'] = esid
-                        es_dict['original_approvals'] = str(json.dumps(original_approvals_list).encode('utf-8').decode('unicode_escape'))
-                        logging.info(f'------- update es data original_approvals -------{esid}')
-                        es_utils.update('drug_us_drugs', d=es_dict)
+        es_dict_1 = {}
+        es_dict_1['esid'] = '689d3225519a38ba5db6adbb343e10f9'
+        original_approvals_list_1 = [{"id":"1e96d0e3e2cfcb43d2ad9db118bb9ae4","action_date":1419177600000,"submission":"ORIG-1","action_type":"Approval","submission_classification":"","rPOS":"N/A; Orphan","lrlppi":[{"orig_link":"https://www.accessdata.fda.gov/drugsatfda_docs/label/2014/125554lbl.pdf","Label (PDF)":"http://spider.pharmcube.com/718e308d4572962bd388b7b9d99ffe1e.pdf"},{"orig_link":"https://www.accessdata.fda.gov/drugsatfda_docs/appletter/2014/125554Orig1s000ltr.pdf","Letter (PDF)22222222":"http://spider.pharmcube.com/eaf58adcf7d2dab7c68257deb925daa.pdf"}],"notes":"","review":[{"orig_link":"https://www.accessdata.fda.gov/drugsatfda_docs/nda/2014/125554Orig1s000Approv.pdf","file_name":"11111111","file_name_url":"http://spider.pharmcube.com/6f8fb9a08d0a033116c3fb37c709dde3.pdf"}]}]
+        es_dict_1['original_approvals'] = str(json.dumps(original_approvals_list_1).encode('utf-8').decode('unicode_escape'))
+        logging.info(f'------- update es data original_approvals  689d3225519a38ba5db6adbb343e10f9 ------- ')
+        es_utils.update('drug_us_drugs', d=es_dict_1)
 
 
-
-            '''
-
-           
-                pass
-            '''
 
 
     def close(spider, reason):

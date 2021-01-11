@@ -4,15 +4,14 @@ from scrapy import cmdline
 #cmdline.execute(['scrapy','crawl','qcc'])
 #cmdline.execute(['scrapy', 'crawl', 'invest'])
 #cmdline.execute(['scrapy','crawl','wechat_mp'])
-#cmdline.execute(['scrapy','crawl','cde'])
-#cmdline.execute(['scrapy', 'crawl', 'ispor'])
 #cmdline.execute(['scrapy', 'crawl', 'nhsa'])
 
-#cmdline.execute(['scrapy','crawl','ipo_us'])
-#cmdline.execute(['scrapy', 'crawl', 'medlive'])
-
-# medlive; fund; newswire; ipo_us; ispor; patent_google; cde; newswire; pmc_article
+'''
+medlive; fund; newswire; ipo_us; ispor; patent_google; cde; newswire; pmc_article;
+wind; 
+'''
 cmdline.execute(['scrapy', 'crawl', 'ipo_us',])
+
 #cmdline.execute(['scrapy', 'crawl', 'cde','-a' 'spider_test=electronics'])
 
 #cmdline.execute(['scrapy','crawl','qccnew'])

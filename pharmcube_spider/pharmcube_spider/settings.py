@@ -41,9 +41,6 @@ RETRY_HTTP_CODES = [202, 500, 502, 503, 504, 522, 524, 408, 429, 403, 115, 412, 
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
-
-CONCURRENT_REQUESTS = 6
-
 DOWNLOADER_MIDDLEWARES = {
     'pharmcube_spider.middlewares.PharmcubeSpiderDownloaderMiddleware': 543,
     'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
@@ -52,11 +49,10 @@ DOWNLOADER_MIDDLEWARES = {
     'pharmcube_spider.middlewares.RandomUserAgent': 543, # 随机user-agent
     # todo test 关闭
     #'pharmcube_spider.middlewares.ProxyMiddleware': 543, # 随机代理ip
-
 }
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-#CONCURRENT_REQUESTS = 32
+CONCURRENT_REQUESTS = 32
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay

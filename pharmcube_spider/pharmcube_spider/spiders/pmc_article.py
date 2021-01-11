@@ -25,12 +25,8 @@ https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7781395/
 
 invalid_list = ['acknowledgements','associateddata','acknowledgments','references','dataavailabilitystatement','ethicsstatement',
                 'contributor information','biography','footnotes','authorcontributions','conflictofinterest','notes',
-                'author’scontributions','funding' ,'availabilityofdataandmaterials' ,'ethicsapprovalandconsenttoparticipate' ,
-                'consentforpublication' ,'competinginterests' , ]
-
-
-
-
+                'author’scontributions','funding','availabilityofdataandmaterials','ethicsapprovalandconsenttoparticipate' ,
+                'consentforpublication','competinginterests','acknowledgements','authorscontributions' ]
 
 class PmcArticleSpider(scrapy.Spider):
     name = 'pmc_article'
@@ -57,7 +53,6 @@ class PmcArticleSpider(scrapy.Spider):
         spider_url = response.url
         logging.info(f'待采集URL条数：{len(self.crawler.engine.slot.inprogress)}，当前运行请求数：{len(self.crawler.engine.slot.scheduler)}')
         doc = pq(response.text.replace('<?xml', ''))
-
         if 'baidu.com' in spider_url:
             pmc_id_set = set()
             '''
@@ -67,25 +62,28 @@ class PmcArticleSpider(scrapy.Spider):
                     pmc_id_set.add(page['pmc_id'])
             '''
             #for id in range(1, 7738640):
-            for search_pmc_id in range(2229793, 2229793+1):
+            for search_pmc_id in range(1, 100000):  # 7738640 '1234567'.rjust(7,'0')补零
                 if str(search_pmc_id) in pmc_id_set:
                     continue
                 logging.info(f'追加待采集PMC全文id：{search_pmc_id}')
                 url = f'https://www.ncbi.nlm.nih.gov/pmc/articles/{search_pmc_id}'
-                yield scrapy.Request(url, callback=self.parse, meta={'search_pmc_id': 'search_pmc_id', 'url_prefix':'https://www.ncbi.nlm.nih.gov'}, headers=const.headers)
+                yield scrapy.Request(url, callback=self.parse, meta={'search_pmc_id': search_pmc_id, 'url_prefix':'https://www.ncbi.nlm.nih.gov'}, headers=const.headers)
 
         if 'ncbi.nlm.nih.gov' in spider_url:
+            meta = response.meta
+            search_pmc_id = meta['search_pmc_id']
             if 'invalid article id' in doc('h1').text().lower():
                 logging.info(f'当前数据 pmcid 无效，被过滤：{search_pmc_id}')
                 return
-            meta = response.meta
             self.common_utils.auto_content_link(self, doc, 'a', 'href', meta['url_prefix'])
             self.common_utils.auto_content_link(self, doc, 'img', 'src', meta['url_prefix'])
-            search_pmc_id = meta['search_pmc_id']
             fm_citation_elements = doc('.fm-citation')
             issue = fm_citation_elements('.cit').text()
             pm_id = fm_citation_elements('.fm-citation-pmid a').text()
             pmc_id = fm_citation_elements('.fm-citation-pmcid span:nth-child(2)').text()
+            if not self.str_utils.has_nums(str=pmc_id):
+                logging.info(f'当前数据 pmcid 无效，被过滤：{search_pmc_id} {pmc_id}')
+                return
             doi = fm_citation_elements('.doi a').text()
             title = doc('.content-title').text()
             pdf = ''
@@ -152,5 +150,4 @@ def insert_es_data(self, doi, pdf, pmc_id, pm_id, issue, title, spider_url, supp
     es_dict['spider_wormtime'] = self.date_utils.get_timestamp()
     es_dict['content'] = content
     logging.info(f'------- insert es data -------{pmc_id}')
-    self.es_utils.insert_or_replace(ESIndex.PMC_ARTICLE, d=es_dict)
     self.es_utils.insert_or_replace(ESIndex.PMC_ARTICLE, d=es_dict)
