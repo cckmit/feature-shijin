@@ -170,6 +170,8 @@ class RetryMiddleware(RetryMiddleware):
             logger.info("Retrying %(request)s (failed %(retries)d times): %(reason)s", {'request': request, 'retries': retries, 'reason': reason}, extra={'spider': spider})
             retryreq = request.copy()
             retryreq.meta['retry_times'] = retries
+            if 'proxy' in retryreq.meta:
+                retryreq.meta['proxy'] = common_utils.randomProxyIP()
             if 'api.qichacha' in spider_url: # 更换token
                 retryreq.headers = QCCUtils().get_qcc_token_headers()
             retryreq.dont_filter = True

@@ -15,9 +15,12 @@ NEWSPIDER_MODULE = 'pharmcube_spider.spiders'
 
 
 LOG_LEVEL = 'INFO'
+# Configure maximum concurrent requests performed by Scrapy (default: 16)
+CONCURRENT_REQUESTS = 22
+
 
 #设置超时时间
-DOWNLOAD_TIMEOUT = 35
+DOWNLOAD_TIMEOUT = 120
 # 每次请求间隔时间 秒
 DOWNLOAD_DELAY = 0.26
 # 启用后，当从相同的网站获取数据时，Scrapy将会等待一个随机的值，延迟时间为0.5到1.5之间的一个随机值乘以DOWNLOAD_DELAY
@@ -37,22 +40,21 @@ RETRY_HTTP_CODES = [202, 500, 502, 503, 504, 522, 524, 408, 429, 403, 115, 412, 
 #HTTPERROR_ALLOWED_CODES = [302, ]
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'pharmcube_spider (+http://www.yourdomain.com)'
+USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
 DOWNLOADER_MIDDLEWARES = {
-    'pharmcube_spider.middlewares.PharmcubeSpiderDownloaderMiddleware': 543,
+    'pharmcube_spider.middlewares.PharmcubeSpiderDownloaderMiddleware': 1,
     'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
     #'scrapy.downloadermiddlewares.redirect.RedirectMiddleware': None, #关闭重定向（301，302）
-    'pharmcube_spider.middlewares.RetryMiddleware': 543, # 自定义超过重试处理重试次数处理
-    'pharmcube_spider.middlewares.RandomUserAgent': 543, # 随机user-agent
+    'pharmcube_spider.middlewares.RetryMiddleware': 200, #自定义超过重试处理重试次数处理
+    'pharmcube_spider.middlewares.RandomUserAgent': 1, #随机user-agent
     # todo test 关闭
-    #'pharmcube_spider.middlewares.ProxyMiddleware': 543, # 随机代理ip
+    'pharmcube_spider.middlewares.ProxyMiddleware': 543, # 随机代理ip
 }
 
-# Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 32
+
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
@@ -73,6 +75,7 @@ CONCURRENT_REQUESTS = 32
 #   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
 #   'Accept-Language': 'en',
 #}
+
 
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html

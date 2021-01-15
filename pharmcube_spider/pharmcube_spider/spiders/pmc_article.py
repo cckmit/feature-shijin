@@ -26,7 +26,7 @@ https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7781395/
 invalid_list = ['acknowledgements','associateddata','acknowledgments','references','dataavailabilitystatement','ethicsstatement',
                 'contributor information','biography','footnotes','authorcontributions','conflictofinterest','notes',
                 'author’scontributions','funding','availabilityofdataandmaterials','ethicsapprovalandconsenttoparticipate' ,
-                'consentforpublication','competinginterests','acknowledgements','authorscontributions' ]
+                'consentforpublication','competinginterests','acknowledgement','authorscontributions' ]
 
 class PmcArticleSpider(scrapy.Spider):
     name = 'pmc_article'
@@ -94,43 +94,8 @@ class PmcArticleSpider(scrapy.Spider):
                     pdf = li_element('a').attr('href')
             supplement_str = doc('.box-data-suppmats').html() # 附注
             references_str = doc('#reference-list').html() #注释
-            h2_set = set()
-            content = get_content(self, doc, '.no_bottom_margin', h2_set)
-            is_continue = True
-            for h2 in h2_set:
-                if 'abstract' in h2.lower():
-                    is_continue = False
-            if is_continue:
-                content = get_content(self, doc, '.p-first-last', None) + '<br>' + content
-            if len(pq(content)('h2')) == 1 and 'references' in pq(content)('h2').text().lower():
-                content = ''
+            content = doc('#maincontent').html()
             insert_es_data(self, doi, pdf, pmc_id, pm_id, issue, title, spider_url, supplement_str, references_str, search_pmc_id, content)
-
-def get_content(self, doc, label, h2_set):
-    content = ''
-    content_elements = doc(label)
-    for content_element in content_elements.items():
-        key = self.str_utils.remove_mark(str=content_element('h2').text().lower())
-        logging.info('===>' + key)
-        is_keep = True
-        for invalid_key in invalid_list:
-            if key == invalid_key:
-                is_keep = False
-                break
-        if not is_keep:
-            continue
-        parent_content_elements = content_element.parent()
-        parent_content_elements('.no_top_margin').remove()
-        h2_title = parent_content_elements('h2').text()
-        if None != h2_set:
-            if h2_title in h2_set or '' == h2_title:
-                continue
-            h2_set.add(h2_title)
-        content += parent_content_elements.html()
-        while len(parent_content_elements.next()('h2')) == 0 and len(parent_content_elements.next()('h3')) > 0:
-            content += parent_content_elements.next().html()
-            parent_content_elements = parent_content_elements.next()
-    return content
 
 def insert_es_data(self, doi, pdf, pmc_id, pm_id, issue, title, spider_url, supplement_str, references_str,
                    search_pmc_id, content):

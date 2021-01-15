@@ -33,6 +33,10 @@ class IpoUsSpider(scrapy.Spider):
     allowed_domains = []
     start_urls = ['https://www.baidu.com']
 
+    custom_settings = {
+        'CONCURRENT_REQUESTS': 3,
+    }
+
     def start_requests(self):
         self.es_utils = es_utils
         self.pdf_utils = pdf_utils
@@ -52,22 +56,25 @@ class IpoUsSpider(scrapy.Spider):
         meta = response.meta
         doc = pq(response.text)
         spider_url = response.url
-        logging.info(
-            f'待采集URL条数：{len(self.crawler.engine.slot.inprogress)}，当前运行请求数：{len(self.crawler.engine.slot.scheduler)}')
+        logging.info(f'待采集URL条数：{len(self.crawler.engine.slot.inprogress)}，当前运行请求数：{len(self.crawler.engine.slot.scheduler)}')
 
         if 'baidu.com' in spider_url:
-
-            url = 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125554'
+            """
+            url = 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=202015'
             yield scrapy.Request(url, callback=self.parse, meta={'source': 'us', }, headers=const.headers)
+            """
+            for letter in range(ord('A'), ord('Z') + 1):
+                url = f'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=browseByLetter.page&productLetter={chr(letter)}'
+                yield scrapy.Request(url, callback=self.parse, meta={'source': 'us_title', }, headers=const.headers)
 
+            url_temp = f'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=browseByLetter.page&productLetter=0-9'
+            yield scrapy.Request(url_temp, callback=self.parse, meta={'source': 'us_title', }, headers=const.headers)
 
 
 
             """
-                        for a in range(ord('A'), ord('Z') + 1):
-                url = f'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=browseByLetter.page&productLetter={chr(a)}'
-                yield scrapy.Request(url, callback=self.parse, meta={'source': 'us_title', }, headers=const.headers)
-                
+
+            
             url = f'https://www.accessdata.fda.gov/scripts/cder/ob/index.cfm'
             yield scrapy.Request(url, callback=self.parse, meta={'source': 'orange_title', }, headers=const.headers)
             """
@@ -222,7 +229,7 @@ class IpoUsSpider(scrapy.Spider):
                     base_info_dict['approval_date'] = approval_date
                 base_info_dict['marketing_status'] = marketing_status
                 base_info_list.append(base_info_dict)
-            md5 = self.md5_utils.lstrip_zero_get_md5(data=base_info_list)
+            md5 = self.md5_utils.get_md5(data=base_info_list)
             base_info_obj = {}
             base_info_obj['md5'] = md5
             base_info_obj['url'] = spider_url
@@ -266,7 +273,10 @@ class IpoUsSpider(scrapy.Spider):
             original_approvals_list = []
             original_approvals_id_set = set()
             approval_date_revised = 0  # 批准日期(默认值不传)
-            extract_data_dict = {}
+            rPOS_list = set()
+            submission_list = set()
+            action_type_list = set()
+            submission_classification_list = set()
             original_approvals_elements = doc('#exampleApplOrig')  # Original Approvals or Tentative Approvals
             if original_approvals_elements.size() > 0:
                 for tr_element in original_approvals_elements('tr').items():
@@ -280,19 +290,24 @@ class IpoUsSpider(scrapy.Spider):
                     submission_classification = td_elements[3].text.replace('    ', '').strip()  # 意见分类
                     rPOS = td_elements[4].text.replace('    ', '').strip()  # 优先审评 / 孤儿药状态
                     a_elements = pq(td_elements[5])('a')
-                    id = self.md5_utils.lstrip_zero_get_md5(action_date_str + submission + action_type)
+                    id = self.md5_utils.get_md5(action_date_str + submission + action_type)
                     original_approvals_id_set.add(id)
                     lrlppi_list, file_name_set = yield from parse_download_pdf(self, id, a_elements, application_num, meta, scrapy, 'original_approvals')
-                    notes = pq(td_elements[6]).text() # 优先审评 / 孤儿药状态
-                    if 'approval' == action_type.lower():  # 申请日期：取action_type等于approval且为最小的值
+                    notes = pq(td_elements[6]).text().replace('\n', '') #优先审评 / 孤儿药状态
+                    if 'approval' in action_type.lower():  # 申请日期：取action_type等于approval且为最小的值
                         if approval_date_revised == 0:
                             approval_date_revised = action_date
-                        if None != action_date and approval_date_revised < action_date:
+                        if None != action_date and approval_date_revised >= action_date:
+                            if approval_date_revised > action_date:
+                                rPOS_list.clear()
+                                submission_list.clear()
+                                action_type_list.clear()
+                                submission_classification_list.clear()
+                            rPOS_list.add(rPOS)
+                            submission_list.add(submission)
+                            action_type_list.add(action_type)
+                            submission_classification_list.add(submission_classification)
                             approval_date_revised = action_date
-                            extract_data_dict['rPOS'] = rPOS
-                            extract_data_dict['submission'] = submission
-                            extract_data_dict['action_type'] = action_type
-                            extract_data_dict['submission_classification'] = submission_classification
                     original_approvals_dict = {}
                     original_approvals_dict['id'] = id
                     if None != action_date:
@@ -305,7 +320,6 @@ class IpoUsSpider(scrapy.Spider):
                     original_approvals_dict['notes'] = notes
                     original_approvals_list.append(original_approvals_dict)
 
-            original_approvals_list = join_es_data(pages, original_approvals_list, original_approvals_id_set, 'original_approvals')
             supplement_list = []
             supplement_list_id_set = set()
             supplement_elements = doc('#exampleApplSuppl')  # Supplements
@@ -318,11 +332,11 @@ class IpoUsSpider(scrapy.Spider):
                     action_date = self.date_utils.unix_defined_format(date_str=td_elements[0].text, format='%m/%d/%Y')
                     submission = td_elements[1].text.replace('    ', '').strip()
                     submission_classification = td_elements[2].text.replace('    ', '').strip()
-                    id = self.md5_utils.lstrip_zero_get_md5(action_date_str + submission + submission_classification)
+                    id = self.md5_utils.get_md5(action_date_str + submission + submission_classification)
                     supplement_list_id_set.add(id)
                     a_elements = pq(td_elements[3])('a')
                     lrlppi_list, file_name_set = yield from parse_download_pdf(self, id, a_elements, application_num, meta, scrapy, 'supplement')
-                    note = pq(td_elements[4]).text()
+                    note = pq(td_elements[4]).text().replace('\n','')
                     supplements_dict = {}
                     supplements_dict['id'] = id
                     supplements_dict['note'] = note
@@ -347,11 +361,11 @@ class IpoUsSpider(scrapy.Spider):
                     action_date = self.date_utils.unix_defined_format(date_str=td_elements[0].text, format='%m/%d/%Y')
                     submission = td_elements[1].text.replace('    ', '').strip()
                     submission_classification_approvaltype = td_elements[2].text.replace('    ', '').strip()
-                    id = self.md5_utils.lstrip_zero_get_md5(action_date_str + submission + submission_classification_approvaltype)
+                    id = self.md5_utils.get_md5(action_date_str + submission + submission_classification_approvaltype)
                     label_id_set.add(id)
                     a_elements = pq(td_elements[3])('a')
                     lrlppi_list, file_name_set = yield from parse_download_pdf(self, id, a_elements, application_num, meta, scrapy, 'label_arr')
-                    note = pq(td_elements[4]).text()
+                    note = pq(td_elements[4]).text().replace('\n','')
                     label_dict = {}
                     label_dict['id'] = id
                     label_dict['note'] = note
@@ -414,7 +428,7 @@ class IpoUsSpider(scrapy.Spider):
                 base_info_list.append(clean_data(base_info_dict))
 
             spider_wormtime = self.date_utils.get_timestamp()
-            md5 = self.md5_utils.lstrip_zero_get_md5(data=str(base_info_list))
+            md5 = self.md5_utils.get_md5(data=str(base_info_list))
             redis_dict = {}
             redis_dict['md5'] = md5
             redis_dict['base_info'] = str(base_info_list)
@@ -425,10 +439,10 @@ class IpoUsSpider(scrapy.Spider):
             redis_dict['spider_wormtime'] = spider_wormtime
             if approval_date_revised != 0:
                 redis_dict['approval_date'] = approval_date_revised
-            redis_dict['rPOS'] = extract_data_dict.get('rPOS', None)
-            redis_dict['submission'] = extract_data_dict.get('submission', None)
-            redis_dict['action_type'] = extract_data_dict.get('action_type', None)
-            redis_dict['submission_classification'] = extract_data_dict.get('submission_classification', None)
+            redis_dict['rPOS'] = '|'.join(rPOS_list)
+            redis_dict['submission'] = '|'.join(submission_list)
+            redis_dict['action_type'] = '|'.join(action_type_list)
+            redis_dict['submission_classification'] = '|'.join(submission_classification_list)
             redis_dict['url'] = spider_url
             redis_dict['spider_company'] = spider_company
             redis_dict['base_info'] = base_info_list
@@ -481,7 +495,7 @@ class IpoUsSpider(scrapy.Spider):
                     if 'review' in local_es:
                         review_es_list = local_es['review']
                         for review_es in review_es_list:
-                            if review_es['file_name'] not in file_name_set:
+                            if 'file_name' in review_es and review_es['file_name'] not in file_name_set:
                                 file_name_set.add(review_es['file_name'])
                                 review_list.append(review_es)
                     local_es['review'] = review_list
@@ -512,21 +526,22 @@ def redis_orange_data(spider):
                     join_orange_data(application_num, line_dict, 'exclusivity_data', content_obj)
         content_es_obj = {}
         pages = spider.es_utils.get_page(ESIndex.DRUG_US_ORANGE, page_size=-1,
-                                         show_fields=['patent_data', 'exclusivity_data', 'md5', 'patent_data_md5',
-                                                      'exclusivity_data_md5', 'application_num'])
+                                         show_fields=['patent_data', 'exclusivity_data', 'md5', 'patent_data_md5', 'exclusivity_data_md5', 'application_num'])
         for page in pages:
             application_num = page['application_num']
             content_es_obj[application_num] = page
         send_email_orange_content = []
         for application_num in content_obj.keys():
             type = '新增'
+            id = ''
             is_send_redis = False
             if application_num in content_es_obj:
+                id = content_es_obj[application_num]['esid']
                 value_dict = content_obj[application_num]
                 if application_num in content_es_obj:
                     value_es_dict = content_es_obj[application_num]
-                    patent_data_md5 = spider.md5_utils.lstrip_zero_get_md5(data=value_dict.get('patent_data', []))
-                    exclusivity_data_md5 = spider.md5_utils.lstrip_zero_get_md5(
+                    patent_data_md5 = spider.md5_utils.get_md5(data=value_dict.get('patent_data', []))
+                    exclusivity_data_md5 = spider.md5_utils.get_md5(
                         data=value_dict.get('exclusivity_data', []))
                     if value_dict['md5'] != value_es_dict['md5']:
                         type = '修改'
@@ -541,6 +556,8 @@ def redis_orange_data(spider):
                                             value_es_dict, 'patent_data', 'patent_no', 'product_no')
                     join_orange_and_es_data(spider, send_email_orange_content, application_num, content_obj, value_dict,
                                             value_es_dict, 'exclusivity_data', 'exclusivity_code', 'product_no')
+                else:
+                    id = spider.md5_utils.lstrip_zero_get_md5(application_num)
             if not is_send_redis:
                 logging.info(f'当前橙皮书未发生变更，被过滤：{application_num}')
                 continue
@@ -554,7 +571,7 @@ def redis_orange_data(spider):
             redis_obj['content'] = value_dict
             redis_obj['datestamp'] = spider_wormtime
             redis_obj['table'] = ESIndex.DRUG_US_ORANGE
-            redis_obj['id'] = content_es_obj[application_num]['esid']
+            redis_obj['id'] = id
             logging.info(f'橙皮书数据: {type} {application_num}')
             spider.redis_server.lpush(RedisKey.DATA_CLEAN_US, json.dumps(redis_obj).encode('utf-8').decode('unicode_escape'))
 
@@ -565,7 +582,7 @@ def redis_orange_data(spider):
                 product_no = send_email_orange['product_no']
                 application_num = send_email_orange['application_num']
                 send_orange_content += "<tr><td>" + application_num + "</td><td>" + product_no + "</td><td>" + patent_no + "</td><td>" + spider.date_utils.defined_format_time(
-                    timestamp=spider.date_utils.get_timestamp(), format='%Y-%m-%d') + "</td></tr>";
+                                       timestamp=spider.date_utils.get_timestamp(), format='%Y-%m-%d') + "</td></tr>"
             send_content = "<table border=\"1\"><tr><th>application_num</th><th>product_no</th><th>patent_no</th><th>spider_wormtime</th>" + send_orange_content + "</tr></table>"
             query = {'send_project_list.send_project_name': 'ipo_orange'}
             receiver = common_utils.get_send_email_receiver(query=query)
@@ -676,7 +693,7 @@ def parse_download_pdf(self, id, a_elements, application_num, meta, scrapy, fiel
                 continue
             if 'review' == meta['source'] and not file_name_url.lower().endswith('.pdf'):
                 continue
-            file_name_md5 = self.md5_utils.lstrip_zero_get_md5(data=file_name_url)
+            file_name_md5 = self.md5_utils.get_md5(data=file_name_url)
             if '.' in file_name_url:
                 suffix = file_name_url[file_name_url.rindex('.'):]
                 file_name_md5 += suffix
@@ -704,7 +721,7 @@ def parse_download_pdf(self, id, a_elements, application_num, meta, scrapy, fiel
                                     file_dict[file_name] = qiniu_url
                 elif 'review' == file_name_lower and 'review' != meta['source']:
                     yield scrapy.Request(file_name_url, callback=self.parse, meta={'application_num': application_num, 'source': 'review',
-                                                                                   'local_web': field, 'id': id}, headers=const.headers)
+                                         'local_web': field, 'id': id}, headers=const.headers, dont_filter=True, priority=100)
                     continue
             elif 'review' == meta['source']:
                 file_dict['file_name'] = file_name
@@ -745,6 +762,4 @@ def append_wait_orange_url(self, sponsor_applicant, scrapy):
     formdata['submit'] = 'Search'
     logging.info(f'追加橙皮书待采集的公司名称：{sponsor_applicant}')
     yield scrapy.FormRequest('https://www.accessdata.fda.gov/scripts/cder/ob/search_product.cfm', formdata=formdata,
-                             callback=self.parse,
-                             meta={'source': 'orange_company', 'sponsor_applicant': sponsor_applicant},
-                             headers=const.headers)
+                             callback=self.parse, meta={'source': 'orange_company', 'sponsor_applicant': sponsor_applicant}, headers=const.headers)

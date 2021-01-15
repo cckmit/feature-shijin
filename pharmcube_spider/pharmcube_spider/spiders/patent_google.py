@@ -41,19 +41,20 @@ class PatentGoogleSpider(scrapy.Spider):
 
         if 'baidu.com' in spider_url:
             # 针对的是 base_company 索引
-            name_es_list = []
-            name_es_list.append({'name':'恒瑞医药', 'id':['41818', '10598', '7407']})
-            name_es_list.append({'name':'佐藤制药', 'id':['28094']})
-            name_es_list.append({'name':'住友製薬株式会社', 'id':['431']})
-            name_es_list.append({'name':'江苏恒瑞医药有限公司', 'id':['7407']})
-            name_es_list.append({'name':'Pfizer, Inc.', 'id':['169']})
-            name_es_list.append({'name':'Sanofi - Aventis, S.A.', 'id':['50']})
-            name_es_list.append({'name':'上海复星医药(集团)股份有限公司', 'id':['16537']})
+            pages = self.es_utils.get_page("base_company", queries=Query(QueryType.NE, 'is_delete', '是'), page_size=-1,
+                                           show_fields=['name', 'name_en', 'name_used', 'short_name', 'short_name_en', 'company_variant', 'id'])
+            type = 'AG'
+            name_dict_list = {}
+            for page in pages:
+                get_wait_spider_names(self, page, 'name', name_dict_list)
+                get_wait_spider_names(self, page, 'name_en', name_dict_list)
+                get_wait_spider_names(self, page, 'name_used', name_dict_list)
+                get_wait_spider_names(self, page, 'short_name', name_dict_list)
+                get_wait_spider_names(self, page, 'short_name_en', name_dict_list)
+                get_wait_spider_names(self, page, 'company_variant', name_dict_list)
 
-            for name_dict in name_es_list:
-                name = name_dict['name']
-                source_id_list = name_dict['id']
-                type = 'AG'
+            for name in name_dict_list:
+                source_id_list = name_dict_list[name]
                 url = f'https://patents.google.com/xhr/query?url=assignee%3D%22{name}%22%26num%3D100%26page%3D0&exp='
                 yield scrapy.Request(url, callback=self.parse, meta={'source_es_index': 'base_company', 'source_id_list': source_id_list,
                                     'is_add_all_year': False, 'is_calculation': True, 'name': name, 'type': type,
@@ -120,10 +121,9 @@ class PatentGoogleSpider(scrapy.Spider):
                     es_dict['status'] = 0 #刚采集到数据
                     es_dict['search_query'] = search_query_list
                     es_dict['publication_spider_comb'] = publication_spider_comb
-                    logging.info(f'------- esid 新增：{esid} {publication_spider_comb} -------')
                     if esid not in self.esid_set:
                         self.esid_set.add(esid)
-                        logging.info(f'------- insert es data -------{esid}')
+                        logging.info(f'------- insert es data -------{esid} {publication_spider_comb}')
                         es_utils.insert_or_replace('drug_patent_google', d=es_dict)
                     else:
                         pages = es_utils.get_page(ESIndex.DRUG_PATENT_GOOGLE, queries=Query(QueryType.EQ, 'esid', esid),
@@ -134,12 +134,29 @@ class PatentGoogleSpider(scrapy.Spider):
                             update_es_dict = {}
                             update_es_dict['esid'] = esid
                             update_es_dict['search_query'] = search_query_es_list
-                            logging.info(f'------- update es data -------{esid}')
+                            logging.info(f'------- update es data -------{esid} {publication_spider_comb}')
                             es_utils.update(ESIndex.DRUG_PATENT_GOOGLE, d=update_es_dict)
                         else:
                             logging.info(f'当前数据不存在es，可能出现异常：{esid} ')
 
-                    file_utils.write_file(file_name='/root/xiaowen.txt', data_type='a', content=json.dumps(es_dict).encode('utf-8').decode('unicode_escape'))
+def get_wait_spider_name(id, name, name_dict_list):
+    id_list = set()
+    if name in name_dict_list:
+        id_list = name_dict_list[name]
+    id_list.add(id)
+    name_dict_list[name] = id_list
+
+def get_wait_spider_names(self, page, filed_name, name_dict_list):
+    id = page['id']
+    name = page.get(filed_name, None)
+    if isinstance(name, str):
+        if self.str_utils.is_blank(name):
+            return
+        get_wait_spider_name(id, name, name_dict_list)
+    elif isinstance(name, list):
+        for name_temp in name:
+            get_wait_spider_name(id, name_temp, name_dict_list)
+
 
 def init_date(self):
     year_list = []

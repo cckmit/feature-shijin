@@ -1,14 +1,10 @@
 
-import base64
-import hashlib
 import math
-import requests
 import logging
 import ast
 import json
 import re
 import scrapy
-from pharmcube_spider.const import ESIndex, RedisKey
 from pharmcube_spider.utils import es_utils, qiniu_utils, common_utils
 from pharmcube_spider.utils.date_utils import DateUtils
 from pharmcube_spider.utils.es_utils import Query, QueryType
@@ -19,14 +15,18 @@ from scrapy.utils.project import get_project_settings
 from scrapy_redis_cluster.connection import from_settings
 from pharmcube_spider.const import PAGEOPS
 from pharmcube_spider.utils.common_utils import set_default
-
 from pharmcube_spider.utils import file_utils
+from pharmcube_spider.spiders.business.wind_utils import product_wind_token, \
+    page_ops, get_wind_id, get_resp_meta, is_invalid_windid, get_wind_token
+from pharmcube_spider.const import RedisKey, ESIndex
 
 '''
 万得对接工商接口
 * 接口文档地址：http://share.wind.com.cn/wind.ent.openapi/#/api
 * 账号：EA1968482002 密码已初始化为：94375596
 '''
+
+
 
 
 
@@ -44,7 +44,7 @@ class WindSpider(scrapy.Spider):
         self.str_utils = StrUtils()
         self.date_utils = DateUtils()
         self.common_utils = common_utils
-        self.wind_token = get_wind_token()
+        self.wind_token = product_wind_token()
         self.redis_server = from_settings(get_project_settings())
         for url in self.start_urls:
             yield self.make_requests_from_url(url)
@@ -54,29 +54,24 @@ class WindSpider(scrapy.Spider):
         logging.info(f'待采集URL条数：{len(self.crawler.engine.slot.inprogress)}，当前运行请求数：{len(self.crawler.engine.slot.scheduler)}')
 
         if 'baidu.com' in spider_url:
-            search_name = '北京盛诺基医药科技股份有限公司'
-            wind_id_url = WindAPI.wind_Id+f'{search_name}&token={self.wind_token}'
-            logging.info(f'追加待采集公司 windId {search_name}')
-            yield scrapy.Request(wind_id_url, callback=self.parse, meta={'search_name': search_name, 'name': search_name, 'spider_source': 'wind_id'},)
+            search_name = '江苏恒瑞医药股份有限公司'
+            wind_id = get_wind_id(self, search_name, )
+            if is_invalid_windid(self, wind_id, search_name):
+                return
+            base_info_url = WindAPI.BASE_INFO + f'{wind_id}&token={self.wind_token}'
+            logging.info(f'获取到公司对应的wind_id:{wind_id}，追加待采集公司 ‘基本信息’： {search_name}')
+            yield scrapy.Request(base_info_url, callback=self.parse, meta={'search_name': search_name, 'name':search_name, 'spider_source': 'base_info', 'wind_id': wind_id}, )
 
         if None != response.meta and 'spider_source' in response.meta:
             spider_source = response.meta['spider_source']
             results = ast.literal_eval(response.text.replace('true', 'True').replace('false', 'False').replace('null', 'None'))
             status = results.get('errorCode')
-            if (status != 0 ):
+            if (status != 403 ):
                 logging.info(f'接口调用状态码：403，token已经过期，需重新获取token值！{spider_url}')
-                self.wind_token = get_wind_token()
+                self.wind_token = get_wind_token(self)
                 yield scrapy.Request(spider_url, callback=self.parse, meta=response.meta, dont_filter=True)
                 return
             source = results["source"]
-            if 'wind_id' in spider_source:
-                search_name = response.meta["search_name"]
-                if results.get("source") is not None and results.get("source")["total"] >0:
-                    wind_id = results["source"]["items"][0]["windId"]
-                    base_info_url = WindAPI.BASE_INFO + f'{wind_id}&token={self.wind_token}'
-                    logging.info(f'获取到公司对应的wind_id:{wind_id}，追加待采集公司 ‘基本信息’： {search_name}')
-                    yield scrapy.Request(base_info_url, callback=self.parse, meta={'search_name': search_name, 'name':search_name, 'spider_source': 'base_info', 'wind_id': wind_id}, )
-
             if 'base_info' in spider_source:
                 yield from parse_base_info(self, source, response)
                 return
@@ -281,8 +276,7 @@ def parse_eci_employee(self, response, scrapy, name, page_index, page_size, resu
         self.redis_server.lpush(RedisKey.BUSINESS_INFO, json.dumps(main_staff_redis_obj).encode('utf-8').decode('unicode_escape'))
 
         file_utils.write_file('/home/zengxiangxu/test.txt', data_type='a',
-                              content=json.dumps(main_staff_redis_obj, default=set_default).encode('utf-8').decode(
-                                  'unicode_escape'))
+                              content=json.dumps(main_staff_redis_obj, default=set_default).encode('utf-8').decode('unicode_escape'))
 
     else:
         meta = {'name': name, 'credit_id': credit_id, 'page_index': page_index + 1, 'page_size': page_size,
@@ -408,19 +402,6 @@ def get_company_change_info(result):
         return ''
     return result.replace('\n', '<br>')
 
-def get_resp_meta(param, resp):
-    page_param = 0
-    if param in resp.meta:
-        page_param = resp.meta[param]
-    return page_param
-
-# 数据翻页操作
-def page_ops(self, spider_url, page_size, page_index, meta, scrapy, log_info):
-    for page_index in range(page_index+1, page_index+2):
-        logging.info(log_info)
-        url = spider_url + f'&pageIndex={page_index}&pageSize={page_size}'
-        yield scrapy.Request(url, callback=self.parse, meta=meta, priority=100)
-
 def get_id(data_arr_name, response):
     id = 0
     data_arr = []
@@ -442,22 +423,3 @@ def is_blank(self, key, value, base_info_redis_content):
     if (not self.str_utils.is_blank(value)):
         base_info_redis_content[key] = value
 
-def get_wind_token():
-    """
-    wind_user = 'EA1968482002'
-    password = "94375596"
-    m = hashlib.md5()
-    b = password.encode(encoding='UTF-8')
-    m.update(b)
-    b64 = base64.b64encode(m.digest())
-    verifyCode = bytes.decode(b64) #通过密码生成验证码
-    token_resp = requests.get(f"http://eapi.wind.com.cn/wind.ent.risk/openapi/getToken?windUser={wind_user}&userType=S31&verifyCode="+requests.utils.quote(verifyCode))
-    token_dict = json.loads(token_resp.text)
-    token = ''
-    if token_dict["errorCode"] == 0:
-        token = token_dict["source"]["token"]
-    logging.info(f'获取到token：{token}')
-    return token
-    """
-    return 'e55bf2c4-5491-4a5f-a220-36ec2844c035'
-   # return '4638ac1f-c73a-4f21-a13c-a0669c57c83d'

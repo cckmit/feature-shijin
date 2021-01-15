@@ -1,12 +1,19 @@
 import calendar
 import datetime
+import re
 import time
 import logging
+
+from pharmcube_spider.utils.str_utils import StrUtils
+
 logger = logging.getLogger(__name__)
 
 month_list = {'dec':'december','nov':'november','oct':'october','sept':'september','aug':'august','jul':'july','jun':'june','may':'may','apr':'april','mar':'march','feb':'february','jan':'january',}
 
 class DateUtils:
+    def __init__(self):
+        self.str_utils = StrUtils()
+
     # 获取毫秒级的时间戳
     def get_timestamp(self):
         return int(round(time.time()*1000))
@@ -41,7 +48,10 @@ class DateUtils:
     def unix_defined_format(self, date_str, format):
         try:
             time_arr = time.strptime(date_str, format)
-            timestamp = int(time.mktime(time_arr))
+            if time_arr.tm_year < 1970:
+                timestamp = int((datetime.datetime(time_arr.tm_year, time_arr.tm_mon, time_arr.tm_mday, time_arr.tm_hour) - datetime.datetime(1970, 1, 1)).total_seconds())-3600*8
+            else:
+                timestamp = int(time.mktime(time_arr))
             return timestamp*1000
         except Exception as e:
             logger.info(f'当前传入待转换日期异常：{date_str} {str(e)}')
@@ -55,7 +65,7 @@ class DateUtils:
                 time_local = time.localtime(timestamp/1000)
                 dt = time.strftime(format, time_local)
             else:
-                dt = (datetime.datetime(1970, 1, 1) + datetime.timedelta(seconds=timestamp/1000)).strftime(format)
+                dt = (datetime.datetime(1970, 1, 2) + datetime.timedelta(seconds=timestamp/1000)).strftime(format)
         except Exception as e:
             logger.info(f'当前传入待转换日期异常：{timestamp} {str(e)}')
         return dt

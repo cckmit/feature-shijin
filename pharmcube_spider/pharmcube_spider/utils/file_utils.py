@@ -38,7 +38,7 @@ class DownloadFile(object):
         while attempts<3 and not success:
             try:
                 async with aiohttp.ClientSession() as session:
-                    response = await session.get(file_url)
+                    response = await session.get(file_url, headers=self.headers)
                     status_code = response.status
                     if 200 != status_code:
                         logging.info(f'------- 下载失败，重试中 {attempts} 次------- ' + file_url)
