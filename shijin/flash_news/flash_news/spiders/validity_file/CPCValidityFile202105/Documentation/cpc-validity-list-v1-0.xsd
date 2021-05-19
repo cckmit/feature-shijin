@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:element name="cpc-validity-list" type="cpc-validity-list-type"/>
+	<xsd:complexType name="cpc-validity-list-type">
+		<xsd:sequence>
+			<xsd:element ref="subclass-list" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="class" type="class-type"/>
+	<xsd:simpleType name="class-type">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9][0-9]"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:element name="cpc-symbol" type="cpc-symbol-type"/>
+	<xsd:complexType name="cpc-symbol-type">
+		<xsd:sequence>
+			<xsd:element ref="main-group" minOccurs="0"/>
+			<xsd:element ref="subgroup" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="validity-date-from" type="xsd:date" use="required"/>
+		<xsd:attribute name="validity-date-to" type="xsd:date"/>
+	</xsd:complexType>
+	<xsd:element name="main-group" type="main-group-type"/>
+	<xsd:simpleType name="main-group-type">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[1-9]\d{0,3}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:element name="section" type="section-type"/>
+	<xsd:simpleType name="section-type">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[A-HY]"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:element name="subclass" type="subclass-type"/>
+	<xsd:element name="subclass-description" type="subclass-description-type"/>
+	<xsd:complexType name="subclass-description-type">
+		<xsd:sequence>
+			<xsd:element ref="section"/>
+			<xsd:element ref="class"/>
+			<xsd:element ref="subclass"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="subclass-list" type="subclass-list-type"/>
+	<xsd:complexType name="subclass-list-type">
+		<xsd:sequence>
+			<xsd:element ref="subclass-description"/>
+			<xsd:element ref="cpc-symbol" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="subclass-type">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[A-HJ-NP-Z]"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:element name="subgroup" type="subgroup-type"/>
+	<xsd:simpleType name="subgroup-type">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="\d{2,6}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

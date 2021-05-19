@@ -1,6 +1,6 @@
 
 # dev; test; prod
-run_evn = 'prod'
+run_evn = 'dev'
 
 def get_run_env_dict():
     run_evn_dict = {}

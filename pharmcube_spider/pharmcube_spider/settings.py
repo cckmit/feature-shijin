@@ -49,9 +49,9 @@ DOWNLOADER_MIDDLEWARES = {
     'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
     #'scrapy.downloadermiddlewares.redirect.RedirectMiddleware': None, #关闭重定向（301，302）
     'pharmcube_spider.middlewares.RetryMiddleware': 200, #自定义超过重试处理重试次数处理
-    'pharmcube_spider.middlewares.RandomUserAgent': 1, #随机user-agent
+    #'pharmcube_spider.middlewares.RandomUserAgent': 1, #随机user-agent
     # todo test 关闭
-    'pharmcube_spider.middlewares.ProxyMiddleware': 543, # 随机代理ip
+    #'pharmcube_spider.middlewares.ProxyMiddleware': 543, # 随机代理ip
 }
 
 

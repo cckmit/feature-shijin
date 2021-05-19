@@ -45,22 +45,22 @@ class CdeSpider(scrapy.Spider):
             yield self.make_requests_from_url(url)
 
     def parse(self, response):
-        spider_url = response.url
-        logging.info(f'待采集URL条数：{len(self.crawler.engine.slot.inprogress)}，当前运行请求数：{len(self.crawler.engine.slot.scheduler)}')
-        if 'baidu.com' in spider_url:
-            base_info_url = f'https://purplebooksearch.fda.gov/api/v1/products?_={self.date_utils.get_timestamp()}'
-            headers = const.headers
-            headers['Cookie'] = '_ga=GA1.2.657327046.1610440747; _gid=GA1.2.522349874.1610596542; _gat_gtag_UA_150233968_1=1'
-            headers['Referer'] = 'https://purplebooksearch.fda.gov/advanced-search'
-            headers['X-Requested-With'] = 'XMLHttpRequest'
-            headers['Accept'] = 'application/json, text/javascript, */*; q=0.01'
-            headers['Referer'] = 'https://purplebooksearch.fda.gov/advanced-search'
-            yield scrapy.Request(base_info_url, callback=self.parse, headers=headers )
+        url = 'https://fuwu.nhsa.gov.cn/ebus/fuwu/api/base/api/drugOptins/queryDrugOptinsInfoDetail'
+        headers = {}
+        headers['User-Agent'] = 'Mozilla/5.0 (Linux; Android 5.1.1; LYA-AL10 Build/LYZ28N; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/52.0.2743.100 Safari/537.36HSABrowser/1.2.2'
+        headers['Content-Type'] = 'application/json;charset=UTF-8'
+        headers['Accept'] = 'application/json, text/plain, */*'
+        headers['orgCode'] = '110101'
+        headers['channel'] = 'app'
+        headers['Referer'] = 'https://fuwu.nhsa.gov.cn/hsafront/'
+        headers['Accept-Language'] = 'zh-CN,en-US;q=0.8'
+        headers['X-Requested-With'] = 'cn.hsa.app'
+        post_dict = {"data":{"pageNum":1,"pageSize":20,"drugName":"乙磺酸尼达尼布软胶囊","medinsType":1,"province":"北京市","region":"西城区"}}
+        yield scrapy.FormRequest(url, method='POST', body=json.dumps(post_dict), callback=self.parse_title, headers=headers )
 
-        else:
-            pass
-
-
+    def parse_title(self, response):
+        resp = response.text
+        print(resp)
 
 
 

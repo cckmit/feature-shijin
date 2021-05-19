@@ -1,0 +1,3672 @@
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55b9"),
+	"keyword" : "2019-nCoV"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55ba"),
+	"keyword" : "带量采购"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55bb"),
+	"keyword" : "5-HT1F"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55bc"),
+	"keyword" : "AMG510"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55bd"),
+	"keyword" : "ASCO"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55be"),
+	"keyword" : "Biogen"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55bf"),
+	"keyword" : "Biohaven"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55c0"),
+	"keyword" : "BioMarin"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55c1"),
+	"keyword" : "BMS"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55c2"),
+	"keyword" : "BTK抑制剂"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55c3"),
+	"keyword" : "CAR-T"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55c4"),
+	"keyword" : "CDK4/6"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55c5"),
+	"keyword" : "CDMO"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55c6"),
+	"keyword" : "CGRP"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55c7"),
+	"keyword" : "COPD"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55c8"),
+	"keyword" : "CRO"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55c9"),
+	"keyword" : "CSCO"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55ca"),
+	"keyword" : "Gazyva"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55cb"),
+	"keyword" : "GCGR"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55cc"),
+	"keyword" : "GIP/GLP-1"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55cd"),
+	"keyword" : "GLP-1"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55ce"),
+	"keyword" : "GLP-1/GCR"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55cf"),
+	"keyword" : "HBV抗体"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55d0"),
+	"keyword" : "JAK抑制剂"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55d1"),
+	"keyword" : "MET抑制剂"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55d2"),
+	"keyword" : "Moderna"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55d3"),
+	"keyword" : "mRNA疫苗"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55d4"),
+	"keyword" : "NK细胞"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55d5"),
+	"keyword" : "PARP"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55d6"),
+	"keyword" : "PD-L1"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55d7"),
+	"keyword" : "PD-1"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55d8"),
+	"keyword" : "PD-1/PD-L1"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55d9"),
+	"keyword" : "RNA疗法"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55da"),
+	"keyword" : "SGLT-2"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55db"),
+	"keyword" : "Shingrix"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55dc"),
+	"keyword" : "SMA"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55dd"),
+	"keyword" : "Tau"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55de"),
+	"keyword" : "TCR-T"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55df"),
+	"keyword" : "Teva"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55e0"),
+	"keyword" : "T细胞抗体"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55e1"),
+	"keyword" : "Xofluza"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55e2"),
+	"keyword" : "β地中海贫血"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55e3"),
+	"keyword" : "一致性评价"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55e4"),
+	"keyword" : "丁丙诺啡"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55e5"),
+	"keyword" : "三叶草生物"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55e6"),
+	"keyword" : "三生制药"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55e7"),
+	"keyword" : "三生国健"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55e8"),
+	"keyword" : "ADC药物"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55e9"),
+	"keyword" : "上海医工院"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55ea"),
+	"keyword" : "上海汇伦江苏药业"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55eb"),
+	"keyword" : "东耀药业"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55ec"),
+	"keyword" : "东阳光"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55ed"),
+	"keyword" : "中国抗体"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55ee"),
+	"keyword" : "中国生物制药"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55ef"),
+	"keyword" : "中美冠科"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55f0"),
+	"keyword" : "中药注射剂"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55f1"),
+	"keyword" : "临床数据"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55f2"),
+	"keyword" : "临床试验"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55f3"),
+	"keyword" : "乌司奴单抗"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55f4"),
+	"keyword" : "乐伐替尼"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55f5"),
+	"keyword" : "乐复能"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55f6"),
+	"keyword" : "二甲双胍"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55f7"),
+	"keyword" : "亚盛医药"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55f8"),
+	"keyword" : "亚虹医药"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55f9"),
+	"keyword" : "人福医药"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55fa"),
+	"keyword" : "亿腾景昂"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55fb"),
+	"keyword" : "仁会生物"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55fc"),
+	"keyword" : "仑胜医药"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55fd"),
+	"keyword" : "他达拉非"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55fe"),
+	"keyword" : "伊布替尼"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c55ff"),
+	"keyword" : "伊沙佐米"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5600"),
+	"keyword" : "伊珠单抗奥唑米星"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5601"),
+	"keyword" : "伏诺拉生"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5602"),
+	"keyword" : "优先审评"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5603"),
+	"keyword" : "优时比"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5604"),
+	"keyword" : "依布替尼"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5605"),
+	"keyword" : "依洛尤单抗"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5606"),
+	"keyword" : "依达拉奉"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5607"),
+	"keyword" : "信立泰"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5608"),
+	"keyword" : "信达生物"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5609"),
+	"keyword" : "信迪利单抗"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c560a"),
+	"keyword" : "健康元"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c560b"),
+	"keyword" : "免疫反应"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c560c"),
+	"keyword" : "免疫治疗"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c560d"),
+	"keyword" : "免疫球蛋白"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c560e"),
+	"keyword" : "再生元"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c560f"),
+	"keyword" : "再鼎医药"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5610"),
+	"keyword" : "利伐沙班"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5611"),
+	"keyword" : "利培酮"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5612"),
+	"keyword" : "利多卡因"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5613"),
+	"keyword" : "利奈唑胺"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5614"),
+	"keyword" : "利妥昔单抗"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5615"),
+	"keyword" : "利巴韦林"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5616"),
+	"keyword" : "利托那韦"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5617"),
+	"keyword" : "利拉鲁肽"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5618"),
+	"keyword" : "利斯的明"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5619"),
+	"keyword" : "前列腺癌"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c561a"),
+	"keyword" : "前沿生物"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c561b"),
+	"keyword" : "加雷沙星"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c561c"),
+	"keyword" : "劲方医药"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c561d"),
+	"keyword" : "勃林格殷格翰"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c561e"),
+	"keyword" : "北恒生物"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c561f"),
+	"keyword" : "北海康成"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5620"),
+	"keyword" : "医保目录"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5621"),
+	"keyword" : "华东医药"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5622"),
+	"keyword" : "华海药业"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5623"),
+	"keyword" : "华领医药"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5624"),
+	"keyword" : "单克隆抗体"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5625"),
+	"keyword" : "单细胞分析技术"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5626"),
+	"keyword" : "单细胞测序"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5627"),
+	"keyword" : "南京传奇"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5628"),
+	"keyword" : "南京方生和"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5629"),
+	"keyword" : "博安生物"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c562a"),
+	"keyword" : "博瑞生物"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c562b"),
+	"keyword" : "卡泊芬净"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c562c"),
+	"keyword" : "卡瑞利珠单抗"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c562d"),
+	"keyword" : "卡非佐米"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c562e"),
+	"keyword" : "卫材"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c562f"),
+	"keyword" : "厄洛替尼"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5630"),
+	"keyword" : "原发性硬化性胆管炎"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5631"),
+	"keyword" : "双特异性抗体"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5632"),
+	"keyword" : "口服胰岛素"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5633"),
+	"keyword" : "古塞库单抗"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5634"),
+	"keyword" : "司库奇尤单抗"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5635"),
+	"keyword" : "吉利德"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5636"),
+	"keyword" : "吉西他滨"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5637"),
+	"keyword" : "君圣泰"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5638"),
+	"keyword" : "君实生物"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5639"),
+	"keyword" : "吡洛替尼"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c563a"),
+	"keyword" : "呋喹替尼"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c563b"),
+	"keyword" : "和誉生物"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c563c"),
+	"keyword" : "和记黄埔"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c563d"),
+	"keyword" : "和黄医药"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c563e"),
+	"keyword" : "哈药集团"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c563f"),
+	"keyword" : "哌柏西利"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5640"),
+	"keyword" : "嘉和生物"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5641"),
+	"keyword" : "嘉因生物"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5642"),
+	"keyword" : "囊性纤维化"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5643"),
+	"keyword" : "圣华曦"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5644"),
+	"keyword" : "地佐辛"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5645"),
+	"keyword" : "地舒单抗"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5646"),
+	"keyword" : "埃克替尼"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5647"),
+	"keyword" : "埃索美拉唑钠"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5648"),
+	"keyword" : "培美曲塞"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5649"),
+	"keyword" : "基因疗法"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c564a"),
+	"keyword" : "基因药物"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c564b"),
+	"keyword" : "基石药业"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c564c"),
+	"keyword" : "塞来昔布"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c564d"),
+	"keyword" : "复宏汉霖"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c564e"),
+	"keyword" : "复方丹参滴丸"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c564f"),
+	"keyword" : "复方甘草片"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5650"),
+	"keyword" : "复星医药"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5651"),
+	"keyword" : "多发性硬化症"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5652"),
+	"keyword" : "多发性骨髓瘤"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5653"),
+	"keyword" : "多靶点酪氨酸抑制剂"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5654"),
+	"keyword" : "大理药业"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5655"),
+	"keyword" : "天境生物"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5656"),
+	"keyword" : "天士力"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5657"),
+	"keyword" : "奥博资本"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5658"),
+	"keyword" : "奥司他韦"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5659"),
+	"keyword" : "奥希替尼"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c565a"),
+	"keyword" : "奥拉帕利"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c565b"),
+	"keyword" : "奥氮平"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c565c"),
+	"keyword" : "奥美拉唑"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c565d"),
+	"keyword" : "奥美替尼"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c565e"),
+	"keyword" : "奥贝胆酸"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c565f"),
+	"keyword" : "子宫内膜癌"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5660"),
+	"keyword" : "孟志强"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5661"),
+	"keyword" : "孟鲁司特"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5662"),
+	"keyword" : "孟鲁司特钠"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5663"),
+	"keyword" : "孤儿药"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5664"),
+	"keyword" : "安必生"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5665"),
+	"keyword" : "安柯瑞"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5666"),
+	"keyword" : "安罗替尼"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5667"),
+	"keyword" : "安进"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5668"),
+	"keyword" : "安非他酮"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5669"),
+	"keyword" : "宫颈癌"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c566a"),
+	"keyword" : "富马酸二甲酯"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c566b"),
+	"keyword" : "小分子药物"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c566c"),
+	"keyword" : "尤瑞克林"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c566d"),
+	"keyword" : "尼拉帕利"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c566e"),
+	"keyword" : "尼达尼布"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c566f"),
+	"keyword" : "尿路上皮癌"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5670"),
+	"keyword" : "巴瑞替尼"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5671"),
+	"keyword" : "布地格福吸入气雾剂"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5672"),
+	"keyword" : "帕利哌酮"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5673"),
+	"keyword" : "帕妥珠单抗"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5674"),
+	"keyword" : "帕金森"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5675"),
+	"keyword" : "带量采购"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5676"),
+	"keyword" : "幽门螺杆菌"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5677"),
+	"keyword" : "度拉糖肽"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5678"),
+	"keyword" : "康宁杰瑞"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5679"),
+	"keyword" : "康希诺"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c567a"),
+	"keyword" : "康恩贝"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c567b"),
+	"keyword" : "康方生物"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c567c"),
+	"keyword" : "康朴生物"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c567d"),
+	"keyword" : "康柏西普"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c567e"),
+	"keyword" : "康龙化成"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c567f"),
+	"keyword" : "开拓药业"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5680"),
+	"keyword" : "微芯生物"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5681"),
+	"keyword" : "德展健康"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5682"),
+	"keyword" : "德琪医药"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5683"),
+	"keyword" : "心血管风险"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5684"),
+	"keyword" : "心衰药"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5685"),
+	"keyword" : "急性肝卟啉症"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5686"),
+	"keyword" : "急性肺损伤"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5687"),
+	"keyword" : "恒格列净"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5688"),
+	"keyword" : "恒瑞"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5689"),
+	"keyword" : "恩他卡朋"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c568a"),
+	"keyword" : "恩曲他滨"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c568b"),
+	"keyword" : "恩曲替尼"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c568c"),
+	"keyword" : "恩杂鲁胺"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c568d"),
+	"keyword" : "恩格列净"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c568e"),
+	"keyword" : "扬子江"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c568f"),
+	"keyword" : "抗体偶联药物"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5690"),
+	"keyword" : "抗生素"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5691"),
+	"keyword" : "抗病毒"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5692"),
+	"keyword" : "抗癌药"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5693"),
+	"keyword" : "抗菌"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5694"),
+	"keyword" : "抗衰老"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5695"),
+	"keyword" : "拉考沙胺"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5696"),
+	"keyword" : "拜耳"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5697"),
+	"keyword" : "挚盟医药"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5698"),
+	"keyword" : "新型脂质纳米粒"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c5699"),
+	"keyword" : "Celgene"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c569a"),
+	"keyword" : "新格元"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c569b"),
+	"keyword" : "新码生物"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c569c"),
+	"keyword" : "方达控股"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c569d"),
+	"keyword" : "施一公"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c569e"),
+	"keyword" : "昆药集团"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c569f"),
+	"keyword" : "昭衍新药"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c56a0"),
+	"keyword" : "普利制药"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c56a1"),
+	"keyword" : "普拉佐米星"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c56a2"),
+	"keyword" : "普渡制药"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c56a3"),
+	"keyword" : "普萘洛尔"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c56a4"),
+	"keyword" : "智能胰岛素"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c56a5"),
+	"keyword" : "曲妥珠单抗"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c56a6"),
+	"keyword" : "曲美替尼"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c56a7"),
+	"keyword" : "曲贝替定"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c56a8"),
+	"keyword" : "替格瑞洛"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c56a9"),
+	"keyword" : "替诺福韦艾拉酚胺"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c56aa"),
+	"keyword" : "替雷利珠单抗"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c56ab"),
+	"keyword" : "本维莫德"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c56ac"),
+	"keyword" : "来那度胺"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c56ad"),
+	"keyword" : "极目生物"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c56ae"),
+	"keyword" : "核糖原"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c56af"),
+	"keyword" : "核酸药物"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c56b0"),
+	"keyword" : "格列卫"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c56b1"),
+	"keyword" : "歌礼"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c56b2"),
+	"keyword" : "止痛药"
+},
+{
+	"_id" : ObjectId("5f62cec2fd3c5114980c56b3"),
+	"keyword" : "正大天晴"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56b4"),
+	"keyword" : "步长制药"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56b5"),
+	"keyword" : "武田制药"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56b6"),
+	"keyword" : "氨溴索"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56b7"),
+	"keyword" : "氯化镭223注射液"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56b8"),
+	"keyword" : "氯吡格雷"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56b9"),
+	"keyword" : "氯苯唑酸葡胺"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56ba"),
+	"keyword" : "汇伦药业"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56bb"),
+	"keyword" : "江苏吴中"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56bc"),
+	"keyword" : "沐舒坦"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56bd"),
+	"keyword" : "沙丁胺醇"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56be"),
+	"keyword" : "沙利度胺"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56bf"),
+	"keyword" : "法匹拉韦"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56c0"),
+	"keyword" : "波生坦"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56c1"),
+	"keyword" : "波立维"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56c2"),
+	"keyword" : "泰它西普"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56c3"),
+	"keyword" : "泰格医药"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56c4"),
+	"keyword" : "泰诺麦博"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56c5"),
+	"keyword" : "泽布替尼"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56c6"),
+	"keyword" : "泽璟制药"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56c7"),
+	"keyword" : "洛匹那韦"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56c8"),
+	"keyword" : "流感疫苗"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56c9"),
+	"keyword" : "海普瑞"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56ca"),
+	"keyword" : "海曲泊帕"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56cb"),
+	"keyword" : "海正药业"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56cc"),
+	"keyword" : "溶瘤病毒疗法"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56cd"),
+	"keyword" : "激酶抑制剂"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56ce"),
+	"keyword" : "灵北制药"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56cf"),
+	"keyword" : "爱科百发"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56d0"),
+	"keyword" : "特瑞思"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56d1"),
+	"keyword" : "特瑞普利单抗"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56d2"),
+	"keyword" : "现代中药"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56d3"),
+	"keyword" : "百健"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56d4"),
+	"keyword" : "百奥泰"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56d5"),
+	"keyword" : "百奥药业"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56d6"),
+	"keyword" : "百时美施贵宝"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56d7"),
+	"keyword" : "百济神州"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56d8"),
+	"keyword" : "益方生物"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56d9"),
+	"keyword" : "益气复脉"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56da"),
+	"keyword" : "眼科药物"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56db"),
+	"keyword" : "石药集团"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56dc"),
+	"keyword" : "硫培非格司亭"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56dd"),
+	"keyword" : "硼替佐米"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56de"),
+	"keyword" : "磷酸氯喹"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56df"),
+	"keyword" : "磺达肝癸钠"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56e0"),
+	"keyword" : "礼来"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56e1"),
+	"keyword" : "神经功能损坏"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56e2"),
+	"keyword" : "神经退行性疾病"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56e3"),
+	"keyword" : "科伦药业"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56e4"),
+	"keyword" : "突破性疗法"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56e5"),
+	"keyword" : "突破性药物"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56e6"),
+	"keyword" : "第一三共"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56e7"),
+	"keyword" : "米卡芬净钠"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56e8"),
+	"keyword" : "类风湿关节炎"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56e9"),
+	"keyword" : "糖尿病"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56ea"),
+	"keyword" : "系统性红斑狼疮"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56eb"),
+	"keyword" : "索拉非尼"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56ec"),
+	"keyword" : "索拉非尼衍生物"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56ed"),
+	"keyword" : "索玛鲁肽"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56ee"),
+	"keyword" : "索磷布韦"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56ef"),
+	"keyword" : "索马鲁肽"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56f0"),
+	"keyword" : "紫杉醇"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56f1"),
+	"keyword" : "红日药业"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56f2"),
+	"keyword" : "纳武利尤单抗"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56f3"),
+	"keyword" : "纳米凝胶"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56f4"),
+	"keyword" : "纳米抗体"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56f5"),
+	"keyword" : "细胞因子风暴"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56f6"),
+	"keyword" : "细胞治疗"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56f7"),
+	"keyword" : "结直肠癌"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56f8"),
+	"keyword" : "继发性甲状旁腺功能亢进"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56f9"),
+	"keyword" : "维多株单抗"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56fa"),
+	"keyword" : "维奈克拉"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56fb"),
+	"keyword" : "维得利珠单抗"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56fc"),
+	"keyword" : "绿叶制药"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56fd"),
+	"keyword" : "缔脉生物"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56fe"),
+	"keyword" : "缬沙坦"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c56ff"),
+	"keyword" : "缬沙坦氨氯地平"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5700"),
+	"keyword" : "罕见病"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5701"),
+	"keyword" : "罗氏"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5702"),
+	"keyword" : "罗沙司他"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5703"),
+	"keyword" : "美托咪定"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5704"),
+	"keyword" : "肌萎缩侧索硬化症"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5705"),
+	"keyword" : "肺动脉高压"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5706"),
+	"keyword" : "肿瘤药"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5707"),
+	"keyword" : "肿瘤免疫治疗"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5708"),
+	"keyword" : "腱鞘巨细胞瘤"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5709"),
+	"keyword" : "腺相关病毒"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c570a"),
+	"keyword" : "腾盛博药"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c570b"),
+	"keyword" : "舒利迭"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c570c"),
+	"keyword" : "舒坦琳"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c570d"),
+	"keyword" : "舒更葡糖钠"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c570e"),
+	"keyword" : "艾伯维"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c570f"),
+	"keyword" : "艾博卫泰"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5710"),
+	"keyword" : "艾姆地芬片"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5711"),
+	"keyword" : "艾尔建"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5712"),
+	"keyword" : "艾日布林"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5713"),
+	"keyword" : "艾曲泊帕"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5714"),
+	"keyword" : "艾棣维欣"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5715"),
+	"keyword" : "艾瑞昔布"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5716"),
+	"keyword" : "艾迪药业"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5717"),
+	"keyword" : "芬太尼"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5718"),
+	"keyword" : "芬戈莫德"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5719"),
+	"keyword" : "英夫利西单抗"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c571a"),
+	"keyword" : "荣昌生物"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c571b"),
+	"keyword" : "药品管理法"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c571c"),
+	"keyword" : "药明康德"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c571d"),
+	"keyword" : "药明生物"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c571e"),
+	"keyword" : "莎普爱思"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c571f"),
+	"keyword" : "葛兰素史克"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5720"),
+	"keyword" : "血必净"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5721"),
+	"keyword" : "血栓通"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5722"),
+	"keyword" : "血管内皮抑素"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5723"),
+	"keyword" : "补体C3抑制剂"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5724"),
+	"keyword" : "西妥昔单抗"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5725"),
+	"keyword" : "西格列汀"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5726"),
+	"keyword" : "西比曼"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5727"),
+	"keyword" : "西维来司他钠"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5728"),
+	"keyword" : "西达本胺"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5729"),
+	"keyword" : "誉衡药业"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c572a"),
+	"keyword" : "诺华"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c572b"),
+	"keyword" : "诺和诺德"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c572c"),
+	"keyword" : "诺诚健华"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c572d"),
+	"keyword" : "诺诚健华"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c572e"),
+	"keyword" : "豪森药业"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c572f"),
+	"keyword" : "贝伐珠单抗"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5730"),
+	"keyword" : "贝伐珠单抗"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5731"),
+	"keyword" : "贝达药业"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5732"),
+	"keyword" : "赖诺普利"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5733"),
+	"keyword" : "赛诺菲"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5734"),
+	"keyword" : "赞布替尼"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5735"),
+	"keyword" : "软组织肉瘤"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5736"),
+	"keyword" : "辅助用药"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5737"),
+	"keyword" : "辉瑞"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5738"),
+	"keyword" : "辛伐他汀"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5739"),
+	"keyword" : "达拉非尼"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c573a"),
+	"keyword" : "达格列净"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c573b"),
+	"keyword" : "达菲"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c573c"),
+	"keyword" : "达诺瑞韦"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c573d"),
+	"keyword" : "迈博药业"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c573e"),
+	"keyword" : "重庆药友"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c573f"),
+	"keyword" : "金斯瑞"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5740"),
+	"keyword" : "长春百克"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5741"),
+	"keyword" : "阿卡波糖"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5742"),
+	"keyword" : "阿司匹林"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5743"),
+	"keyword" : "阿尔茨海默"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5744"),
+	"keyword" : "阿帕替尼"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5745"),
+	"keyword" : "阿帕替尼"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5746"),
+	"keyword" : "阿帕鲁胺"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5747"),
+	"keyword" : "阿斯利康"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5748"),
+	"keyword" : "阿昔替尼"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5749"),
+	"keyword" : "阿替利珠单抗"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c574a"),
+	"keyword" : "阿替洛尔"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c574b"),
+	"keyword" : "阿来替尼"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c574c"),
+	"keyword" : "阿比特龙"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c574d"),
+	"keyword" : "阿诺医药"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c574e"),
+	"keyword" : "阿达木单抗"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c574f"),
+	"keyword" : "非小细胞肺癌"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5750"),
+	"keyword" : "非格司亭"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5751"),
+	"keyword" : "非那雄胺"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5752"),
+	"keyword" : "非酒精性脂肪性肝炎"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5753"),
+	"keyword" : "领星生物"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5754"),
+	"keyword" : "香雪制药"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5755"),
+	"keyword" : "马赛替尼"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5756"),
+	"keyword" : "鸿运华宁"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5757"),
+	"keyword" : "黏多糖贮积症"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5758"),
+	"keyword" : "黑色素瘤"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c5759"),
+	"keyword" : "默克"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c575a"),
+	"keyword" : "默沙东"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c575b"),
+	"keyword" : "鼎航医药"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c575c"),
+	"keyword" : "鼻喷冻干流感减毒活疫苗"
+},
+{
+	"_id" : ObjectId("5f62cec3fd3c5114980c575d"),
+	"keyword" : "齐鲁药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8379"),
+	"keyword" : "阿巴西普"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb837a"),
+	"keyword" : "阿加糖酶β"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb837b"),
+	"keyword" : "磷酸芦可替尼"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb837c"),
+	"keyword" : "甲磺酸阿美替尼"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb837d"),
+	"keyword" : "苯磺酸瑞马唑仑"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb837e"),
+	"keyword" : "甲苯磺酸尼拉帕利"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb837f"),
+	"keyword" : "甲磺酸达拉非尼"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8380"),
+	"keyword" : "重组特立帕肽"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8381"),
+	"keyword" : "氯化镭[223Ra]"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8382"),
+	"keyword" : "维布妥昔单抗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8383"),
+	"keyword" : "培塞利珠单抗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8384"),
+	"keyword" : "醋酸阿比特龙"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8385"),
+	"keyword" : "普乐沙福"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8386"),
+	"keyword" : "苯环喹溴铵鼻喷雾剂"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8387"),
+	"keyword" : "马来酸吡咯替尼"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8388"),
+	"keyword" : "阿伐曲泊帕"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8389"),
+	"keyword" : "醋酸兰瑞肽"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb838a"),
+	"keyword" : "阿帕他胺"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb838b"),
+	"keyword" : "精蛋白重组人胰岛素"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb838c"),
+	"keyword" : "盐酸美法仑"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb838d"),
+	"keyword" : "曲氟尿苷替匹嘧啶"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb838e"),
+	"keyword" : "盐酸安非他酮"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb838f"),
+	"keyword" : "丁丙诺啡纳洛酮"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8390"),
+	"keyword" : "氟替美维吸入粉雾剂"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8391"),
+	"keyword" : "奥达特罗吸入喷雾剂"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8392"),
+	"keyword" : "重组人生长激素"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8393"),
+	"keyword" : "盐酸鲁拉西酮"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8394"),
+	"keyword" : "帕妥珠单抗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8395"),
+	"keyword" : "重组人胰岛素"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8396"),
+	"keyword" : "甲苯磺酸瑞马唑仑"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8397"),
+	"keyword" : "乌美溴铵吸入粉雾剂"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8398"),
+	"keyword" : "达可替尼"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8399"),
+	"keyword" : "依洛硫酸酯酶α"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb839a"),
+	"keyword" : "甲磺酸氟马替尼"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb839b"),
+	"keyword" : "九价人乳头瘤病毒疫苗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb839c"),
+	"keyword" : "23价肺炎链球菌多糖结合疫苗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb839d"),
+	"keyword" : "德谷门冬双胰岛素"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb839e"),
+	"keyword" : "聚乙二醇洛塞那肽"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb839f"),
+	"keyword" : "盐酸托莫西汀口服溶液"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83a0"),
+	"keyword" : "盐酸度洛西汀肠溶"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83a1"),
+	"keyword" : "二甲双胍恩格列净"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83a2"),
+	"keyword" : "甲磺酸仑伐替尼"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83a3"),
+	"keyword" : "艾美赛珠单抗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83a4"),
+	"keyword" : "盐酸苯达莫司汀"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83a5"),
+	"keyword" : "依达赛珠单抗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83a6"),
+	"keyword" : "依库珠单抗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83a7"),
+	"keyword" : "13价肺炎球菌多糖结合疫苗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83a8"),
+	"keyword" : "水痘减毒活疫苗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83a9"),
+	"keyword" : "四价流感病毒裂解疫苗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83aa"),
+	"keyword" : "茚达特罗格隆溴铵吸入粉雾剂"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83ab"),
+	"keyword" : "艾曲泊帕乙醇胺"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83ac"),
+	"keyword" : "糠酸氟替卡松维兰特罗吸入粉雾剂"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83ad"),
+	"keyword" : "盐酸多奈哌齐"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83ae"),
+	"keyword" : "奥马珠单抗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83af"),
+	"keyword" : "全氟丁烷微球"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83b0"),
+	"keyword" : "氢溴酸伏硫西汀"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83b1"),
+	"keyword" : "棕榈帕利哌酮酯"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83b2"),
+	"keyword" : "格隆溴铵吸入粉雾剂"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83b3"),
+	"keyword" : "布南色林"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83b4"),
+	"keyword" : "噻托溴铵奥达特罗吸入喷雾剂"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83b5"),
+	"keyword" : "利斯的明透皮贴剂"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83b6"),
+	"keyword" : "利多卡因凝胶"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83b7"),
+	"keyword" : "乙磺酸尼达尼布软"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83b8"),
+	"keyword" : "乌美溴铵维兰特罗吸入粉雾剂"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83b9"),
+	"keyword" : "丙酸氟替卡松雾化吸入用混悬液"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83ba"),
+	"keyword" : "麦格司他"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83bb"),
+	"keyword" : "磷酸西格列汀"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83bc"),
+	"keyword" : "艾塞那肽微球"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83bd"),
+	"keyword" : "伊米苷酶"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83be"),
+	"keyword" : "沙格列汀二甲双胍"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83bf"),
+	"keyword" : "戈利木单抗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83c0"),
+	"keyword" : "德谷胰岛素"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83c1"),
+	"keyword" : "利格列汀二甲双胍"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83c2"),
+	"keyword" : "利司那肽"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83c3"),
+	"keyword" : "依那西普"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83c4"),
+	"keyword" : "交联玻璃酸钠"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83c5"),
+	"keyword" : "维莫非尼"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83c6"),
+	"keyword" : "甲氧聚二醇重组人促红素"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83c7"),
+	"keyword" : "瑞戈非尼"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83c8"),
+	"keyword" : "枸橼酸伊沙佐米"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83c9"),
+	"keyword" : "帕博利珠单抗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83ca"),
+	"keyword" : "马来酸阿法替尼"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83cb"),
+	"keyword" : "盐酸安罗替尼"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83cc"),
+	"keyword" : "甲磺酸奥希替尼"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83cd"),
+	"keyword" : "阿扎胞苷"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83ce"),
+	"keyword" : "沙库巴曲缬沙坦钠"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83cf"),
+	"keyword" : "阿舒瑞韦软"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83d0"),
+	"keyword" : "盐酸达拉他韦"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83d1"),
+	"keyword" : "甲磺酸雷沙吉兰"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83d2"),
+	"keyword" : "替米沙坦氨氯地平"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83d3"),
+	"keyword" : "利奥西呱"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83d4"),
+	"keyword" : "重组细胞因子基因衍生蛋白"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83d5"),
+	"keyword" : "托伐普坦"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83d6"),
+	"keyword" : "米拉贝隆"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83d7"),
+	"keyword" : "贝那鲁肽"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83d8"),
+	"keyword" : "艾普拉唑肠溶"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83d9"),
+	"keyword" : "左旋奥硝唑"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83da"),
+	"keyword" : "丹龙口服液"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83db"),
+	"keyword" : "莫达非尼"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83dc"),
+	"keyword" : "吸附破伤风疫苗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83dd"),
+	"keyword" : "冻干人用狂犬病疫苗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83de"),
+	"keyword" : "b型流感嗜血杆菌结合疫苗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83df"),
+	"keyword" : "23价肺炎球菌多糖疫苗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83e0"),
+	"keyword" : "金花清感颗粒"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83e1"),
+	"keyword" : "聚乙二醇干扰素α-2b"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83e2"),
+	"keyword" : "脊髓灰质炎减毒活疫苗糖丸"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83e3"),
+	"keyword" : "人用狂犬病疫苗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83e4"),
+	"keyword" : "苹果酸奈诺沙星"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83e5"),
+	"keyword" : "恩曲利替"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83e6"),
+	"keyword" : "多替拉韦钠"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83e7"),
+	"keyword" : "双价重组人乳头瘤病毒疫苗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83e8"),
+	"keyword" : "肠道病毒71型灭活疫苗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83e9"),
+	"keyword" : "头孢克洛干混悬剂"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83ea"),
+	"keyword" : "格列齐特"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83eb"),
+	"keyword" : "依巴斯汀"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83ec"),
+	"keyword" : "匹伐他汀钙"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83ed"),
+	"keyword" : "洛索洛芬钠"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83ee"),
+	"keyword" : "非布司他"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83ef"),
+	"keyword" : "头孢丙烯"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83f0"),
+	"keyword" : "米格列醇"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83f1"),
+	"keyword" : "莫西沙星"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83f2"),
+	"keyword" : "吡格列酮"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83f3"),
+	"keyword" : "异丙嗪"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83f4"),
+	"keyword" : "甲泼尼龙"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83f5"),
+	"keyword" : "苯海拉明"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83f6"),
+	"keyword" : "克拉霉素"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83f7"),
+	"keyword" : "氯氮平"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83f8"),
+	"keyword" : "比卡鲁胺"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83f9"),
+	"keyword" : "溴己新"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83fa"),
+	"keyword" : "加巴喷丁"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83fb"),
+	"keyword" : "维格列汀"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83fc"),
+	"keyword" : "右佐匹克隆"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83fd"),
+	"keyword" : "格列吡嗪"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83fe"),
+	"keyword" : "奥硝唑"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb83ff"),
+	"keyword" : "氢溴酸右美沙芬"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8400"),
+	"keyword" : "卡培他滨"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8401"),
+	"keyword" : "铝碳酸镁咀嚼"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8402"),
+	"keyword" : "乙胺丁醇"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8403"),
+	"keyword" : "奥美拉唑肠溶"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8404"),
+	"keyword" : "诺氟沙星"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8405"),
+	"keyword" : "双氯芬酸钠"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8406"),
+	"keyword" : "美洛昔康"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8407"),
+	"keyword" : "那格列奈"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8408"),
+	"keyword" : "酒石酸美托洛尔"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8409"),
+	"keyword" : "苯溴马隆"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb840a"),
+	"keyword" : "吗替麦考酚酯"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb840b"),
+	"keyword" : "利福平"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb840c"),
+	"keyword" : "维生素B2"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb840d"),
+	"keyword" : "甲硝唑"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb840e"),
+	"keyword" : "羟苯磺酸钙"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb840f"),
+	"keyword" : "氨磺必利"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8410"),
+	"keyword" : "吡嗪酰胺"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8411"),
+	"keyword" : "富马酸喹硫平"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8412"),
+	"keyword" : "碳酸氢钠"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8413"),
+	"keyword" : "地氯雷他定"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8414"),
+	"keyword" : "对乙酰氨基酚"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8415"),
+	"keyword" : "昂丹司琼"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8416"),
+	"keyword" : "环丙沙星"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8417"),
+	"keyword" : "维生素B6"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8418"),
+	"keyword" : "阿立哌唑"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8419"),
+	"keyword" : "曲美他嗪"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb841a"),
+	"keyword" : "枸橼酸他莫昔芬"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb841b"),
+	"keyword" : "替吉奥"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb841c"),
+	"keyword" : "贝那普利"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb841d"),
+	"keyword" : "氢氯噻嗪"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb841e"),
+	"keyword" : "西替利嗪"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb841f"),
+	"keyword" : "多潘立酮"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8420"),
+	"keyword" : "苯海索"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8421"),
+	"keyword" : "坎地沙坦酯"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8422"),
+	"keyword" : "阿昔洛韦"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8423"),
+	"keyword" : "替硝唑"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8424"),
+	"keyword" : "磷酸奥司他韦"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8425"),
+	"keyword" : "来曲唑"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8426"),
+	"keyword" : "福多司坦"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8427"),
+	"keyword" : "环孢素软"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8428"),
+	"keyword" : "头孢氨苄"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8429"),
+	"keyword" : "左西替利嗪"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb842a"),
+	"keyword" : "氯化钾"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb842b"),
+	"keyword" : "奥美沙坦酯"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb842c"),
+	"keyword" : "瑞格列奈"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb842d"),
+	"keyword" : "甲钴胺"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb842e"),
+	"keyword" : "雷尼替丁"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb842f"),
+	"keyword" : "头孢羟氨苄"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8430"),
+	"keyword" : "吲达帕胺"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8431"),
+	"keyword" : "替莫唑胺"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8432"),
+	"keyword" : "氢溴酸西酞普兰"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8433"),
+	"keyword" : "阿德福韦酯"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8434"),
+	"keyword" : "米氮平"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8435"),
+	"keyword" : "坦索罗辛"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8436"),
+	"keyword" : "氟西汀"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8437"),
+	"keyword" : "拉米夫定"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8438"),
+	"keyword" : "头孢地尼"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8439"),
+	"keyword" : "头孢克洛"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb843a"),
+	"keyword" : "米非司酮"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb843b"),
+	"keyword" : "头孢拉定"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb843c"),
+	"keyword" : "氟康唑"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb843d"),
+	"keyword" : "枸橼酸西地那非"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb843e"),
+	"keyword" : "异烟肼"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb843f"),
+	"keyword" : "阿那曲唑"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8440"),
+	"keyword" : "氟哌噻吨美利曲辛"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8441"),
+	"keyword" : "氨基葡萄糖"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8442"),
+	"keyword" : "多奈哌齐"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8443"),
+	"keyword" : "克林霉素"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8444"),
+	"keyword" : "聚乙二醇4000"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8445"),
+	"keyword" : "布洛芬"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8446"),
+	"keyword" : "特拉唑嗪"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8447"),
+	"keyword" : "格列美脲"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8448"),
+	"keyword" : "富马酸比索洛尔"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8449"),
+	"keyword" : "特比萘芬"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb844a"),
+	"keyword" : "阿奇霉素"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb844b"),
+	"keyword" : "曲马多"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb844c"),
+	"keyword" : "苯磺酸氨氯地平"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb844d"),
+	"keyword" : "阿托伐他汀钙"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb844e"),
+	"keyword" : "阿法骨化醇"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb844f"),
+	"keyword" : "舍曲林"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8450"),
+	"keyword" : "甲磺酸伊马替尼"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8451"),
+	"keyword" : "头孢克肟"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8452"),
+	"keyword" : "蒙脱石"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8453"),
+	"keyword" : "左乙拉西坦"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8454"),
+	"keyword" : "氯沙坦钾"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8455"),
+	"keyword" : "富马酸替诺福韦二吡呋酯"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8456"),
+	"keyword" : "依非韦伦"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8457"),
+	"keyword" : "草酸艾司西酞普兰"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8458"),
+	"keyword" : "头孢呋辛酯"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8459"),
+	"keyword" : "阿莫西林"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb845a"),
+	"keyword" : "恩替卡韦"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb845b"),
+	"keyword" : "马来酸依那普利"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb845c"),
+	"keyword" : "厄贝沙坦氢氯噻嗪"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb845d"),
+	"keyword" : "厄贝沙坦"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb845e"),
+	"keyword" : "福辛普利钠"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb845f"),
+	"keyword" : "帕罗西汀"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8460"),
+	"keyword" : "奈韦拉平"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8461"),
+	"keyword" : "瑞舒伐他汀钙"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8462"),
+	"keyword" : "氯比格雷"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8463"),
+	"keyword" : "奥布替尼"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8464"),
+	"keyword" : "氟唑帕利"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8465"),
+	"keyword" : "合源生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8466"),
+	"keyword" : "烨辉医药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8467"),
+	"keyword" : "加科思"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8468"),
+	"keyword" : "珠海润都"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8469"),
+	"keyword" : "重药控股"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb846a"),
+	"keyword" : "珍宝岛"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb846b"),
+	"keyword" : "长春高新"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb846c"),
+	"keyword" : "英科医疗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb846d"),
+	"keyword" : "亿源药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb846e"),
+	"keyword" : "药石科技"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb846f"),
+	"keyword" : "新华制药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8470"),
+	"keyword" : "我武生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8471"),
+	"keyword" : "通化金马"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8472"),
+	"keyword" : "天大药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8473"),
+	"keyword" : "特宝生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8474"),
+	"keyword" : "石四药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8475"),
+	"keyword" : "片仔癀"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8476"),
+	"keyword" : "美诺华"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8477"),
+	"keyword" : "美年健康"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8478"),
+	"keyword" : "美迪西"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8479"),
+	"keyword" : "迈瑞医疗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb847a"),
+	"keyword" : "迈克生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb847b"),
+	"keyword" : "迈得医疗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb847c"),
+	"keyword" : "马应龙"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb847d"),
+	"keyword" : "联环药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb847e"),
+	"keyword" : "联邦制药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb847f"),
+	"keyword" : "李氏大药厂"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8480"),
+	"keyword" : "乐普医疗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8481"),
+	"keyword" : "葵花药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8482"),
+	"keyword" : "科伦药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8483"),
+	"keyword" : "康华药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8484"),
+	"keyword" : "康弘药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8485"),
+	"keyword" : "凯宝药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8486"),
+	"keyword" : "金石亚药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8487"),
+	"keyword" : "江中药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8488"),
+	"keyword" : "恒瑞医药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8489"),
+	"keyword" : "昊海生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb848a"),
+	"keyword" : "翰宇药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb848b"),
+	"keyword" : "海王生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb848c"),
+	"keyword" : "海特生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb848d"),
+	"keyword" : "桂林三金"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb848e"),
+	"keyword" : "贵州百灵"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb848f"),
+	"keyword" : "广生堂"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8490"),
+	"keyword" : "广济药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8491"),
+	"keyword" : "歌礼制药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8492"),
+	"keyword" : "辅正药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8493"),
+	"keyword" : "辅仁药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8494"),
+	"keyword" : "尔康制药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8495"),
+	"keyword" : "恩华药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8496"),
+	"keyword" : "迪瑞医疗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8497"),
+	"keyword" : "迪安诊断"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8498"),
+	"keyword" : "达瑞生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8499"),
+	"keyword" : "达安基因"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb849a"),
+	"keyword" : "常山药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb849b"),
+	"keyword" : "常山生化"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb849c"),
+	"keyword" : "博腾制药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb849d"),
+	"keyword" : "博大制药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb849e"),
+	"keyword" : "亳药千草"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb849f"),
+	"keyword" : "贝达药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84a0"),
+	"keyword" : "艾德生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84a1"),
+	"keyword" : "拉那利尤单抗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84a2"),
+	"keyword" : "倍林妥莫双抗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84a3"),
+	"keyword" : "司美鲁肽"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84a4"),
+	"keyword" : "罗欣药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84a5"),
+	"keyword" : "智飞生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84a6"),
+	"keyword" : "乐普诊断"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84a7"),
+	"keyword" : "肌萎缩性侧索硬化症"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84a8"),
+	"keyword" : "晚期脂肪肉瘤"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84a9"),
+	"keyword" : "天圣制药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84aa"),
+	"keyword" : "大博医疗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84ab"),
+	"keyword" : "复旦张江"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84ac"),
+	"keyword" : "复旦复华"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84ad"),
+	"keyword" : "塞力斯"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84ae"),
+	"keyword" : "基蛋生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84af"),
+	"keyword" : "圣达生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84b0"),
+	"keyword" : "国药股份"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84b1"),
+	"keyword" : "国药控股"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84b2"),
+	"keyword" : "国药一致"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84b3"),
+	"keyword" : "国新健康"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84b4"),
+	"keyword" : "四环生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84b5"),
+	"keyword" : "四环医药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84b6"),
+	"keyword" : "嘉应制药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84b7"),
+	"keyword" : "嘉事堂"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84b8"),
+	"keyword" : "哈药股份"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84b9"),
+	"keyword" : "和黄药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84ba"),
+	"keyword" : "和佳股份"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84bb"),
+	"keyword" : "启迪古汉"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84bc"),
+	"keyword" : "同和药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84bd"),
+	"keyword" : "吉药控股"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84be"),
+	"keyword" : "吉林敖东"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84bf"),
+	"keyword" : "合全药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84c0"),
+	"keyword" : "双鹭药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84c1"),
+	"keyword" : "双林生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84c2"),
+	"keyword" : "双成药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84c3"),
+	"keyword" : "卫生生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84c4"),
+	"keyword" : "卫光生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84c5"),
+	"keyword" : "卫信康"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84c6"),
+	"keyword" : "博雅生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84c7"),
+	"keyword" : "博腾股份"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84c8"),
+	"keyword" : "博济医药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84c9"),
+	"keyword" : "博晖创新"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84ca"),
+	"keyword" : "南卫股份"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84cb"),
+	"keyword" : "南华生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84cc"),
+	"keyword" : "南京医药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84cd"),
+	"keyword" : "华通医药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84ce"),
+	"keyword" : "华熙生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84cf"),
+	"keyword" : "华润双鹤"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84d0"),
+	"keyword" : "华润医药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84d1"),
+	"keyword" : "华润三九"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84d2"),
+	"keyword" : "华森制药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84d3"),
+	"keyword" : "华大基因"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84d4"),
+	"keyword" : "华仁药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84d5"),
+	"keyword" : "千金药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84d6"),
+	"keyword" : "千红制药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84d7"),
+	"keyword" : "千山药机"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84d8"),
+	"keyword" : "北陆药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84d9"),
+	"keyword" : "力生制药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84da"),
+	"keyword" : "创新医疗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84db"),
+	"keyword" : "凯普生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84dc"),
+	"keyword" : "冠昊生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84dd"),
+	"keyword" : "健民集团"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84de"),
+	"keyword" : "健帆生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84df"),
+	"keyword" : "健友股份"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84e0"),
+	"keyword" : "信邦制药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84e1"),
+	"keyword" : "佛慈制药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84e2"),
+	"keyword" : "佐力药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84e3"),
+	"keyword" : "众生药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84e4"),
+	"keyword" : "以岭药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84e5"),
+	"keyword" : "仟源医药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84e6"),
+	"keyword" : "仙琚制药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84e7"),
+	"keyword" : "仁和药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84e8"),
+	"keyword" : "亿胜生物科技"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84e9"),
+	"keyword" : "亿帆鑫富"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84ea"),
+	"keyword" : "亿帆医药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84eb"),
+	"keyword" : "人民同泰"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84ec"),
+	"keyword" : "交大昂立"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84ed"),
+	"keyword" : "亚太药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84ee"),
+	"keyword" : "九洲药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84ef"),
+	"keyword" : "九强生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84f0"),
+	"keyword" : "九州通"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84f1"),
+	"keyword" : "九州药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84f2"),
+	"keyword" : "九安医疗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84f3"),
+	"keyword" : "九典制药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84f4"),
+	"keyword" : "乐心医疗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84f5"),
+	"keyword" : "丰原药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84f6"),
+	"keyword" : "中源协和"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84f7"),
+	"keyword" : "中新药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84f8"),
+	"keyword" : "中恒集团"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84f9"),
+	"keyword" : "东阳光药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84fa"),
+	"keyword" : "东诚药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84fb"),
+	"keyword" : "东瑞制药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84fc"),
+	"keyword" : "东方生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84fd"),
+	"keyword" : "东宝生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84fe"),
+	"keyword" : "东北制药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb84ff"),
+	"keyword" : "上海莱士"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8500"),
+	"keyword" : "上海凯宝"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8501"),
+	"keyword" : "三鑫医疗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8502"),
+	"keyword" : "三诺生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8503"),
+	"keyword" : "万孚生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8504"),
+	"keyword" : "万东医疗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8505"),
+	"keyword" : "普拉克索"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8506"),
+	"keyword" : "晶准生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8507"),
+	"keyword" : "多拉韦林"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8508"),
+	"keyword" : "胃食管癌"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8509"),
+	"keyword" : "唑来膦酸"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb850a"),
+	"keyword" : "碘克沙醇"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb850b"),
+	"keyword" : "MCL-1"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb850c"),
+	"keyword" : "单硝酸异山梨酯"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb850d"),
+	"keyword" : "和铂医药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb850e"),
+	"keyword" : "肿瘤突变负荷"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb850f"),
+	"keyword" : "蛋白质降解剂"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8510"),
+	"keyword" : "早衰症"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8511"),
+	"keyword" : "头孢西丁"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8512"),
+	"keyword" : "亿腾医药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8513"),
+	"keyword" : "恩莎替尼"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8514"),
+	"keyword" : "康哲药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8515"),
+	"keyword" : "徳度司他"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8516"),
+	"keyword" : "来特莫韦"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8517"),
+	"keyword" : "德昇济医药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8518"),
+	"keyword" : "南京圣和"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8519"),
+	"keyword" : "和乐布韦"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb851a"),
+	"keyword" : "盐酸美金刚"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb851b"),
+	"keyword" : "富马酸丙酚替诺福韦"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb851c"),
+	"keyword" : "替加环素"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb851d"),
+	"keyword" : "泊马度胺"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb851e"),
+	"keyword" : "仑伐替尼"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb851f"),
+	"keyword" : "丙泊酚中/长链脂肪乳"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8520"),
+	"keyword" : "索元生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8521"),
+	"keyword" : "瑞科生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8522"),
+	"keyword" : "赛伦生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8523"),
+	"keyword" : "罂粟乙碘油注射液"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8524"),
+	"keyword" : "奥法妥木单抗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8525"),
+	"keyword" : "波士顿科学"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8526"),
+	"keyword" : "微光医疗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8527"),
+	"keyword" : "云锋基金"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8528"),
+	"keyword" : "吡拉西坦"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8529"),
+	"keyword" : "亿友药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb852a"),
+	"keyword" : "泮托拉唑钠"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb852b"),
+	"keyword" : "奥赛康"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb852c"),
+	"keyword" : "远大医药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb852d"),
+	"keyword" : "紫苑生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb852e"),
+	"keyword" : "欧康维视"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb852f"),
+	"keyword" : "云顶新耀"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8530"),
+	"keyword" : "盐酸莫西沙星氯化钠"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8531"),
+	"keyword" : "醋酸加尼瑞克"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8532"),
+	"keyword" : "派安普利单抗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8533"),
+	"keyword" : "华中药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8534"),
+	"keyword" : "朝晖药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8535"),
+	"keyword" : "美罗培南"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8536"),
+	"keyword" : "海滨制药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8537"),
+	"keyword" : "青峰药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8538"),
+	"keyword" : "醋酸艾替班特"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8539"),
+	"keyword" : "齐鲁药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb853a"),
+	"keyword" : "奥瑞巴替尼"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb853b"),
+	"keyword" : "达雷妥尤单抗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb853c"),
+	"keyword" : "生物安全"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb853d"),
+	"keyword" : "福元医药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb853e"),
+	"keyword" : "视网膜母细胞瘤细胞"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb853f"),
+	"keyword" : "西安杨森"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8540"),
+	"keyword" : "甘精胰岛素"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8541"),
+	"keyword" : "巴替非班"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8542"),
+	"keyword" : "高磷血症"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8543"),
+	"keyword" : "醋酸钙片"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8544"),
+	"keyword" : "百美特生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8545"),
+	"keyword" : "丹曲林钠"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8546"),
+	"keyword" : "右雷佐生"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8547"),
+	"keyword" : "二代基因测序"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8548"),
+	"keyword" : "尿路上皮肿瘤"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8549"),
+	"keyword" : "安斯泰来"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb854a"),
+	"keyword" : "表观遗传疗法"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb854b"),
+	"keyword" : "杜瑞制药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb854c"),
+	"keyword" : "盈科生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb854d"),
+	"keyword" : "糖免疫检查点"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb854e"),
+	"keyword" : "维昇药业"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb854f"),
+	"keyword" : "安济盛"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8550"),
+	"keyword" : "桑迪亚"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8551"),
+	"keyword" : "保诺科技"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8552"),
+	"keyword" : "皓元医药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8553"),
+	"keyword" : "法维拉韦"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8554"),
+	"keyword" : "微生物疗法"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8555"),
+	"keyword" : "曙方医药"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8556"),
+	"keyword" : "传奇生物"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8557"),
+	"keyword" : "西米普利单抗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8558"),
+	"keyword" : "三阴乳腺癌"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8559"),
+	"keyword" : "纬迪西妥单抗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb855a"),
+	"keyword" : "阿贝西利"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb855b"),
+	"keyword" : "格隆溴铵"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb855c"),
+	"keyword" : "卡格列净"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb855d"),
+	"keyword" : "马昔腾坦"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb855e"),
+	"keyword" : "氯苯唑酸软胶囊"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb855f"),
+	"keyword" : "舒格利单抗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8560"),
+	"keyword" : "达罗他胺"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8561"),
+	"keyword" : "多西他赛"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8562"),
+	"keyword" : "恩沃利单抗"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8563"),
+	"keyword" : "思路迪"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8564"),
+	"keyword" : "糖尿病黄斑水肿"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8565"),
+	"keyword" : "通化东宝"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8566"),
+	"keyword" : "艾美赛珠"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8567"),
+	"keyword" : "冠脉支架"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8568"),
+	"keyword" : "医用耗材"
+},
+{
+	"_id" : ObjectId("5ff2d4f844fe7d6934eb8569"),
+	"keyword" : "西尼莫德"
+},

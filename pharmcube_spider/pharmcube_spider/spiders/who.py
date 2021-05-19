@@ -73,6 +73,5 @@ def parse_page(self, doc, type, label):
             if 'pharmcube' in qiniu_url:
                 es_dict['pdf_link'] = qiniu_url
         es_dict.pop('file_url')
-        es_dict.pop('file_name')
         logging.info(f'------- insert es data -------{file_name}')
         self.es_utils.insert_or_replace(ESIndex.WHO_DRUG_INN, d=es_dict)

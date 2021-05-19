@@ -3,7 +3,7 @@ import ast
 import scrapy
 from pharmcube_spider.const import PAGEOPS
 from pharmcube_spider.const import ESIndex, RedisKey
-from pharmcube_spider.utils import  es_utils
+from pharmcube_spider.utils import es_utils
 from pharmcube_spider.utils.date_utils import DateUtils
 from pharmcube_spider.utils.es_utils import Query, QueryType
 from scrapy.utils.project import get_project_settings

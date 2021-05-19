@@ -10,7 +10,7 @@ from scrapy import cmdline
 medlive; fund; newswire; ipo_us; ispor; patent_google; cde; newswire; pmc_article;
 wind; wind_invest; 
 '''
-cmdline.execute(['scrapy', 'crawl', 'pmc_article',])
+cmdline.execute(['scrapy', 'crawl', 'cde',])
 
 #cmdline.execute(['scrapy', 'crawl', 'cde','-a' 'spider_test=electronics'])
 
